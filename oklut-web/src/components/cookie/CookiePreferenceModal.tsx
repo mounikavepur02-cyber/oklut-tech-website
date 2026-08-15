@@ -1,0 +1,152 @@
+import { useEffect, useRef, useState } from 'react'
+import { useBodyScrollLock } from '../../lib/useBodyScrollLock'
+import { useFocusTrap } from '../../lib/useFocusTrap'
+import { DEFAULT_PREFERENCES } from '../../lib/cookieConsent'
+import type { CookiePreferences } from '../../lib/cookieConsent'
+import { Switch } from '../Switch'
+import { useCookieConsent } from './CookieConsentProvider'
+
+interface CookieOption {
+  key: keyof CookiePreferences
+  title: string
+  description: string
+}
+
+const OPTIONS: CookieOption[] = [
+  {
+    key: 'analytics',
+    title: 'Analytics',
+    description:
+      'Help us understand how visitors use the site so we can improve it. Disabled by default.',
+  },
+  {
+    key: 'marketing',
+    title: 'Marketing',
+    description:
+      'Used to show you relevant offers and campaigns. Disabled by default.',
+  },
+]
+
+const ESSENTIAL_DESCRIPTION =
+  'Required for the website to function (authentication, security, load balancing). These cannot be disabled.'
+
+export function CookiePreferenceModal() {
+  const {
+    isPreferencesOpen,
+    preferences,
+    closePreferences,
+    savePreferences,
+  } = useCookieConsent()
+
+  const panelRef = useRef<HTMLDivElement>(null)
+  const analyticsSwitchRef = useRef<HTMLButtonElement>(null)
+  const [prefs, setPrefs] = useState<CookiePreferences>(DEFAULT_PREFERENCES)
+
+  // Initialise toggles from the current consent on every open.
+  useEffect(() => {
+    if (isPreferencesOpen) {
+      setPrefs(preferences)
+      analyticsSwitchRef.current?.focus()
+    }
+  }, [isPreferencesOpen, preferences])
+
+  useFocusTrap(panelRef, isPreferencesOpen)
+  useBodyScrollLock(isPreferencesOpen)
+
+  useEffect(() => {
+    if (!isPreferencesOpen) return
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        closePreferences()
+      }
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [isPreferencesOpen, closePreferences])
+
+  if (!isPreferencesOpen) return null
+
+  const toggle = (key: keyof CookiePreferences) => {
+    setPrefs((current) => ({ ...current, [key]: !current[key] }))
+  }
+
+  return (
+    <div
+      className="cookie-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cookie-modal-title"
+      onClick={closePreferences}
+    >
+      <div
+        className="cookie-modal-panel"
+        ref={panelRef}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          type="button"
+          className="modal-close"
+          onClick={closePreferences}
+          aria-label="Close cookie preferences"
+        >
+          &times;
+        </button>
+
+        <div className="cookie-modal-header">
+          <h2 id="cookie-modal-title">Manage Cookie Preferences</h2>
+          <p>
+            Choose which categories of cookies you allow. Essential cookies
+            remain enabled to keep the website functioning.
+          </p>
+        </div>
+
+        <div className="cookie-options">
+          <div className="cookie-option">
+            <div className="cookie-option-text">
+              <strong>Essential</strong>
+              <p>{ESSENTIAL_DESCRIPTION}</p>
+            </div>
+            <Switch
+              id="cookie-essential"
+              label="Essential cookies (required, always enabled)"
+              checked
+              disabled
+            />
+          </div>
+
+          {OPTIONS.map((option) => (
+            <div className="cookie-option" key={option.key}>
+              <div className="cookie-option-text">
+                <strong>{option.title}</strong>
+                <p>{option.description}</p>
+              </div>
+              <Switch
+                id={`cookie-${option.key}`}
+                label={`${option.title} cookies`}
+                checked={prefs[option.key]}
+                onChange={() => toggle(option.key)}
+                innerRef={option.key === 'analytics' ? analyticsSwitchRef : undefined}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="cookie-modal-actions">
+          <button type="button" className="btn btn-outline" onClick={closePreferences}>
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => savePreferences(prefs)}
+          >
+            Save Preferences
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default CookiePreferenceModal

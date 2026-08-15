@@ -1,0 +1,40 @@
+[2m2:38:33 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 1 error:
+
+[31m[PARSE_ERROR] [0mExpected `,` or `)` but found `{`
+     [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/components/AuthModal.jsx:188:11 [38;5;246m][0m
+     [38;5;246m│[0m
+ [38;5;246m172 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m{[0m[38;5;249mv[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249mw[0m[38;5;249m [0m[38;5;249m![0m[38;5;249m=[0m[38;5;249m=[0m[38;5;249m [0m[38;5;249m'[0m[38;5;249mf[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mg[0m[38;5;249mo[0m[38;5;249mt[0m[38;5;249m'[0m[38;5;249m [0m[38;5;249m&[0m[38;5;249m&[0m[38;5;249m [0m(
+ [38;5;240m    │[0m                                 ┬  
+ [38;5;240m    │[0m                                 ╰── Opened here
+ [38;5;240m    │[0m 
+ [38;5;246m188 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m{[38;5;249m![0m[38;5;249mi[0m[38;5;249ms[0m[38;5;249mL[0m[38;5;249mo[0m[38;5;249mg[0m[38;5;249mi[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249m&[0m[38;5;249m&[0m[38;5;249m [0m[38;5;249m([0m
+ [38;5;240m    │[0m           ┬  
+ [38;5;240m    │[0m           ╰── `,` or `)` expected
+[38;5;246m─────╯[0m
+[39m
+  Plugin: [35mvite:oxc[39m
+  File: [36mC:/Users/mouni/.gemini/antigravity-ide/scratch/oklut tech/oklut-web/src/components/AuthModal.jsx[39m
+      at transformWithOxc (file:///C:/Users/mouni/.gemini/antigravity-ide/scratch/oklut%20tech/oklut-web/node_modules/vite/dist/node/chunks/node.js:4090:19)
+      at TransformPluginContext.transform (file:///C:/Users/mouni/.gemini/antigravity-ide/scratch/oklut%20tech/oklut-web/node_modules/vite/dist/node/chunks/node.js:4161:26)
+      at EnvironmentPluginContainer.transform (file:///C:/Users/mouni/.gemini/antigravity-ide/scratch/oklut%20tech/oklut-web/node_modules/vite/dist/node/chunks/node.js:30796:51)
+      at async loadAndTransform (file:///C:/Users/mouni/.gemini/antigravity-ide/scratch/oklut%20tech/oklut-web/node_modules/vite/dist/node/chunks/node.js:20594:26)
+[2m2:38:33 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 1 error:
+
+[31m[PARSE_ERROR] [0mExpected `,` or `)` but found `{`
+     [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/components/AuthModal.jsx:188:11 [38;5;246m][0m
+     [38;5;246m│[0m
+ [38;5;246m172 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m{[0m[38;5;249mv[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249mw[0m[38;5;249m [0m[38;5;249m![0m[38;5;249m=[0m[38;5;249m=[0m[38;5;249m [0m[38;5;249m'[0m[38;5;249mf[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mg[0m[38;5;249mo[0m[38;5;249mt[0m[38;5;249m'[0m[38;5;249m [0m[38;5;249m&[0m[38;5;249m&[0m[38;5;249m [0m(
+ [38;5;240m    │[0m                                 ┬  
+ [38;5;240m    │[0m                                 ╰── Opened here
+ [38;5;240m    │[0m 
+ [38;5;246m188 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m{[38;5;249m![0m[38;5;249mi[0m[38;5;249ms[0m[38;5;249mL[0m[38;5;249mo[0m[38;5;249mg[0m[38;5;249mi[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249m&[0m[38;5;249m&[0m[38;5;249m [0m[38;5;249m([0m
+ [38;5;240m    │[0m           ┬  
+ [38;5;240m    │[0m           ╰── `,` or `)` expected
+[38;5;246m─────╯[0m
+[39m
+  Plugin: [35mvite:oxc[39m
+  File: [36mC:/Users/mouni/.gemini/antigravity-ide/scratch/oklut tech/oklut-web/src/components/AuthModal.jsx[39m
+      at transformWithOxc (file:///C:/Users/mouni/.gemini/antigravity-ide/scratch/oklut%20tech/oklut-web/node_modules/vite/dist/node/chunks/node.js:4090:19)
+      at TransformPluginContext.transform (file:///C:/Users/mouni/.gemini/antigravity-ide/scratch/oklut%20tech/oklut-web/node_modules/vite/dist/node/chunks/node.js:4161:26)
+      at EnvironmentPluginContainer.transform (file:///C:/Users/mouni/.gemini/antigravity-ide/scratch/oklut%20tech/oklut-web/node_modules/vite/dist/node/chunks/node.js:30796:51)
+      at async loadAndTransform (file:///C:/Users/mouni/.gemini/antigravity-ide/scratch/oklut%20tech/oklut-web/node_modules/vite/dist/node/chunks/node.js:20594:26)
