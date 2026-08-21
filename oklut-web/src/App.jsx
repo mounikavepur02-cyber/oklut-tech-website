@@ -136,6 +136,7 @@ function Navbar({ onSignIn, onSignUp }) {
   const { user, signOut } = useAuth()
   const location = useLocation()
   const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const [servicesMenuOpen, setServicesMenuOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [scrolled, setScrolled] = useState(false)
@@ -205,24 +206,103 @@ function Navbar({ onSignIn, onSignUp }) {
           </span>
         </SectionLink>
         <nav className={`nav-links ${mobileOpen ? 'nav-links-open' : ''}`} aria-label="Main navigation">
-          {NAV_ITEMS.map((item) => (
-            <SectionLink
-              key={item.id}
-              id={item.id}
-              isActive={location.pathname === '/' && activeSection === item.id}
-              onNavigate={closeMobile}
-            >
-              {item.label}
-            </SectionLink>
-          ))}
-          <Link
-            to="/solution-engineering"
-            className={location.pathname === '/solution-engineering' ? 'active' : ''}
-            aria-current={location.pathname === '/solution-engineering' ? 'page' : undefined}
-            onClick={closeMobile}
-          >
-            Solution Engineering
-          </Link>
+          {NAV_ITEMS.map((item) => {
+            if (item.id === 'services') {
+              const isServicesActive =
+                location.pathname === '/solution-engineering' ||
+                (location.pathname === '/' && activeSection === 'services')
+              return (
+                <div
+                  key={item.id}
+                  className="nav-item-dropdown"
+                  onMouseEnter={() => setServicesMenuOpen(true)}
+                  onMouseLeave={() => setServicesMenuOpen(false)}
+                >
+                  <button
+                    type="button"
+                    className={`services-dropdown-btn${isServicesActive ? ' active' : ''}`}
+                    onClick={() => setServicesMenuOpen((o) => !o)}
+                    aria-expanded={servicesMenuOpen}
+                  >
+                    {item.label}
+                    <Icon name="chevron" />
+                  </button>
+                  {servicesMenuOpen && (
+                    <div className="services-menu" role="menu">
+                      <Link
+                        to="/solution-engineering"
+                        className={`services-menu-item${location.pathname === '/solution-engineering' ? ' active' : ''}`}
+                        onClick={() => {
+                          setServicesMenuOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="services-menu-title">
+                          Solution Engineering
+                          <span className="services-menu-highlight">Featured</span>
+                        </span>
+                        <span className="services-menu-desc">Custom Architecture, Cloud & CI/CD</span>
+                      </Link>
+                      <SectionLink
+                        id="services"
+                        className="services-menu-item"
+                        onNavigate={() => {
+                          setServicesMenuOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="services-menu-title">Software Development</span>
+                        <span className="services-menu-desc">Web Applications & API Services</span>
+                      </SectionLink>
+                      <SectionLink
+                        id="services"
+                        className="services-menu-item"
+                        onNavigate={() => {
+                          setServicesMenuOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="services-menu-title">Digital & Cloud Solutions</span>
+                        <span className="services-menu-desc">AWS, Azure, GCP & IoT Integration</span>
+                      </SectionLink>
+                      <SectionLink
+                        id="services"
+                        className="services-menu-item"
+                        onNavigate={() => {
+                          setServicesMenuOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="services-menu-title">IT Consulting Services</span>
+                        <span className="services-menu-desc">Offshore Consulting & Managed Services</span>
+                      </SectionLink>
+                      <SectionLink
+                        id="services"
+                        className="services-menu-item"
+                        onNavigate={() => {
+                          setServicesMenuOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="services-menu-title">Digital Marketing</span>
+                        <span className="services-menu-desc">SEO, Social Media & Google Ads</span>
+                      </SectionLink>
+                    </div>
+                  )}
+                </div>
+              )
+            }
+            return (
+              <SectionLink
+                key={item.id}
+                id={item.id}
+                isActive={location.pathname === '/' && activeSection === item.id}
+                onNavigate={closeMobile}
+              >
+                {item.label}
+              </SectionLink>
+            )
+          })}
           <Link
             to="/careers"
             className={location.pathname === '/careers' ? 'active' : ''}
