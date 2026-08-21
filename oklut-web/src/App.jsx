@@ -11,6 +11,7 @@ import './App.css'
 
 const CareersPage = lazy(() => import('./pages/CareersPage'))
 const BookConsultationPage = lazy(() => import('./pages/BookConsultationPage'))
+const CentreOfExcellencePage = lazy(() => import('./pages/CentreOfExcellencePage'))
 
 const CONTACT = {
   phone: '+91-9014217124',
@@ -134,10 +135,11 @@ function SectionLink({ id, children, className = '', isActive = false, onNavigat
 function Navbar({ onSignIn, onSignUp }) {
   const { user, signOut } = useAuth()
   const location = useLocation()
-  const [userMenuOpen, setUserMenuOpen] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
   const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('top')
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -204,16 +206,95 @@ function Navbar({ onSignIn, onSignUp }) {
           </span>
         </SectionLink>
         <nav className={`nav-links ${mobileOpen ? 'nav-links-open' : ''}`} aria-label="Main navigation">
-          {NAV_ITEMS.map((item) => (
-            <SectionLink
-              key={item.id}
-              id={item.id}
-              isActive={location.pathname === '/' && activeSection === item.id}
-              onNavigate={closeMobile}
-            >
-              {item.label}
-            </SectionLink>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            if (item.id === 'services') {
+              return (
+                <div
+                  key={item.id}
+                  className="nav-dropdown-wrapper"
+                  onMouseEnter={() => setServicesDropdownOpen(true)}
+                  onMouseLeave={() => setServicesDropdownOpen(false)}
+                >
+                  <SectionLink
+                    id={item.id}
+                    isActive={location.pathname === '/' && activeSection === item.id}
+                    onNavigate={closeMobile}
+                  >
+                    {item.label} <Icon name="chevron" className={`dropdown-chevron ${servicesDropdownOpen ? 'open' : ''}`} />
+                  </SectionLink>
+                  {servicesDropdownOpen && (
+                    <div className="nav-dropdown-menu">
+                      <Link
+                        to="/centre-of-excellence"
+                        className="nav-dropdown-item highlighted-item"
+                        onClick={() => {
+                          setServicesDropdownOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="dropdown-item-title">Centre of Excellence</span>
+                        <span className="dropdown-item-desc">Engineering Standards & Innovation</span>
+                      </Link>
+                      <SectionLink
+                        id="services"
+                        className="nav-dropdown-item"
+                        onNavigate={() => {
+                          setServicesDropdownOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="dropdown-item-title">Software Development</span>
+                        <span className="dropdown-item-desc">Custom Web & Mobile Applications</span>
+                      </SectionLink>
+                      <SectionLink
+                        id="services"
+                        className="nav-dropdown-item"
+                        onNavigate={() => {
+                          setServicesDropdownOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="dropdown-item-title">Digital & Cloud Solutions</span>
+                        <span className="dropdown-item-desc">AWS, Azure & Cloud Native Platforms</span>
+                      </SectionLink>
+                      <SectionLink
+                        id="services"
+                        className="nav-dropdown-item"
+                        onNavigate={() => {
+                          setServicesDropdownOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="dropdown-item-title">IT Consulting</span>
+                        <span className="dropdown-item-desc">Tech Strategy & Offshore Delivery</span>
+                      </SectionLink>
+                      <SectionLink
+                        id="services"
+                        className="nav-dropdown-item"
+                        onNavigate={() => {
+                          setServicesDropdownOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="dropdown-item-title">Digital Marketing</span>
+                        <span className="dropdown-item-desc">SEO, Social & Growth Strategy</span>
+                      </SectionLink>
+                    </div>
+                  )}
+                </div>
+              )
+            }
+            return (
+              <SectionLink
+                key={item.id}
+                id={item.id}
+                isActive={location.pathname === '/' && activeSection === item.id}
+                onNavigate={closeMobile}
+              >
+                {item.label}
+              </SectionLink>
+            )
+          })}
           <Link
             to="/careers"
             className={location.pathname === '/careers' ? 'active' : ''}
@@ -1078,6 +1159,8 @@ function App() {
         <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/centre-of-excellence" element={<CentreOfExcellencePage />} />
+            <Route path="/coe" element={<CentreOfExcellencePage />} />
             <Route path="/careers" element={<CareersPage />} />
             <Route
               path="/book-consultation"
