@@ -14,7 +14,6 @@ export function CookieConsentBanner() {
   const primaryRef = useRef<HTMLButtonElement>(null)
 
   useFocusTrap(panelRef, !decided)
-  useBodyScrollLock(!decided)
 
   // Move keyboard focus into the banner the moment it appears.
   useEffect(() => {

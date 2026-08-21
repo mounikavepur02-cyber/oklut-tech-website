@@ -89,12 +89,24 @@ export default function SolutionEngineeringPage() {
     )
     reveals().forEach((el) => io.observe(el))
 
-    window.addEventListener('scroll', revealInView, { passive: true })
+    let raf = 0
+    const onScroll = () => {
+      if (raf) return
+      raf = requestAnimationFrame(() => {
+        raf = 0
+        revealInView()
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
     revealInView()
+    setTimeout(revealInView, 50)
 
     return () => {
       io.disconnect()
-      window.removeEventListener('scroll', revealInView)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (raf) cancelAnimationFrame(raf)
     }
   }, [])
 
