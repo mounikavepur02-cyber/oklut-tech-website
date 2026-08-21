@@ -11,6 +11,7 @@ import './App.css'
 
 const CareersPage = lazy(() => import('./pages/CareersPage'))
 const BookConsultationPage = lazy(() => import('./pages/BookConsultationPage'))
+const SolutionEngineeringPage = lazy(() => import('./pages/SolutionEngineeringPage'))
 
 const CONTACT = {
   phone: '+91-9014217124',
@@ -214,6 +215,14 @@ function Navbar({ onSignIn, onSignUp }) {
               {item.label}
             </SectionLink>
           ))}
+          <Link
+            to="/solution-engineering"
+            className={location.pathname === '/solution-engineering' ? 'active' : ''}
+            aria-current={location.pathname === '/solution-engineering' ? 'page' : undefined}
+            onClick={closeMobile}
+          >
+            Solution Engineering
+          </Link>
           <Link
             to="/careers"
             className={location.pathname === '/careers' ? 'active' : ''}
@@ -936,6 +945,7 @@ function Footer() {
         <div>
           <h4>Services</h4>
           <ul>
+            <li><Link to="/solution-engineering">Solution Engineering</Link></li>
             <li><SectionLink id="services">Software Development</SectionLink></li>
             <li><SectionLink id="services">Digital & Cloud Solutions</SectionLink></li>
             <li><SectionLink id="services">IT Consulting</SectionLink></li>
@@ -1086,6 +1096,8 @@ function App() {
               }
             />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/solution-engineering" element={<SolutionEngineeringPage />} />
+            <Route path="/services/solution-engineering" element={<SolutionEngineeringPage />} />
           </Routes>
         </Suspense>
       </main>
