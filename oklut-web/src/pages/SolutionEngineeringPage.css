@@ -1,0 +1,279 @@
+/* ============================================================================
+   Solution Engineering Page Styles
+   Built to match provided design mockup and Oklut Technologies brand system
+   ========================================================================== */
+
+:root {
+  --se-navy-deep: #0b1f3d;
+  --se-navy: #12305c;
+  --se-ink: #1c2b3f;
+  --se-slate: #4b5b6e;
+  --se-line: #e4e9f0;
+  --se-paper: #ffffff;
+  --se-accent: #2f6fed;
+}
+
+.se-page {
+  background: var(--se-paper);
+  color: var(--se-ink);
+  font-family: var(--font-body, 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif);
+  line-height: 1.7;
+}
+
+/* Hero Section */
+.se-hero {
+  position: relative;
+  width: 100%;
+  background: var(--se-navy-deep);
+  color: #ffffff;
+  padding: 80px 24px 100px;
+  overflow: hidden;
+}
+
+.se-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.28;
+  filter: brightness(0.7) contrast(1.1);
+  z-index: 1;
+}
+
+.se-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.se-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(47, 111, 237, 0.15);
+  border: 1px solid rgba(47, 111, 237, 0.4);
+  color: #60A5FA;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.se-hero h1 {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.se-hero p {
+  font-size: 19px;
+  color: #cbd5e1;
+  max-width: 780px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+
+.se-hero-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Feature Sections */
+.se-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 90px 40px;
+  display: flex;
+  align-items: center;
+  gap: 64px;
+}
+
+.se-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.se-section .text {
+  flex: 1 1 50%;
+  min-width: 280px;
+}
+
+.se-section .media {
+  flex: 1 1 45%;
+  min-width: 280px;
+}
+
+.se-section .media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px -20px rgba(11, 31, 61, 0.35);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.se-section .media img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px -15px rgba(11, 31, 61, 0.45);
+}
+
+.se-eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--se-accent);
+  margin-bottom: 18px;
+}
+
+.se-section h2 {
+  font-size: 34px;
+  line-height: 1.25;
+  color: var(--se-navy-deep);
+  margin-bottom: 22px;
+  font-weight: 700;
+}
+
+.se-section p {
+  font-size: 16.5px;
+  color: var(--se-slate);
+  margin-bottom: 16px;
+}
+
+.se-divider {
+  height: 1px;
+  background: var(--se-line);
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* Capabilities Grid */
+.se-principles {
+  background: #f8fafc;
+  padding: 90px 40px;
+  border-top: 1px solid var(--se-line);
+  border-bottom: 1px solid var(--se-line);
+}
+
+.se-principles-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.se-principles-head {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.se-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+}
+
+.se-card {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  border: 1px solid var(--se-line);
+  box-shadow: 0 4px 16px rgba(11, 31, 61, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.se-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(11, 31, 61, 0.12);
+  border-color: rgba(47, 111, 237, 0.3);
+}
+
+.se-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: rgba(47, 111, 237, 0.1);
+  color: var(--se-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.se-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--se-navy-deep);
+  margin-bottom: 12px;
+}
+
+.se-card p {
+  font-size: 15px;
+  color: var(--se-slate);
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.se-cta {
+  background: var(--se-navy-deep);
+  color: #ffffff;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.se-cta-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.se-cta h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 18px;
+}
+
+.se-cta p {
+  font-size: 18px;
+  color: #94a3b8;
+  margin-bottom: 32px;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 860px) {
+  .se-hero h1 {
+    font-size: 32px;
+  }
+  .se-hero p {
+    font-size: 16.5px;
+  }
+  .se-section,
+  .se-section.reverse {
+    flex-direction: column;
+    padding: 60px 24px;
+    gap: 32px;
+  }
+  .se-section h2 {
+    font-size: 27px;
+  }
+  .se-principles {
+    padding: 60px 24px;
+  }
+  .se-cta {
+    padding: 60px 24px;
+  }
+  .se-cta h2 {
+    font-size: 28px;
+  }
+}
