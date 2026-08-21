@@ -12,6 +12,7 @@ import './App.css'
 const CareersPage = lazy(() => import('./pages/CareersPage'))
 const BookConsultationPage = lazy(() => import('./pages/BookConsultationPage'))
 const SolutionEngineeringPage = lazy(() => import('./pages/SolutionEngineeringPage'))
+const PilotPrototypingPage = lazy(() => import('./pages/PilotPrototypingPage'))
 
 const CONTACT = {
   phone: '+91-9014217124',
@@ -210,6 +211,7 @@ function Navbar({ onSignIn, onSignUp }) {
             if (item.id === 'services') {
               const isServicesActive =
                 location.pathname === '/solution-engineering' ||
+                location.pathname === '/pilot-prototyping' ||
                 (location.pathname === '/' && activeSection === 'services')
               return (
                 <div
@@ -242,6 +244,20 @@ function Navbar({ onSignIn, onSignUp }) {
                           <span className="services-menu-highlight">Featured</span>
                         </span>
                         <span className="services-menu-desc">Custom Architecture, Cloud & CI/CD</span>
+                      </Link>
+                      <Link
+                        to="/pilot-prototyping"
+                        className={`services-menu-item${location.pathname === '/pilot-prototyping' ? ' active' : ''}`}
+                        onClick={() => {
+                          setServicesMenuOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="services-menu-title">
+                          Pilot &amp; Prototyping
+                          <span className="services-menu-highlight">New</span>
+                        </span>
+                        <span className="services-menu-desc">Validate Concepts &amp; Rapid Prototypes</span>
                       </Link>
                       <SectionLink
                         id="services"
@@ -1026,6 +1042,7 @@ function Footer() {
           <h4>Services</h4>
           <ul>
             <li><Link to="/solution-engineering">Solution Engineering</Link></li>
+            <li><Link to="/pilot-prototyping">Pilot &amp; Prototyping</Link></li>
             <li><SectionLink id="services">Software Development</SectionLink></li>
             <li><SectionLink id="services">Digital & Cloud Solutions</SectionLink></li>
             <li><SectionLink id="services">IT Consulting</SectionLink></li>
@@ -1178,6 +1195,8 @@ function App() {
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/solution-engineering" element={<SolutionEngineeringPage />} />
             <Route path="/services/solution-engineering" element={<SolutionEngineeringPage />} />
+            <Route path="/pilot-prototyping" element={<PilotPrototypingPage />} />
+            <Route path="/services/pilot-prototyping" element={<PilotPrototypingPage />} />
           </Routes>
         </Suspense>
       </main>
