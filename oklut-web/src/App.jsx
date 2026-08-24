@@ -13,6 +13,7 @@ const CareersPage = lazy(() => import('./pages/CareersPage'))
 const BookConsultationPage = lazy(() => import('./pages/BookConsultationPage'))
 const SolutionEngineeringPage = lazy(() => import('./pages/SolutionEngineeringPage'))
 const PilotPrototypingPage = lazy(() => import('./pages/PilotPrototypingPage'))
+const CustomDevelopmentPage = lazy(() => import('./pages/CustomDevelopmentPage'))
 
 const CONTACT = {
   phone: '+91-9014217124',
@@ -212,6 +213,7 @@ function Navbar({ onSignIn, onSignUp }) {
               const isServicesActive =
                 location.pathname === '/solution-engineering' ||
                 location.pathname === '/pilot-prototyping' ||
+                location.pathname === '/custom-development' ||
                 (location.pathname === '/' && activeSection === 'services')
               return (
                 <div
@@ -244,6 +246,20 @@ function Navbar({ onSignIn, onSignUp }) {
                           <span className="services-menu-highlight">Featured</span>
                         </span>
                         <span className="services-menu-desc">Custom Architecture, Cloud & CI/CD</span>
+                      </Link>
+                      <Link
+                        to="/custom-development"
+                        className={`services-menu-item${location.pathname === '/custom-development' ? ' active' : ''}`}
+                        onClick={() => {
+                          setServicesMenuOpen(false)
+                          closeMobile()
+                        }}
+                      >
+                        <span className="services-menu-title">
+                          Custom Development
+                          <span className="services-menu-highlight">Core</span>
+                        </span>
+                        <span className="services-menu-desc">Bespoke Software & Enterprise Systems</span>
                       </Link>
                       <Link
                         to="/pilot-prototyping"
@@ -1042,6 +1058,7 @@ function Footer() {
           <h4>Services</h4>
           <ul>
             <li><Link to="/solution-engineering">Solution Engineering</Link></li>
+            <li><Link to="/custom-development">Custom Development</Link></li>
             <li><Link to="/pilot-prototyping">Pilot &amp; Prototyping</Link></li>
             <li><SectionLink id="services">Software Development</SectionLink></li>
             <li><SectionLink id="services">Digital & Cloud Solutions</SectionLink></li>
@@ -1197,6 +1214,8 @@ function App() {
             <Route path="/services/solution-engineering" element={<SolutionEngineeringPage />} />
             <Route path="/pilot-prototyping" element={<PilotPrototypingPage />} />
             <Route path="/services/pilot-prototyping" element={<PilotPrototypingPage />} />
+            <Route path="/custom-development" element={<CustomDevelopmentPage />} />
+            <Route path="/services/custom-development" element={<CustomDevelopmentPage />} />
           </Routes>
         </Suspense>
       </main>
