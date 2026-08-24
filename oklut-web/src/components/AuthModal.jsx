@@ -87,17 +87,12 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
         if (redirectTo) navigate(redirectTo)
         onClose()
       } else {
-        const { session } = await signUp(form.email.trim(), form.password, form.fullName.trim())
-        if (session && redirectTo) {
-          navigate(redirectTo)
-          onClose()
-        } else {
-          setServerMessage({
-            type: 'info',
-            text: 'Account created! Check your email to confirm your signup, then sign in.',
-          })
-          setStatus('idle')
-        }
+        await signUp(form.email.trim(), form.password, form.fullName.trim())
+        setServerMessage({
+          type: 'info',
+          text: 'Account created! Check your email to confirm your signup, then sign in.',
+        })
+        setStatus('idle')
       }
     } catch (err) {
       setStatus('idle')

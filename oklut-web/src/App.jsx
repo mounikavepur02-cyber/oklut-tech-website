@@ -7,10 +7,34 @@ import { CookieConsentBanner } from './components/cookie/CookieConsentBanner.tsx
 import { CookiePreferenceModal } from './components/cookie/CookiePreferenceModal.tsx'
 import { useCookieConsent } from './components/cookie/CookieConsentProvider.tsx'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage.tsx'
+import { Chatbot } from './components/Chatbot/Chatbot'
+import { Icon } from './components/Icon'
 import './App.css'
+
+function RedirectToStatic({ file }) {
+  useEffect(() => {
+    window.location.assign(file)
+  }, [file])
+  return null
+}
 
 const CareersPage = lazy(() => import('./pages/CareersPage'))
 const BookConsultationPage = lazy(() => import('./pages/BookConsultationPage'))
+
+
+
+
+const EndToEndSolutionsPage = lazy(() => import('./pages/services/EndToEndSolutionsPage'))
+const SharedServicesPage = lazy(() => import('./pages/services/SharedServicesPage'))
+const CustomDevelopmentPage = lazy(() => import('./pages/services/CustomDevelopmentPage'))
+const ProcessAutomationPage = lazy(() => import('./pages/services/ProcessAutomationPage'))
+const CenterOfExcellencePage = lazy(() => import('./pages/services/CenterOfExcellencePage'))
+const SolutionEngineeringPage = lazy(() => import('./pages/services/SolutionEngineeringPage'))
+const DigitalTransformationPage = lazy(() => import('./pages/services/DigitalTransformationPage'))
+const MigrationServicesPage = lazy(() => import('./pages/services/MigrationServicesPage'))
+const OneStopSolutionsPage = lazy(() => import('./pages/services/OneStopSolutionsPage'))
+const PilotPrototypingPage = lazy(() => import('./pages/services/PilotPrototypingPage'))
+const ManagedServicesPage = lazy(() => import('./pages/services/ManagedServicesPage'))
 
 const CONTACT = {
   phone: '+91-9014217124',
@@ -20,80 +44,125 @@ const CONTACT = {
   addressLine: 'Second Floor, Samridhi Vasyam, Madhapur, Hyderabad',
   address:
     'Second Floor, Samridhi Vasyam, D No 1/98/9/3/23, Capital Pk Rd, beside Narayana High School, Cyber Hills Colony, VIP Hills, Jaihind Enclave, Madhapur, Hyderabad, Telangana 500081',
-  mapsHref:
+mapsHref:
     'https://www.google.com/maps/dir/?api=1&destination=Second+Floor,+Samridhi+Vasyam,+D+No+1%2F98%2F9%2F3%2F23,+Capital+Pk+Rd,+beside+Narayana+High+School,+Cyber+Hills+Colony,+VIP+Hills,+Jaihind+Enclave,+Madhapur,+Hyderabad,+Telangana+500081',
-}
-
-const ICONS = {
-  arrow: ['M5 12h14', 'm12 5 7 7-7 7'],
-  phone: [
-    'M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z',
-  ],
-  mail: ['M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z', 'm22 7-10 6L2 7'],
-  pin: ['M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z', 'M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'],
-  check: ['M20 6 9 17l-5-5'],
-  users: [
-    'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2',
-    'M23 21v-2a4 4 0 0 0-3-3.87',
-    'M16 3.13a4 4 0 0 1 0 7.75',
-    'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
-  ],
-  award: ['M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14z', 'M8.21 13.89 7 23l5-3 5 3-1.21-9.12'],
-  cubes: ['M12 2 22 7v10l-10 5L2 17V7l10-5z', 'M2 7l10 5 10-5', 'M12 22V12'],
-  chart: ['M18 20V10', 'M12 20V4', 'M6 20v-6'],
-  code: ['m16 18 6-6-6-6', 'm8 6-6 6 6 6'],
-  search: ['M21 21l-4.35-4.35', 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z'],
-  quote: [
-    'M9 7.5C8 7.5 7.25 8 6.78 8.75c-.34.55-.5 1.3-.44 2.25H8.4c.9 0 1.6.7 1.6 1.6v2.4c0 .97-.83 1.8-1.8 1.8H4.8c-1.27 0-2.3-1.03-2.3-2.3v-3C2.5 7.5 5.33 4.5 8.5 4.5c.55 0 1 .45 1 1s-.45 2-0.5 2z',
-    'M19.5 7.5c-1 0-1.75.5-2.22 1.25-.34.55-.5 1.3-.44 2.25h2.06c.9 0 1.6.7 1.6 1.6v2.4c0 .97-.83 1.8-1.8 1.8h-3.4c-1.27 0-2.3-1.03-2.3-2.3v-3c0-4.8 2.83-7.8 6-7.8.55 0 1 .45 1 1s-.45 2-.5 2z',
-  ],
-  layers: ['m12 2 10 5-10 5L2 7l10-5z', 'm2 12 10 5 10-5', 'm2 17 10 5 10-5'],
-  cloud: ['M17.5 19a4.5 4.5 0 1 0-.42-8.98A6 6 0 0 0 5.5 13 3.5 3.5 0 0 0 7 20h10.5z'],
-  briefcase: ['M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16', 'M3 7h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z'],
-  globe: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z', 'M3 12h18', 'M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z'],
-  clock: ['M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z', 'M12 6v6l4 2'],
-  shield: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'],
-  calendar: ['M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z'],
-  star: ['M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'],
-  chevron: ['m6 9 6 6 6-6'],
-  badgeCheck: [
-    'M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z',
-    'm9 12 2 2 4-4',
-  ],
-}
-
-function Icon({ name, className = '' }) {
-  const paths = ICONS[name] || ICONS.code
-  return (
-    <svg
-      className={`icon ${className}`}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      role="presentation"
-      aria-hidden="true"
-    >
-      {paths.map((d) => (
-        <path key={d} d={d} />
-      ))}
-    </svg>
-  )
 }
 
 const NAV_ITEMS = [
   { id: 'about', label: 'About' },
-  { id: 'services', label: 'Services' },
+  { id: 'services', label: 'Services', hasDropdown: true },
+  { id: 'products', label: 'Products', hasDropdown: true },
   { id: 'news', label: 'Perspectives' },
-  { id: 'gallery', label: 'Projects & Insights' },
+  { id: 'gallery', label: 'Technologies', hasDropdown: true },
   { id: 'contact', label: 'Contact' },
+]
+
+const FEATURED_PRODUCTS = [
+  { title: 'Oklut AI Suite', description: 'Intelligent autonomous agents and tools that automate complex workflows and customer operations.' },
+  { title: 'CloudNexus', description: 'Multi-cloud management platform optimizing performance, security, compliance, and costs.' },
+  { title: 'WorkSync', description: 'Hybrid collaboration and productivity hub with integrated task, chat, and document management.' },
+  { title: 'DataStream', description: 'Real-time analytics engine transforming streams of business events into actionable insights.' }
+]
+
+const ERP_SOLUTIONS = [
+  { title: 'Oklut ERP Core', description: 'Unified enterprise architecture connecting finance, assets, HR, procurement, and inventory.' },
+  { title: 'HRMS Pro', description: 'Employee experience platform covering payroll, benefits, performance reviews, and self-service.' },
+  { title: 'SupplyChain IQ', description: 'Real-time logistics tracking, automated warehouse operations, and demand forecasting.' },
+  { title: 'Finance Hub', description: 'Advanced ledger management, billing workflows, automated compliance, and real-time cashflow reports.' }
+]
+
+const IT_SOLUTIONS = [
+  { title: 'Cloud Infrastructure', description: 'Scalable cloud architecture, migration, and management across AWS, Azure, and GCP.' },
+  { title: 'Cybersecurity Suite', description: 'End-to-end security monitoring, threat detection, and compliance management.' },
+  { title: 'DevOps Pipeline', description: 'CI/CD automation, containerization, and infrastructure-as-code for faster delivery.' },
+  { title: 'Managed IT Services', description: '24/7 infrastructure monitoring, incident response, and proactive maintenance.' }
+]
+
+const CRM_SOLUTIONS = [
+  { title: 'Sales CRM', description: 'Pipeline management, lead scoring, deal tracking, and sales forecasting in one platform.' },
+  { title: 'Customer Support Hub', description: 'Ticketing, knowledge base, live chat, and omnichannel support management.' },
+  { title: 'Marketing Automation', description: 'Campaign orchestration, email automation, lead nurturing, and analytics.' },
+  { title: 'Customer 360 View', description: 'Unified customer profiles combining sales, support, and interaction data.' }
+]
+
+const HRMS_SOLUTIONS = [
+  { title: 'Core HR', description: 'Employee records, org hierarchy, leave management, and attendance tracking.' },
+  { title: 'Payroll & Compliance', description: 'Automated payroll processing, tax calculations, and statutory compliance.' },
+  { title: 'Performance Management', description: 'OKR tracking, 360° reviews, goal setting, and employee development plans.' },
+  { title: 'Recruitment Portal', description: 'Job postings, applicant tracking, interview scheduling, and onboarding workflows.' }
+]
+
+const TECH_NAV_ITEMS = [
+  { label: 'AI & Robotics', href: '#gallery' },
+  { label: 'Business Automation', href: '#gallery' },
+  { label: 'Cloud Migrations', href: '#gallery' },
+  { label: 'Data Centers', href: '#gallery' },
+  { label: 'Cognitive Analytics & AI', href: '#gallery' },
+  { label: 'Information & Reporting Systems', href: '#gallery' },
+  { label: 'Managed Services', to: '/services/managed-services' },
+  { label: 'One-Stop Solutions', to: '/services/one-stop-solutions' },
+]
+
+const SERVICES = [
+  {
+    label: 'Custom Development',
+    slug: 'custom-development',
+    icon: 'code',
+    description: 'Bespoke web, mobile and API products built around your exact requirements.',
+  },
+  {
+    label: 'Process Automation',
+    slug: 'process-automation',
+    icon: 'gears',
+    description: 'Streamline workflows and remove manual effort with intelligent automation.',
+  },
+  {
+    label: 'Center of Excellence',
+    slug: 'center-of-excellence',
+    icon: 'award',
+    description: 'Embed a high-performing engineering hub with shared standards and reuse.',
+  },
+  {
+    label: 'Solution Engineering',
+    slug: 'solution-engineering',
+    icon: 'layers',
+    description: 'Architect resilient, scalable systems from discovery to production.',
+  },
+  {
+    label: 'Digital Transformation',
+    slug: 'digital-transformation',
+    icon: 'trendingUp',
+    description: 'Modernize technology, processes and culture to compete in a digital-first world.',
+  },
+  {
+    label: 'End-to-End Solutions',
+    slug: 'end-to-end-solutions',
+    icon: 'package',
+    description: 'Full-lifecycle delivery from strategy and design through 24/7 operations.',
+  },
+  {
+    label: 'Migration Services',
+    slug: 'migration-services',
+    icon: 'cloud',
+    description: 'Move applications, data and infrastructure to the cloud securely and cost-effectively.',
+  },
+  {
+    label: 'Pilot & Prototyping',
+    slug: 'pilot-prototyping',
+    icon: 'rocket',
+    description: 'Validate ideas fast with low-risk pilots and production-grade prototypes.',
+  },
+  {
+    label: 'Shared Services',
+    slug: 'shared-services',
+    icon: 'server',
+    description: 'Centralized platforms and managed services that scale across teams.',
+  },
 ]
 
 const SECTION_IDS = ['top', 'about', 'services', 'news', 'gallery', 'contact']
 
-const NAV_OFFSET = 90
+const NAV_OFFSET = 78
 
 function scrollToSection(id) {
   const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
@@ -131,13 +200,112 @@ function SectionLink({ id, children, className = '', isActive = false, onNavigat
   )
 }
 
+const POPULAR_LANGUAGES = [
+  { code: 'en', name: 'English', native: 'English' },
+  { code: 'te', name: 'Telugu', native: 'తెలుగు' },
+  { code: 'hi', name: 'Hindi', native: 'हिंदी' },
+  { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ' },
+  { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
+]
+
+const WORLD_LANGUAGES = [
+  { code: 'en', name: 'English', native: 'English' },
+  { code: 'te', name: 'Telugu', native: 'తెలుగు' },
+  { code: 'hi', name: 'Hindi', native: 'हिंदी' },
+  { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ' },
+  { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
+  { code: 'ml', name: 'Malayalam', native: 'മലയാളം' },
+  { code: 'bn', name: 'Bengali', native: 'বাংলা' },
+  { code: 'mr', name: 'Marathi', native: 'मराठी' },
+  { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી' },
+  { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ' },
+  { code: 'ur', name: 'Urdu', native: 'اردو' },
+  { code: 'ar', name: 'Arabic', native: 'العربية' },
+  { code: 'zh', name: 'Chinese', native: '中文' },
+  { code: 'ja', name: 'Japanese', native: '日本語' },
+  { code: 'ko', name: 'Korean', native: '한국어' },
+  { code: 'es', name: 'Spanish', native: 'Español' },
+  { code: 'fr', name: 'French', native: 'Français' },
+  { code: 'de', name: 'German', native: 'Deutsch' },
+  { code: 'it', name: 'Italian', native: 'Italiano' },
+  { code: 'pt', name: 'Portuguese', native: 'Português' },
+  { code: 'ru', name: 'Russian', native: 'Русский' },
+  { code: 'nl', name: 'Dutch', native: 'Nederlands' },
+  { code: 'tr', name: 'Turkish', native: 'Türkçe' },
+  { code: 'el', name: 'Greek', native: 'Ελληνικά' },
+  { code: 'he', name: 'Hebrew', native: 'עברית' },
+  { code: 'th', name: 'Thai', native: 'ไทย' },
+  { code: 'vi', name: 'Vietnamese', native: 'Tiếng Việt' },
+  { code: 'id', name: 'Indonesian', native: 'Bahasa Indonesia' },
+  { code: 'ms', name: 'Malay', native: 'Bahasa Melayu' },
+  { code: 'sw', name: 'Swahili', native: 'Kiswahili' },
+  { code: 'fa', name: 'Persian', native: 'فارسی' },
+  { code: 'pl', name: 'Polish', native: 'Polski' },
+  { code: 'uk', name: 'Ukrainian', native: 'Українська' },
+  { code: 'ro', name: 'Romanian', native: 'Română' },
+  { code: 'cs', name: 'Czech', native: 'Čeština' },
+  { code: 'sv', name: 'Swedish', native: 'Svenska' },
+  { code: 'no', name: 'Norwegian', native: 'Norsk' },
+  { code: 'da', name: 'Danish', native: 'Dansk' },
+  { code: 'fi', name: 'Finnish', native: 'Suomi' },
+  { code: 'hu', name: 'Hungarian', native: 'Magyar' },
+  { code: 'sk', name: 'Slovak', native: 'Slovenčina' },
+  { code: 'bg', name: 'Bulgarian', native: 'Български' },
+  { code: 'hr', name: 'Croatian', native: 'Hrvatski' },
+  { code: 'sr', name: 'Serbian', native: 'Српски' },
+  { code: 'sl', name: 'Slovenian', native: 'Slovenščina' },
+  { code: 'et', name: 'Estonian', native: 'Eesti' },
+  { code: 'lv', name: 'Latvian', native: 'Latviešu' },
+  { code: 'lt', name: 'Lithuanian', native: 'Lietuvių' },
+  { code: 'is', name: 'Icelandic', native: 'Íslenska' },
+  { code: 'ga', name: 'Irish', native: 'Gaeilge' },
+  { code: 'mt', name: 'Maltese', native: 'Malti' },
+  { code: 'cy', name: 'Welsh', native: 'Cymraeg' },
+  { code: 'sq', name: 'Albanian', native: 'Shqip' },
+  { code: 'mk', name: 'Macedonian', native: 'Македонски' },
+  { code: 'bs', name: 'Bosnian', native: 'Bosanski' },
+  { code: 'af', name: 'Afrikaans', native: 'Afrikaans' },
+  { code: 'zu', name: 'Zulu', native: 'isiZulu' },
+  { code: 'am', name: 'Amharic', native: 'አማርኛ' },
+  { code: 'yo', name: 'Yoruba', native: 'Yorùbá' },
+  { code: 'ha', name: 'Hausa', native: 'Hausa' },
+  { code: 'ig', name: 'Igbo', native: 'Igbo' },
+  { code: 'ne', name: 'Nepali', native: 'नेपाली' },
+  { code: 'si', name: 'Sinhala', native: 'සිංහල' },
+  { code: 'my', name: 'Burmese', native: 'မြန်မာစာ' },
+  { code: 'km', name: 'Khmer', native: 'ភាសាខ្មែរ' },
+  { code: 'lo', name: 'Lao', native: 'ພາສາລາວ' },
+  { code: 'ka', name: 'Georgian', native: 'ქართული' },
+  { code: 'hy', name: 'Armenian', native: 'Հայերեն' },
+  { code: 'az', name: 'Azerbaijani', native: 'Azərbaycan' },
+  { code: 'uz', name: 'Uzbek', native: 'Oʻzbek' },
+  { code: 'kk', name: 'Kazakh', native: 'Қазақ' },
+  { code: 'mn', name: 'Mongolian', native: 'Монгол хэл' },
+  { code: 'tl', name: 'Filipino', native: 'Filipino' },
+  { code: 'haw', name: 'Hawaiian', native: 'ʻŌlelo Hawaiʻi' },
+  { code: 'mi', name: 'Maori', native: 'Te Reo Māori' },
+  { code: 'sm', name: 'Samoan', native: 'Gagana Samoa' },
+  { code: 'to', name: 'Tongan', native: 'Lea Faka-Tonga' },
+]
+
 function Navbar({ onSignIn, onSignUp }) {
   const { user, signOut } = useAuth()
   const location = useLocation()
   const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
+  const [productsOpen, setProductsOpen] = useState(false)
+  const [productsTab, setProductsTab] = useState('featured')
+  const [techOpen, setTechOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [langOpen, setLangOpen] = useState(false)
+  const [langSearch, setLangSearch] = useState('')
+  const [selectedLang, setSelectedLang] = useState(POPULAR_LANGUAGES[0])
   const [activeSection, setActiveSection] = useState('')
   const [scrolled, setScrolled] = useState(false)
+  const servicesRef = useRef(null)
+  const productsRef = useRef(null)
+  const techRef = useRef(null)
+  const langRef = useRef(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -150,6 +318,26 @@ function Navbar({ onSignIn, onSignUp }) {
     const close = () => setMobileOpen(false)
     window.addEventListener('resize', close)
     return () => window.removeEventListener('resize', close)
+  }, [])
+
+  useEffect(() => {
+    const onOutside = (e) => {
+      if (servicesRef.current && !servicesRef.current.contains(e.target)) {
+        setServicesOpen(false)
+      }
+      if (productsRef.current && !productsRef.current.contains(e.target)) {
+        setProductsOpen(false)
+      }
+      if (techRef.current && !techRef.current.contains(e.target)) {
+        setTechOpen(false)
+      }
+      if (langRef.current && !langRef.current.contains(e.target)) {
+        setLangOpen(false)
+        setLangSearch('')
+      }
+    }
+    document.addEventListener('mousedown', onOutside)
+    return () => document.removeEventListener('mousedown', onOutside)
   }, [])
 
   useEffect(() => {
@@ -199,29 +387,320 @@ function Navbar({ onSignIn, onSignUp }) {
           onNavigate={closeMobile}
         >
           <img src="/img/logo.jpg" alt="Oklut Technologies logo" className="brand-logo" />
-          <span className="brand-name">
-            Oklut<span>Technologies</span>
-          </span>
         </SectionLink>
         <nav className={`nav-links ${mobileOpen ? 'nav-links-open' : ''}`} aria-label="Main navigation">
-          {NAV_ITEMS.map((item) => (
-            <SectionLink
-              key={item.id}
-              id={item.id}
-              isActive={location.pathname === '/' && activeSection === item.id}
-              onNavigate={closeMobile}
-            >
-              {item.label}
-            </SectionLink>
-          ))}
-          <Link
-            to="/careers"
-            className={location.pathname === '/careers' ? 'active' : ''}
-            aria-current={location.pathname === '/careers' ? 'page' : undefined}
+          {NAV_ITEMS.map((item) => {
+            if (item.hasDropdown && item.id === 'services') {
+              return (
+                <div
+                  key={item.id}
+                  className="services-dropdown-wrap"
+                  ref={servicesRef}
+                >
+                  <button
+                    type="button"
+                    className="services-toggle"
+                    aria-haspopup="menu"
+                    aria-expanded={servicesOpen}
+                    onClick={() => {
+                      setServicesOpen((o) => !o)
+                      setProductsOpen(false)
+                      setTechOpen(false)
+                    }}
+                  >
+                    <span>Services</span>
+                    <span
+                      className={`services-chevron ${servicesOpen ? 'is-open' : ''}`}
+                      aria-hidden="true"
+                    >
+                      <Icon name="chevron" />
+                    </span>
+                  </button>
+                  <div
+                    className={`services-dropdown ${servicesOpen ? 'is-open' : ''}`}
+                    role="menu"
+                    aria-label="Services"
+                  >
+                    {SERVICES.map((s) => (
+                      s.externalUrl ? (
+                        <a
+                          key={s.slug}
+                          href={s.externalUrl}
+                          className="services-dropdown-item"
+                          onClick={closeMobile}
+                        >
+                          {s.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={s.slug}
+                          to={`/services/${s.slug}`}
+                          className="services-dropdown-item"
+                          onClick={closeMobile}
+                        >
+                          {s.label}
+                        </Link>
+                      )
+                    ))}
+                  </div>
+                </div>
+              )
+            }
+            if (item.hasDropdown && item.id === 'products') {
+              const tabConfig = {
+                featured: { items: FEATURED_PRODUCTS, title: 'Featured Products', sub: 'Simplify operations, connect teams, automate processes, and drive smarter business growth.', btnText: 'See All Products', gridTitle: 'FEATURED PRODUCTS', promoTitle: 'Meet the Autonomous Workforce', promoText: 'Transform your operations with AI agents that work alongside your team to handle complex, repetitive tasks.', promoBtnText: 'Learn More' },
+                erp: { items: ERP_SOLUTIONS, title: 'One Platform Ready for Anything', sub: 'Empowering businesses with connected, intelligent, and scalable enterprise management solutions.', btnText: 'Explore ERP Solutions', gridTitle: 'ERP SOLUTIONS', promoTitle: 'Modular ERP for Growth', promoText: 'Deploy modular ERP features rapidly without the complexity of traditional multi-year systems.', promoBtnText: 'Schedule Demo' },
+                it: { items: IT_SOLUTIONS, title: 'IT Solutions', sub: 'Enterprise-grade infrastructure, security, and DevOps solutions to keep your business running.', btnText: 'Explore IT Solutions', gridTitle: 'IT SOLUTIONS', promoTitle: 'Reliable IT Infrastructure', promoText: 'Build a resilient technology foundation with managed cloud, security, and DevOps services.', promoBtnText: 'Get Started' },
+                crm: { items: CRM_SOLUTIONS, title: 'CRM Solutions', sub: 'Customer relationship management to streamline sales, support, and marketing workflows.', btnText: 'Explore CRM Solutions', gridTitle: 'CRM SOLUTIONS', promoTitle: 'Close More Deals', promoText: 'Empower your sales and support teams with unified customer data and intelligent automation.', promoBtnText: 'Start Free Trial' },
+                hrms: { items: HRMS_SOLUTIONS, title: 'HRMS Solutions', sub: 'Human resource management covering payroll, recruitment, performance, and employee engagement.', btnText: 'Explore HRMS Solutions', gridTitle: 'HRMS SOLUTIONS', promoTitle: 'Simplify HR Operations', promoText: 'Automate HR workflows from recruitment to retirement with a modern, employee-first platform.', promoBtnText: 'Request Demo' },
+              };
+              const activeTab = tabConfig[productsTab] || tabConfig.featured;
+
+              return (
+                <div
+                  key={item.id}
+                  className="services-dropdown-wrap products-mega-dropdown-wrap"
+                  ref={productsRef}
+                >
+                  <button
+                    type="button"
+                    className="services-toggle"
+                    aria-haspopup="menu"
+                    aria-expanded={productsOpen}
+                    onClick={() => {
+                      setProductsOpen((o) => !o)
+                      setServicesOpen(false)
+                      setTechOpen(false)
+                    }}
+                  >
+                    <span>Products</span>
+                    <span
+                      className={`services-chevron ${productsOpen ? 'is-open' : ''}`}
+                      aria-hidden="true"
+                    >
+                      <Icon name="chevron" />
+                    </span>
+                  </button>
+                  <div
+                    className={`products-dropdown ${productsOpen ? 'is-open' : ''}`}
+                    role="menu"
+                    aria-label="Products"
+                  >
+                    {/* Desktop layout */}
+                    <div className="mega-menu-desktop-only">
+                      <div className="mega-menu-sidebar">
+                        <button
+                          type="button"
+                          className={`mega-menu-tab-btn ${productsTab === 'featured' ? 'is-active' : ''}`}
+                          onClick={() => setProductsTab('featured')}
+                        >
+                          <span>Featured Products</span>
+                          <span className="mega-menu-tab-chevron"><Icon name="chevronRight" /></span>
+                        </button>
+                        <button
+                          type="button"
+                          className={`mega-menu-tab-btn ${productsTab === 'erp' ? 'is-active' : ''}`}
+                          onClick={() => setProductsTab('erp')}
+                        >
+                          <span>ERP Solutions</span>
+                          <span className="mega-menu-tab-chevron"><Icon name="chevronRight" /></span>
+                        </button>
+                        <div className="mega-menu-sidebar-heading">SOLUTIONS</div>
+                        <button
+                          type="button"
+                          className={`mega-menu-tab-btn ${productsTab === 'it' ? 'is-active' : ''}`}
+                          onClick={() => setProductsTab('it')}
+                        >
+                          <span>IT</span>
+                          <span className="mega-menu-tab-chevron"><Icon name="chevronRight" /></span>
+                        </button>
+                        <button
+                          type="button"
+                          className={`mega-menu-tab-btn ${productsTab === 'crm' ? 'is-active' : ''}`}
+                          onClick={() => setProductsTab('crm')}
+                        >
+                          <span>CRM</span>
+                          <span className="mega-menu-tab-chevron"><Icon name="chevronRight" /></span>
+                        </button>
+                        <button
+                          type="button"
+                          className={`mega-menu-tab-btn ${productsTab === 'hrms' ? 'is-active' : ''}`}
+                          onClick={() => setProductsTab('hrms')}
+                        >
+                          <span>HRMS</span>
+                          <span className="mega-menu-tab-chevron"><Icon name="chevronRight" /></span>
+                        </button>
+                      </div>
+
+                      <div className="mega-menu-main">
+                        <div className="mega-menu-main-header">
+                          <h3 className="mega-menu-title">{activeTab.title}</h3>
+                          <p className="mega-menu-subtitle">{activeTab.sub}</p>
+                          <Link to="/book-consultation" className="btn btn-outline btn-sm mega-menu-cta" onClick={() => { setProductsOpen(false); closeMobile(); }}>
+                            {activeTab.btnText}
+                          </Link>
+                        </div>
+                        <div className="mega-menu-divider" />
+                        <div className="mega-menu-grid-title">{activeTab.gridTitle}</div>
+                        <div className="mega-menu-grid">
+                          {activeTab.items.map((prod, idx) => (
+                            <Link key={idx} to="/book-consultation" className="mega-menu-grid-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
+                              <h4>{prod.title}</h4>
+                              <p>{prod.description}</p>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="mega-menu-promo">
+                        <div className="mega-menu-promo-card">
+                          <h3>{activeTab.promoTitle}</h3>
+                          <p>{activeTab.promoText}</p>
+                          <Link to="/book-consultation" className="btn btn-primary btn-sm" onClick={() => { setProductsOpen(false); closeMobile(); }}>
+                            {activeTab.promoBtnText}
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Mobile layout */}
+                    <div className="mega-menu-mobile-only">
+                      <div className="mega-menu-mobile-section">
+                        <div className="mega-menu-mobile-heading">Featured Products</div>
+                        <div className="mega-menu-mobile-list">
+                          {FEATURED_PRODUCTS.map((prod, idx) => (
+                            <Link key={idx} to="/book-consultation" className="mega-menu-mobile-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
+                              <strong>{prod.title}</strong>
+                              <span>{prod.description}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="mega-menu-mobile-section">
+                        <div className="mega-menu-mobile-heading">One Platform Ready for Anything</div>
+                        <div className="mega-menu-mobile-list">
+                          {ERP_SOLUTIONS.map((prod, idx) => (
+                            <Link key={idx} to="/book-consultation" className="mega-menu-mobile-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
+                              <strong>{prod.title}</strong>
+                              <span>{prod.description}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="mega-menu-mobile-section">
+                        <div className="mega-menu-mobile-heading">Solutions</div>
+                        <div className="mega-menu-mobile-sub-heading">IT</div>
+                        <div className="mega-menu-mobile-list">
+                          {IT_SOLUTIONS.map((prod, idx) => (
+                            <Link key={idx} to="/book-consultation" className="mega-menu-mobile-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
+                              <strong>{prod.title}</strong>
+                              <span>{prod.description}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="mega-menu-mobile-section">
+                        <div className="mega-menu-mobile-sub-heading">CRM</div>
+                        <div className="mega-menu-mobile-list">
+                          {CRM_SOLUTIONS.map((prod, idx) => (
+                            <Link key={idx} to="/book-consultation" className="mega-menu-mobile-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
+                              <strong>{prod.title}</strong>
+                              <span>{prod.description}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="mega-menu-mobile-section">
+                        <div className="mega-menu-mobile-sub-heading">HRMS</div>
+                        <div className="mega-menu-mobile-list">
+                          {HRMS_SOLUTIONS.map((prod, idx) => (
+                            <Link key={idx} to="/book-consultation" className="mega-menu-mobile-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
+                              <strong>{prod.title}</strong>
+                              <span>{prod.description}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+            if (item.hasDropdown && item.id === 'gallery') {
+              return (
+                <div
+                  key={item.id}
+                  className="services-dropdown-wrap"
+                  ref={techRef}
+                >
+                  <button
+                    type="button"
+                    className="services-toggle"
+                    aria-haspopup="menu"
+                    aria-expanded={techOpen}
+                    onClick={() => {
+                      setTechOpen((o) => !o)
+                      setServicesOpen(false)
+                      setProductsOpen(false)
+                    }}
+                  >
+                    <span>Technologies</span>
+                    <span
+                      className={`services-chevron ${techOpen ? 'is-open' : ''}`}
+                      aria-hidden="true"
+                    >
+                      <Icon name="chevron" />
+                    </span>
+                  </button>
+                  <div
+                    className={`services-dropdown ${techOpen ? 'is-open' : ''}`}
+                    role="menu"
+                    aria-label="Technologies"
+                  >
+                    {TECH_NAV_ITEMS.map((t, i) => (
+                      t.to ? (
+                        <Link
+                          key={i}
+                          to={t.to}
+                          className="services-dropdown-item"
+                          onClick={() => { closeMobile(); setTechOpen(false) }}
+                        >
+                          {t.label}
+                        </Link>
+                      ) : (
+                        <a
+                          key={i}
+                          href={t.href}
+                          className="services-dropdown-item"
+                          onClick={() => { closeMobile(); setTechOpen(false) }}
+                        >
+                          {t.label}
+                        </a>
+                      )
+                    ))}
+                  </div>
+                </div>
+              )
+            }
+            return (
+              <SectionLink
+                key={item.id}
+                id={item.id}
+                isActive={location.pathname === '/' && activeSection === item.id}
+                onNavigate={closeMobile}
+              >
+                {item.label}
+              </SectionLink>
+            )
+          })}
+          <a
+            href="https://suryani-76.github.io/HRMS_app/careers"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={closeMobile}
           >
             Careers
-          </Link>
+          </a>
           <div className="auth-area">
             {user ? (
               <div className="user-menu">
@@ -269,6 +748,110 @@ function Navbar({ onSignIn, onSignUp }) {
                 </button>
               </>
             )}
+            <div className="lang-selector-wrap" ref={langRef}>
+              <button
+                type="button"
+                className="lang-selector"
+                aria-haspopup="listbox"
+                aria-expanded={langOpen}
+                onClick={() => setLangOpen((o) => !o)}
+              >
+                <Icon name="globe" className="lang-icon" />
+                <span className="lang-text">{selectedLang.native}</span>
+                <Icon name="chevron" className={`lang-chevron ${langOpen ? 'is-open' : ''}`} />
+              </button>
+              {langOpen && (
+                <div className="lang-dropdown" role="listbox" aria-label="Choose your language">
+                  <div className="lang-dropdown-header">
+                    <span className="lang-dropdown-title">Choose your language</span>
+                  </div>
+                  <div className="lang-search">
+                    <Icon name="search" className="lang-search-icon" />
+                    <input
+                      type="text"
+                      className="lang-search-input"
+                      placeholder="Search language"
+                      value={langSearch}
+                      onChange={(e) => setLangSearch(e.target.value)}
+                      onClick={(e) => e.stopPropagation()}
+                      autoFocus
+                    />
+                  </div>
+                  <div className="lang-options">
+                    {/* Reset to English option */}
+                    <button
+                      type="button"
+                      className="lang-option"
+                      role="option"
+                      onClick={() => {
+                        setSelectedLang(POPULAR_LANGUAGES[0])
+                        setLangOpen(false)
+                        setLangSearch('')
+                        // Reset to English
+                        const select = document.querySelector('.goog-te-combo')
+                        if (select) {
+                          select.value = 'en'
+                          select.dispatchEvent(new Event('change'))
+                        }
+                        // Remove Google Translate banner
+                        const banner = document.querySelector('.goog-te-banner-frame')
+                        if (banner) banner.remove()
+                        document.body.style.top = '0px'
+                      }}
+                    >
+                      <span className="lang-option-native">English</span>
+                      <span className="lang-option-name">Reset to English</span>
+                      {selectedLang.code === 'en' && <Icon name="check" className="lang-option-check" />}
+                    </button>
+                    {(() => {
+                      const query = langSearch.trim().toLowerCase()
+                      const results = query
+                        ? WORLD_LANGUAGES.filter(
+                            (l) =>
+                              l.name.toLowerCase().includes(query) ||
+                              l.native.toLowerCase().includes(query)
+                          )
+                        : POPULAR_LANGUAGES
+                      return results.map((l) => (
+                        <button
+                          key={l.code}
+                          type="button"
+                          className={`lang-option ${selectedLang.code === l.code ? 'is-selected' : ''}`}
+                          role="option"
+                          aria-selected={selectedLang.code === l.code}
+                          onClick={() => {
+                            setSelectedLang(l)
+                            setLangOpen(false)
+                            setLangSearch('')
+                            // Trigger Google Translate
+                            const select = document.querySelector('.goog-te-combo')
+                            if (select) {
+                              select.value = l.code
+                              select.dispatchEvent(new Event('change'))
+                            }
+                          }}
+                        >
+                          <span className="lang-option-native">{l.native}</span>
+                          <span className="lang-option-name">{l.name}</span>
+                          {selectedLang.code === l.code && <Icon name="check" className="lang-option-check" />}
+                        </button>
+                      ))
+                    })()}
+                    {langSearch.trim() && (() => {
+                      const query = langSearch.trim().toLowerCase()
+                      const results = WORLD_LANGUAGES.filter(
+                        (l) =>
+                          l.name.toLowerCase().includes(query) ||
+                          l.native.toLowerCase().includes(query)
+                      )
+                      return results.length === 0 ? (
+                        <div className="lang-no-results">No languages found</div>
+                      ) : null
+                    })()}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </nav>
         <button
@@ -290,6 +873,19 @@ function Navbar({ onSignIn, onSignUp }) {
 function Hero() {
   return (
     <section id="top" className="hero">
+      <video
+        className="hero-video"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        poster="/img/hero-poster.jpg"
+      >
+        <source src="/video/hero-bg.mp4" type="video/mp4" />
+        <source src="/video/hero-bg.webm" type="video/webm" />
+      </video>
+      <div className="hero-overlay" aria-hidden="true" />
       <div className="container hero-grid">
         <div className="hero-content">
           <span className="eyebrow reveal">
@@ -331,16 +927,11 @@ function Hero() {
               <strong>98%</strong> retention
             </li>
           </ul>
-        </div>
-        <div className="hero-visual reveal">
-          <div className="hero-frame">
-            <img src="/img/carousel-1.jpg" alt="The Oklut engineering team at work in Madhapur, Hyderabad" />
-            <div className="hero-caption">
-              <span>
-                <Icon name="pin" /> Madhapur, Hyderabad
-              </span>
-              <span className="hero-caption-sub">Oklut Technologies — since 2012</span>
-            </div>
+          <div className="hero-location reveal">
+            <span>
+              <Icon name="pin" /> Madhapur, Hyderabad
+            </span>
+            <span>Oklut Technologies — since 2012</span>
           </div>
         </div>
       </div>
@@ -368,10 +959,10 @@ function SectionHead({ index, eyebrow, title, sub, center = false }) {
 
 function About() {
   const features = [
-    { icon: 'award', title: 'Award Winning', text: 'Recognized for delivery excellence across web and mobile product engineering.' },
-    { icon: 'users', title: 'Professional Staff', text: 'Senior, accountable engineers who own the work from first call to go-live.' },
-    { icon: 'clock', title: '24/7 Support', text: 'Managed services and a support line that answers when you need it.' },
-    { icon: 'star', title: 'Fair Prices', text: 'Honest estimates and transparent billing on every single engagement.' },
+    { icon: 'award', title: 'Award Winning', text: 'Recognized for delivery excellence across web and mobile product engineering.', color: '#f59e0b' },
+    { icon: 'users', title: 'Professional Staff', text: 'Senior, accountable engineers who own the work from first call to go-live.', color: '#3b82f6' },
+    { icon: 'clock', title: '24/7 Support', text: 'Managed services and a support line that answers when you need it.', color: '#10b981' },
+    { icon: 'star', title: 'Fair Prices', text: 'Honest estimates and transparent billing on every single engagement.', color: '#8b5cf6' },
   ]
   return (
     <section id="about" className="section about-section">
@@ -391,19 +982,17 @@ function About() {
             development. We offer a variety of services specialized mainly in website designing
             and development — built on trust, quality and long-term partnership.
           </p>
-          <ul className="about-features">
+          <div className="about-features-grid">
             {features.map((f) => (
-              <li key={f.title}>
-                <span className="about-feature-icon">
+              <div key={f.title} className="about-feature-card reveal">
+                <div className="about-feature-card-icon" style={{ '--card-accent': f.color }}>
                   <Icon name={f.icon} />
-                </span>
-                <div>
-                  <strong>{f.title}</strong>
-                  <p>{f.text}</p>
                 </div>
-              </li>
+                <h3 className="about-feature-card-title">{f.title}</h3>
+                <p className="about-feature-card-text">{f.text}</p>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
         <div className="about-visual reveal">
           <figure className="about-frame">
@@ -415,85 +1004,7 @@ function About() {
   )
 }
 
-function Services() {
-  const services = [
-    {
-      n: '01',
-      title: 'Software Development',
-      text: "Grounded in deep domain expertise in the web applications design, development, automation software & online applications supporting B2B collaborations, support and maintenance services, API/ Web services, database design, continuous integrations & deployment etc., our team will help you implement, enhance, support and upgrade applications from end to end.",
-      tags: ['Web Applications', 'APIs & Web Services', 'Database Design', 'CI/CD'],
-      icon: 'code',
-    },
-    {
-      n: '02',
-      title: 'Digital and Cloud Solutions',
-      text: "Our team will help you in implementing and enhancing digital business capabilities with digital transformation implementation, AWS, Azure and Google Cloud solutions, API-led integrations, IoT middleware, IoT data pipeline, mobility and machine learning etc. Our managed services will help in migrating to the cloud and modernize applications, third-party integrations and cloud infrastructure handling.",
-      tags: ['AWS · Azure · GCP', 'API Integration', 'IoT & Data', 'Mobility'],
-      icon: 'cloud',
-    },
-    {
-      n: '03',
-      title: 'IT Consulting Services',
-      text: 'We provide affordable offshore IT consulting services, to help you across various domains and technology areas to build innovative products and scale up quickly by using latest trends in software development. We provide managed services to collaboratively work towards streamlining the process and accelerate your business growth, with skilled resources and flexible billing models based on your needs.',
-      tags: ['Offshore Consulting', 'Managed Services', 'Flexible Billing', 'Scale Up'],
-      icon: 'briefcase',
-    },
-    {
-      n: '04',
-      title: 'Digital Marketing',
-      text: "Oklut Technologies is one of the top-rated SEO & Digital Marketing Agency in South India, started its journey in the year 2016 and serving wide range of portfolio in the digital era. We provide services across branding, email marketing, social media, SEO, PPC, marketing automation, online reputation management and Google Ads — for clients in Education, Healthcare, Transport, Retail, Manufacturing and Technology.",
-      tags: ['SEO', 'Social Media', 'Email & PPC', 'Google Ads'],
-      icon: 'chart',
-    },
-  ]
-  const left = services.slice(0, 2)
-  const right = services.slice(2)
-  const ServiceCard = ({ s, delay }) => (
-    <article className="services-card reveal" style={{ transitionDelay: `${delay}ms` }}>
-      <span className="services-card-icon">
-        <Icon name={s.icon} />
-      </span>
-      <span className="services-card-n">{s.n}</span>
-      <h3>{s.title}</h3>
-      <p>{s.text}</p>
-      <ul className="tag-row">
-        {s.tags.map((t) => (
-          <li key={t}>{t}</li>
-        ))}
-      </ul>
-      <Link to="/book-consultation" className="services-card-link" aria-label={`Discuss ${s.title}`}>
-        Discuss this service
-        <Icon name="arrow" />
-      </Link>
-    </article>
-  )
-  return (
-    <section id="services" className="section services-section">
-      <div className="container">
-        <SectionHead
-          eyebrow="Why Choose Us"
-          title="We Are Here to Grow Your Business Exponentially"
-          center
-        />
-        <div className="services-choose">
-          <div className="services-column">
-            <ServiceCard s={left[0]} delay={0} />
-            <ServiceCard s={left[1]} delay={120} />
-          </div>
-          <div className="services-image reveal" style={{ transitionDelay: '240ms' }}>
-            <figure className="services-image-frame">
-              <img src="/img/feature.jpg" alt="Oklut Technologies — digital solutions" loading="lazy" />
-            </figure>
-          </div>
-          <div className="services-column">
-            <ServiceCard s={right[0]} delay={80} />
-            <ServiceCard s={right[1]} delay={200} />
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+
 
 function CountUp({ end, suffix = '', duration = 1600 }) {
   const ref = useRef(null)
@@ -604,28 +1115,63 @@ function Insights() {
   )
 }
 
-function Gallery() {
-  const shots = [
-    { src: '/img/carousel-1.jpg', alt: 'Oklut engineering team at work', tag: 'Studio' },
-    { src: '/img/carousel-2.jpg', alt: 'Product launch session at Oklut', tag: 'Events' },
-    { src: '/img/feature.jpg', alt: 'Client delivery review meeting', tag: 'Clients' },
-    { src: '/img/about.jpg', alt: 'The Oklut Technologies team', tag: 'Team' },
+function Technologies() {
+  const [selectedTech, setSelectedTech] = useState('')
+  const navigate = useNavigate()
+
+  const techOptions = [
+    { value: '', label: 'Select a Technology' },
+    { value: 'ai-robotics', label: 'AI & Robotics' },
+    { value: 'business-automation', label: 'Business Automation' },
+    { value: 'cloud-migrations', label: 'Cloud Migrations' },
+    { value: 'data-centers', label: 'Data Centers' },
+    { value: 'cognitive-analytics', label: 'Cognitive Analytics & AI' },
+    { value: 'information-reporting', label: 'Information & Reporting Systems' },
+    { value: 'managed-services', label: 'Managed Services' },
+    { value: 'one-stop-solutions', label: 'One-Stop Solutions' },
   ]
+
+  const techRoutes = {
+    'managed-services': '/services/managed-services',
+    'one-stop-solutions': '/services/one-stop-solutions',
+  }
+
   return (
-    <section id="gallery" className="section gallery-section">
+    <section id="gallery" className="section tech-section">
       <div className="container">
-        <SectionHead eyebrow="Projects & Insights" title="Projects and moments from the studio" />
-        <div className="gallery-grid">
-          {shots.map((g, i) => (
-            <figure className="gallery-item reveal" key={g.src} style={{ transitionDelay: `${(i % 4) * 70}ms` }}>
-              <img src={g.src} alt={g.alt} loading="lazy" />
-              <figcaption>
-                <span>{g.tag}</span>
-                <strong>{g.alt}</strong>
-              </figcaption>
-            </figure>
-          ))}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '16px' }}>
+          <h2 style={{ fontSize: '14px', fontWeight: '600', color: 'var(--c1)', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>Technologies</h2>
+          <select
+            value={selectedTech}
+            onChange={(e) => {
+              const val = e.target.value
+              if (techRoutes[val]) {
+                navigate(techRoutes[val])
+              } else {
+                setSelectedTech(val)
+              }
+            }}
+            style={{
+              padding: '6px 12px',
+              borderRadius: '6px',
+              border: '1px solid var(--border)',
+              background: 'var(--bg1)',
+              color: 'var(--text)',
+              fontSize: '14px',
+              cursor: 'pointer',
+              outline: 'none',
+            }}
+          >
+            {techOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
         </div>
+        <SectionHead
+          title="Technology That Drives Global Business"
+          sub="Empowering organizations worldwide with intelligent, scalable, and innovative technology solutions."
+          center
+        />
       </div>
     </section>
   )
@@ -753,7 +1299,7 @@ function ContactForm() {
                   <span className="contact-icon"><Icon name="clock" /></span>
                   <span className="contact-channel">
                     <small>Hours</small>
-                    <strong>Mon – Sat, 10:00 – 19:00 IST</strong>
+                    <strong>Mon – Sat, 9:30 – 18:30 IST</strong>
                   </span>
                 </li>
               </ul>
@@ -929,17 +1475,24 @@ function Footer() {
             <li><SectionLink id="about">About</SectionLink></li>
             <li><Link to="/careers">Careers</Link></li>
             <li><SectionLink id="news">Perspectives</SectionLink></li>
-            <li><SectionLink id="gallery">Projects & Insights</SectionLink></li>
+            <li><SectionLink id="gallery">Technologies</SectionLink></li>
             <li><SectionLink id="contact">Contact</SectionLink></li>
           </ul>
         </div>
         <div>
           <h4>Services</h4>
           <ul>
-            <li><SectionLink id="services">Software Development</SectionLink></li>
-            <li><SectionLink id="services">Digital & Cloud Solutions</SectionLink></li>
-            <li><SectionLink id="services">IT Consulting</SectionLink></li>
-            <li><SectionLink id="services">Digital Marketing</SectionLink></li>
+            {SERVICES.map((s) => (
+              <li key={s.slug}>
+                {s.externalUrl ? (
+                  <a href={s.externalUrl} target="_blank" rel="noopener noreferrer">
+                    {s.label}
+                  </a>
+                ) : (
+                  <Link to={`/services/${s.slug}`}>{s.label}</Link>
+                )}
+              </li>
+            ))}
           </ul>
         </div>
         <div>
@@ -970,6 +1523,42 @@ function Footer() {
         </div>
       </div>
     </footer>
+  )
+}
+
+function Services() {
+  return (
+    <section id="services" className="section services-section">
+      <div className="container">
+        <SectionHead
+          eyebrow="Services"
+          title="What we do"
+          sub="From strategy to managed operations, we deliver end-to-end technology partnerships for companies that compete on execution."
+          center
+        />
+        <div className="services-grid">
+          {SERVICES.map((s, i) => (
+            <Link
+              to={`/services/${s.slug}`}
+              key={s.slug}
+              className="service-card reveal"
+              style={{ transitionDelay: `${(i % 3) * 80}ms` }}
+            >
+              <div className="service-card-header">
+                <span className="service-card-icon">
+                  <Icon name={s.icon} />
+                </span>
+                <span className="service-card-arrow">
+                  <Icon name="arrow" />
+                </span>
+              </div>
+              <h3>{s.label}</h3>
+              <p>{s.description}</p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -1047,9 +1636,8 @@ function HomePage() {
       <div className="theme-light">
         <Stats />
         <About />
-        <Services />
         <Insights />
-        <Gallery />
+        <Technologies />
         <ContactForm />
       </div>
     </>
@@ -1086,6 +1674,20 @@ function App() {
               }
             />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            
+            
+            
+            <Route path="/services/end-to-end-solutions" element={<EndToEndSolutionsPage />} />
+            <Route path="/services/pilot-prototyping" element={<PilotPrototypingPage />} />
+            <Route path="/services/shared-services" element={<SharedServicesPage />} />
+            <Route path="/services/custom-development" element={<CustomDevelopmentPage />} />
+            <Route path="/services/process-automation" element={<ProcessAutomationPage />} />
+            <Route path="/services/center-of-excellence" element={<CenterOfExcellencePage />} />
+            <Route path="/services/solution-engineering" element={<SolutionEngineeringPage />} />
+            <Route path="/services/digital-transformation" element={<DigitalTransformationPage />} />
+            <Route path="/services/migration-services" element={<MigrationServicesPage />} />
+            <Route path="/services/one-stop-solutions" element={<OneStopSolutionsPage />} />
+            <Route path="/services/managed-services" element={<ManagedServicesPage />} />
           </Routes>
         </Suspense>
       </main>
@@ -1102,6 +1704,7 @@ function App() {
       />
       <CookieConsentBanner />
       <CookiePreferenceModal />
+      <Chatbot />
     </>
   )
 }

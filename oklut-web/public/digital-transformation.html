@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Digital Transformation</title>
+<style>
+  :root{
+    --navy:#0B1E33;
+    --navy-deep:#071526;
+    --steel:#3A5A78;
+    --paper:#F3F5F7;
+    --line:#D7DEE5;
+    --accent:#2E7DD1;
+    --accent-warm:#C97A3D;
+    --ink:#152233;
+    --ink-soft:#4B5C6E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Georgia','Iowan Old Style',serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.7;
+  }
+  .wrap{max-width:1160px;margin:0 auto;padding:0 40px;}
+
+  /* ---------- Header/Navbar ---------- */
+  .site-header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:1000;
+    background:rgba(243,245,247,0.92);
+    backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--line);
+    padding:14px 40px;
+  }
+  .site-header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    max-width:1160px;
+    margin:0 auto;
+    padding:0;
+  }
+  .site-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--navy);
+  }
+  .site-brand img{
+    height:36px;
+    width:auto;
+    border-radius:4px;
+  }
+  .site-brand span{
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:18px;
+    letter-spacing:.01em;
+  }
+  .site-brand span em{
+    font-style:normal;
+    font-weight:400;
+    color:var(--accent);
+  }
+
+  /* ---------- Full-screen hero with img tag ---------- */
+  .hero{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+  }
+  .hero img{
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:cover;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(7,21,38,0.88) 0%, rgba(7,21,38,0.35) 45%, rgba(7,21,38,0.05) 75%);
+    pointer-events:none;
+  }
+  .hero-copy{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:1;
+    padding:64px 60px 68px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .eyebrow{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent-warm);
+    margin-bottom:18px;
+    font-weight:600;
+  }
+  .hero-copy h1{
+    font-size:44px;
+    line-height:1.15;
+    font-weight:400;
+    color:#fff;
+    margin-bottom:18px;
+    letter-spacing:.01em;
+  }
+  .hero-copy h1 em{
+    font-style:italic;
+    color:var(--accent);
+  }
+  .hero-copy p{
+    font-size:17px;
+    color:#C7D2DD;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    line-height:1.75;
+    font-weight:300;
+    max-width:560px;
+  }
+
+  /* ---------- Content sections ---------- */
+  .content-section{
+    padding:82px 0 92px;
+  }
+  .row{
+    display:flex;
+    gap:56px;
+    align-items:center;
+  }
+  .col-text{
+    flex:1.1;
+  }
+  .col-image{
+    flex:1;
+  }
+  .tag{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:11.5px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--steel);
+    font-weight:700;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .tag::before{
+    content:"";
+    width:26px; height:1px;
+    background:var(--accent-warm);
+    display:inline-block;
+  }
+  .col-text h2{
+    font-size:26px;
+    font-weight:400;
+    color:var(--navy);
+    margin-bottom:20px;
+    letter-spacing:.005em;
+  }
+  .col-text p{
+    font-size:16px;
+    color:var(--ink-soft);
+    margin-bottom:0;
+  }
+  .img-frame{
+    border-radius:3px;
+    overflow:hidden;
+    box-shadow:0 14px 34px -18px rgba(11,30,51,0.45);
+    border:1px solid var(--line);
+    position:relative;
+  }
+  .img-frame img{
+    width:100%;
+    display:block;
+    height:auto;
+  }
+  .img-frame .cap{
+    position:absolute;
+    bottom:0; left:0; right:0;
+    background:linear-gradient(0deg, rgba(7,21,38,0.82), rgba(7,21,38,0));
+    color:#EAF0F6;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    padding:26px 16px 12px;
+    font-weight:600;
+  }
+  .row.reverse{
+    flex-direction:row-reverse;
+  }
+
+  @media (max-width: 860px){
+    .hero-copy{padding:40px 28px 44px; max-width:100%;}
+    .hero-copy h1{font-size:32px;}
+    .row, .row.reverse{flex-direction:column;}
+    .wrap{padding:0 24px;}
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="wrap">
+      <a href="/" class="site-brand" aria-label="Oklut Technologies — Home">
+        <img src="/img/logo.jpg" alt="" />
+        <span>Oklut<em>Technologies</em></span>
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img src="/img/shared-services-hero.jpg" alt="Digital Transformation" />
+    <div class="hero-copy">
+      <div class="eyebrow">Strategy, Modernization & Culture</div>
+      <h1>Digital <em>Transformation</em></h1>
+      <p>Modernize your technology, processes, and culture to compete in a digital-first world. We partner with leadership to execute transformation that delivers measurable business outcomes.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="wrap">
+
+      <div class="row">
+        <div class="col-text">
+          <div class="tag">Why Digital Transformation</div>
+          <h2>CEO/CTO-level partnership, not just delivery</h2>
+          <p>Digital transformation is not a technology project — it is a business strategy executed through technology. We work with your leadership to define a clear digital strategy and roadmap, then deliver phased modernization of legacy applications, cloud adoption and migration programs, data platform and analytics enablement, customer experience redesign, and DevOps platform engineering. Our approach is outcome-focused with measurable KPIs tied to business value, risk mitigation at every step, and a sustainable operating model that endures post-engagement. We bring organizational change management and cultural transformation, not just technical implementation.</p>
+        </div>
+        <div class="col-image">
+          <div class="img-frame">
+            <img src="/img/shared-services-hero.jpg" alt="Digital Transformation Strategy" />
+            <div class="cap">Digital Strategy & Transformation Roadmap</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:70px;"></div>
+
+      <div class="row reverse">
+        <div class="col-text">
+          <div class="tag">Our Capabilities</div>
+          <h2>End-to-end transformation expertise</h2>
+          <p>From digital strategy and roadmap development to legacy application modernization — strangler fig patterns, domain-driven design, and incremental migration to cloud-native architectures. Cloud adoption across AWS, Azure, GCP with Kubernetes, service mesh, and serverless. Data platforms with Snowflake, Databricks, dbt, Airflow, and Great Expectations for analytics enablement. Customer experience redesign using Segment, RudderStack, Amplitude, Mixpanel, and LaunchDarkly for experimentation. DevOps and platform engineering with GitOps, ArgoCD, Flux, Backstage, and feature flags. Organizational change management and innovation labs with pilot programs to de-risk large bets.</p>
+        </div>
+        <div class="col-image">
+          <div class="img-frame">
+            <img src="/img/shared-services-hero.jpg" alt="Transformation Capabilities" />
+            <div class="cap">Legacy Modernization & Cloud Adoption</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:70px;"></div>
+
+      <div class="row">
+        <div class="col-text">
+          <div class="tag">Case Studies</div>
+          <h2>Real transformations, measurable impact</h2>
+          <p><strong>Insurance Core Modernization</strong> — Transformed 40-year-old policy admin system to cloud-native, reducing quote time 80%.<br><br><strong>Retail Omnichannel Platform</strong> — Unified e-commerce, POS, and inventory into single platform for 500+ stores.<br><br><strong>Manufacturing Data Platform</strong> — Built IoT data lake enabling predictive maintenance across 12 factories.</p>
+        </div>
+        <div class="col-image">
+          <div class="img-frame">
+            <img src="/img/shared-services-hero.jpg" alt="Transformation Case Studies" />
+            <div class="cap">Insurance · Retail · Manufacturing Transformations</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

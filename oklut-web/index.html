@@ -30,8 +30,50 @@
     />
 
     <title>Oklut Technologies — Software &amp; Digital Products, Engineered to Scale</title>
+    
+    <!-- Google Translate -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'af,sq,am,ar,hy,az,eu,be,bn,bs,bg,ca,ceb,zh-CN,zh-TW,co,hr,cs,da,nl,eo,et,fi,fr,fy,gl,ka,de,el,gu,ht,ha,haw,he,hi,hmn,hu,is,ig,id,ga,it,ja,jw,kn,kk,km,ko,ku,ky,lo,la,lv,lt,lb,mk,mg,ms,ml,mt,mi,mr,mn,my,ne,no,ny,or,ps,fa,pl,pt,pa,ro,ru,sm,gd,sr,st,sn,sd,si,sk,sl,so,es,su,sw,sv,tl,tg,ta,tt,te,th,tr,tk,ur,ug,uk,ur,uz,vi,cy,xh,yi,yo,zu',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <style>
+      /* Hide default Google Translate bar */
+      .goog-te-banner-frame { display: none !important; }
+      .goog-te-spinner-pos { display: none !important; }
+      body { top: 0 !important; }
+      
+      /* Hide the Google Translate element but keep it functional */
+      #google_translate_element {
+        position: absolute;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+      
+      /* Style the translate dropdown */
+      .goog-te-gadget {
+        font-family: inherit !important;
+        font-size: 0 !important;
+      }
+      
+      .goog-te-gadget .goog-te-combo {
+        position: absolute;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+      }
+    </style>
   </head>
   <body>
+    <div id="google_translate_element"></div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Migration Services</title>
+<style>
+  :root{
+    --navy:#0B1E33;
+    --navy-deep:#071526;
+    --steel:#3A5A78;
+    --paper:#F3F5F7;
+    --line:#D7DEE5;
+    --accent:#2E7DD1;
+    --accent-warm:#C97A3D;
+    --ink:#152233;
+    --ink-soft:#4B5C6E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Georgia','Iowan Old Style',serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.7;
+  }
+  .wrap{max-width:1160px;margin:0 auto;padding:0 40px;}
+
+  /* ---------- Header/Navbar ---------- */
+  .site-header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:1000;
+    background:rgba(243,245,247,0.92);
+    backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--line);
+    padding:14px 40px;
+  }
+  .site-header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    max-width:1160px;
+    margin:0 auto;
+    padding:0;
+  }
+  .site-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--navy);
+  }
+  .site-brand img{
+    height:36px;
+    width:auto;
+    border-radius:4px;
+  }
+  .site-brand span{
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:18px;
+    letter-spacing:.01em;
+  }
+  .site-brand span em{
+    font-style:normal;
+    font-weight:400;
+    color:var(--accent);
+  }
+
+  /* ---------- Full-screen hero ---------- */
+  .hero{
+    position:relative;
+    width:100%;
+    min-height:78vh;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:flex-end;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(7,21,38,0.88) 0%, rgba(7,21,38,0.35) 45%, rgba(7,21,38,0.05) 75%);
+  }
+  .hero-copy{
+    position:relative;
+    z-index:1;
+    padding:64px 60px 68px;
+    max-width:760px;
+  }
+  .eyebrow{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent-warm);
+    margin-bottom:18px;
+    font-weight:600;
+  }
+  .hero-copy h1{
+    font-size:44px;
+    line-height:1.15;
+    font-weight:400;
+    color:#fff;
+    margin-bottom:18px;
+    letter-spacing:.01em;
+  }
+  .hero-copy h1 em{
+    font-style:italic;
+    color:var(--accent);
+  }
+  .hero-copy p{
+    font-size:17px;
+    color:#C7D2DD;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    line-height:1.75;
+    font-weight:300;
+    max-width:560px;
+  }
+
+  /* ---------- Content sections ---------- */
+  .content-section{
+    padding:82px 0 92px;
+  }
+  .row{
+    display:flex;
+    gap:56px;
+    align-items:center;
+  }
+  .col-text{
+    flex:1.1;
+  }
+  .col-image{
+    flex:1;
+  }
+  .tag{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:11.5px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--steel);
+    font-weight:700;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .tag::before{
+    content:"";
+    width:26px; height:1px;
+    background:var(--accent-warm);
+    display:inline-block;
+  }
+  .col-text h2{
+    font-size:26px;
+    font-weight:400;
+    color:var(--navy);
+    margin-bottom:20px;
+    letter-spacing:.005em;
+  }
+  .col-text p{
+    font-size:16px;
+    color:var(--ink-soft);
+    margin-bottom:0;
+  }
+  .img-frame{
+    border-radius:3px;
+    overflow:hidden;
+    box-shadow:0 14px 34px -18px rgba(11,30,51,0.45);
+    border:1px solid var(--line);
+    position:relative;
+  }
+  .img-frame img{
+    width:100%;
+    display:block;
+    height:auto;
+  }
+  .img-frame .cap{
+    position:absolute;
+    bottom:0; left:0; right:0;
+    background:linear-gradient(0deg, rgba(7,21,38,0.82), rgba(7,21,38,0));
+    color:#EAF0F6;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    padding:26px 16px 12px;
+    font-weight:600;
+  }
+  .row.reverse{
+    flex-direction:row-reverse;
+  }
+
+  @media (max-width: 860px){
+    .hero-copy{padding:40px 28px 44px; max-width:100%;}
+    .hero-copy h1{font-size:32px;}
+    .row, .row.reverse{flex-direction:column;}
+    .wrap{padding:0 24px;}
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="wrap">
+      <a href="/" class="site-brand" aria-label="Oklut Technologies — Home">
+        <img src="/img/logo.jpg" alt="" />
+        <span>Oklut<em>Technologies</em></span>
+      </a>
+    </div>
+  </header>
+
+  <section class="hero" style="background-image:url('/img/shared-services-hero.jpg')">
+    <div class="hero-copy">
+      <div class="eyebrow">Cloud, Data & Platform Migration</div>
+      <h1>Migration <em>Services</em></h1>
+      <p>Move applications, data, and infrastructure to modern platforms with zero-downtime migrations, automated validation, and rollback safety nets.</p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="wrap">
+
+      <div class="row">
+        <div class="col-text">
+          <div class="tag">Why Migration Services</div>
+          <h2>Zero-downtime migration with automated validation and rollback safety</h2>
+          <p>Migration is one of the highest-risk technology undertakings. We reduce that risk with proven patterns: pre-migration assessment and TCO modeling, automated data validation and reconciliation at every wave, zero-downtime cutover strategies, and rollback plans for every migration. Whether you're moving from mainframe to cloud, on-premises to Kubernetes, legacy data warehouse to Snowflake, or exiting a data center — we deliver reference architectures, runbooks, and post-migration optimization so your team operates confidently on day one. Compliance and security posture are preserved throughout.</p>
+        </div>
+        <div class="col-image">
+          <div class="img-frame">
+            <img src="/img/shared-services-hero.jpg" alt="Migration Services Strategy" />
+            <div class="cap">Migration Assessment & Wave Planning</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:70px;"></div>
+
+      <div class="row reverse">
+        <div class="col-text">
+          <div class="tag">Our Capabilities</div>
+          <h2>End-to-end migration expertise across platforms</h2>
+          <p>Cloud migration patterns — lift-and-shift, re-platform, and refactor across AWS, Azure, and GCP using Migration Hub, Azure Migrate, and Google Cloud Migrate. Database migration and modernization with AWS DMS, Azure Database Migration Service, Striim, and Qlik Replicate for heterogeneous replication. Mainframe and legacy system migration with automated code translation and incremental cutover. Data center exit and colocation migration with network extension and dependency mapping. Kubernetes and container platform migration using Velero, Konveyor, and MTC (Migration Toolkit for Containers). SaaS and ISV platform migration. Automated testing, validation, and cutover planning with Infrastructure as Code (Terraform, Ansible, Packer).</p>
+        </div>
+        <div class="col-image">
+          <div class="img-frame">
+            <img src="/img/shared-services-hero.jpg" alt="Migration Capabilities" />
+            <div class="cap">Database & Mainframe Modernization</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:70px;"></div>
+
+      <div class="row">
+        <div class="col-text">
+          <div class="tag">Case Studies</div>
+          <h2>Real migrations, measurable results</h2>
+          <p><strong>Mainframe to Cloud Migration</strong> — Migrated core banking from mainframe to AWS with 99.99% data fidelity.<br><br><strong>Multi-Region Kubernetes Migration</strong> — Migrated 150 microservices to EKS across 3 regions with zero downtime.<br><br><strong>Data Warehouse Modernization</strong> — Migrated 50TB Teradata to Snowflake with automated SQL translation.</p>
+        </div>
+        <div class="col-image">
+          <div class="img-frame">
+            <img src="/img/shared-services-hero.jpg" alt="Migration Case Studies" />
+            <div class="cap">Mainframe · Kubernetes · Data Warehouse Migrations</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

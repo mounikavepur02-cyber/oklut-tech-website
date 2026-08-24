@@ -37,6 +37,7 @@ export function AuthProvider({ children }) {
       password,
       options: {
         data: { full_name: fullName },
+        redirectTo: window.location.origin + '/',
       },
     })
     if (error) throw error
