@@ -36,21 +36,21 @@ export default function SolutionEngineeringPage() {
           title: 'Multi-Cloud Migration Strategy',
           category: 'Cloud Migration',
           description: 'Architected phased migration of 200+ workloads from on-prem to AWS/Azure hybrid.',
-          image: '/img/case-multicloud.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-multicloud.jpg`,
           link: '#'
         },
         {
           title: 'Real-time Analytics Platform',
           category: 'Data Engineering',
           description: 'Designed streaming platform processing 10M events/sec for fraud detection.',
-          image: '/img/case-streaming.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-streaming.jpg`,
           link: '#'
         },
         {
           title: 'Legacy Modernization Assessment',
           category: 'Modernization',
           description: 'Technical due diligence on 15-year-old codebase, delivered phased rewrite plan.',
-          image: '/img/case-legacy.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-legacy.jpg`,
           link: '#'
         }
       ]}

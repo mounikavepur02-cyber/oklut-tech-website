@@ -40,21 +40,21 @@ export default function PilotPrototypingPage() {
           title: 'AI Document Processing PoC',
           category: 'AI/ML Pilot',
           description: 'Built PoC processing 10k docs/day with 94% accuracy in 4 weeks.',
-          image: '/img/case-ai-poc.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-ai-poc.jpg`,
           link: '#'
         },
         {
           title: 'Marketplace MVP Launch',
           category: 'MVP Development',
           description: 'Delivered two-sided marketplace MVP in 8 weeks, secured Series A.',
-          image: '/img/case-marketplace.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-marketplace.jpg`,
           link: '#'
         },
         {
           title: 'IoT Pilot for Smart Buildings',
           category: 'IoT Pilot',
           description: 'Pilot connecting 500 sensors, validated energy savings of 23%.',
-          image: '/img/case-iot.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-iot.jpg`,
           link: '#'
         }
       ]}

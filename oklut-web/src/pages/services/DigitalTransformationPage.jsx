@@ -36,21 +36,21 @@ export default function DigitalTransformationPage() {
           title: 'Insurance Core Modernization',
           category: 'Insurance',
           description: 'Transformed 40-year-old policy admin system to cloud-native, reducing quote time 80%.',
-          image: '/img/case-insurance.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-insurance.jpg`,
           link: '#'
         },
         {
           title: 'Retail Omnichannel Platform',
           category: 'Retail',
           description: 'Unified e-commerce, POS, and inventory into single platform for 500+ stores.',
-          image: '/img/case-retail.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-retail.jpg`,
           link: '#'
         },
         {
           title: 'Manufacturing Data Platform',
           category: 'Manufacturing',
           description: 'Built IoT data lake enabling predictive maintenance across 12 factories.',
-          image: '/img/case-manufacturing.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-manufacturing.jpg`,
           link: '#'
         }
       ]}

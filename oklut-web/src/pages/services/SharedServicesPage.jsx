@@ -2,8 +2,8 @@ import { ServicePageTemplate } from './ServicePageTemplate'
 import './ServicePage.css'
 
 export default function SharedServicesPage() {
-  const heroImageUrl = '/img/shared-services-hero.jpg'
-  const overviewImageUrl = '/img/case-shared-services.jpg'
+  const heroImageUrl = `${import.meta.env.BASE_URL}img/shared-services-hero.jpg`
+  const overviewImageUrl = `${import.meta.env.BASE_URL}img/case-shared-services.jpg`
 
   return (
     <div className="shared-services-page">

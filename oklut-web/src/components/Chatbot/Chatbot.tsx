@@ -194,7 +194,7 @@ export const Chatbot = () => {
           >
             <header className="chatbot-header">
               <div className="chatbot-header-brand">
-                <img src="/img/logo.jpg" alt="" className="chatbot-header-logo" />
+                <img src={`${import.meta.env.BASE_URL}img/logo.jpg`} alt="" className="chatbot-header-logo" />
                 <div className="chatbot-header-text">
                   <h2 id="chatbot-title">Oklut AI Assistant</h2>
                   <span className="chatbot-status">
@@ -254,7 +254,7 @@ export const Chatbot = () => {
                     >
                       {msg.role === 'assistant' && (
                         <span className="chatbot-avatar" aria-hidden="true">
-                          <img src="/img/logo.jpg" alt="" />
+                          <img src={`${import.meta.env.BASE_URL}img/logo.jpg`} alt="" />
                         </span>
                       )}
                       <p className="chatbot-message-content">{msg.content}</p>
@@ -264,7 +264,7 @@ export const Chatbot = () => {
                   {loading && (
                     <div className="chatbot-message chatbot-message-assistant" aria-label="Oklut AI is typing">
                       <span className="chatbot-avatar" aria-hidden="true">
-                        <img src="/img/logo.jpg" alt="" />
+                        <img src={`${import.meta.env.BASE_URL}img/logo.jpg`} alt="" />
                       </span>
                       <span className="typing-indicator">
                         <span className="dot" />

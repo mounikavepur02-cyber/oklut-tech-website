@@ -8,7 +8,7 @@ import { CookieConsentProvider } from './components/cookie/CookieConsentProvider
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/oklut-tech-website">
       <AuthProvider>
         <CookieConsentProvider>
           <App />

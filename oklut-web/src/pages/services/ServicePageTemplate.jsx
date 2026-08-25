@@ -80,8 +80,8 @@ export function ServicePageTemplate({
               src={heroImage}
               alt={title}
               onError={(e) => {
-                if (e.currentTarget.src !== '/img/shared-services-hero.jpg') {
-                  e.currentTarget.src = '/img/shared-services-hero.jpg'
+                if (e.currentTarget.src !== `${import.meta.env.BASE_URL}img/shared-services-hero.jpg`) {
+                  e.currentTarget.src = `${import.meta.env.BASE_URL}img/shared-services-hero.jpg`
                 }
               }}
             />
@@ -127,8 +127,8 @@ export function ServicePageTemplate({
                     src={overviewImage}
                     alt={`${title} overview`}
                     onError={(e) => {
-                      if (e.currentTarget.src !== '/img/shared-services-hero.jpg') {
-                        e.currentTarget.src = '/img/shared-services-hero.jpg'
+                      if (e.currentTarget.src !== `${import.meta.env.BASE_URL}img/shared-services-hero.jpg`) {
+                        e.currentTarget.src = `${import.meta.env.BASE_URL}img/shared-services-hero.jpg`
                       }
                     }}
                   />

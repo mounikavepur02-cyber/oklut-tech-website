@@ -386,7 +386,7 @@ function Navbar({ onSignIn, onSignUp }) {
           isActive={location.pathname === '/' && activeSection === 'top'}
           onNavigate={closeMobile}
         >
-          <img src="/img/logo.jpg" alt="Oklut Technologies logo" className="brand-logo" />
+          <img src={`${import.meta.env.BASE_URL}img/logo.jpg`} alt="Oklut Technologies logo" className="brand-logo" />
         </SectionLink>
         <nav className={`nav-links ${mobileOpen ? 'nav-links-open' : ''}`} aria-label="Main navigation">
           {NAV_ITEMS.map((item) => {
@@ -880,10 +880,10 @@ function Hero() {
         muted
         playsInline
         preload="metadata"
-        poster="/img/hero-poster.jpg"
+        poster={`${import.meta.env.BASE_URL}img/hero-poster.jpg`}
       >
-        <source src="/video/hero-bg.mp4" type="video/mp4" />
-        <source src="/video/hero-bg.webm" type="video/webm" />
+        <source src={`${import.meta.env.BASE_URL}video/hero-bg.mp4`} type="video/mp4" />
+        <source src={`${import.meta.env.BASE_URL}video/hero-bg.webm`} type="video/webm" />
       </video>
       <div className="hero-overlay" aria-hidden="true" />
       <div className="container hero-grid">
@@ -996,7 +996,7 @@ function About() {
         </div>
         <div className="about-visual reveal">
           <figure className="about-frame">
-            <img src="/img/about.jpg" alt="The Oklut Technologies team at work" loading="lazy" />
+            <img src={`${import.meta.env.BASE_URL}img/about.jpg`} alt="The Oklut Technologies team at work" loading="lazy" />
           </figure>
         </div>
       </div>
@@ -1448,7 +1448,7 @@ function Footer() {
       <div className="container footer-grid">
         <div className="footer-brand">
           <SectionLink id="top" className="brand">
-            <img src="/img/logo.jpg" alt="Oklut Technologies logo" className="brand-logo" />
+            <img src={`${import.meta.env.BASE_URL}img/logo.jpg`} alt="Oklut Technologies logo" className="brand-logo" />
             <span className="brand-name">
               Oklut<span>Technologies</span>
             </span>

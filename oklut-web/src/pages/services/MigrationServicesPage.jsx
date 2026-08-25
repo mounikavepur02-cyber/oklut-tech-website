@@ -36,21 +36,21 @@ export default function MigrationServicesPage() {
           title: 'Mainframe to Cloud Migration',
           category: 'Mainframe Modernization',
           description: 'Migrated core banking from mainframe to AWS with 99.99% data fidelity.',
-          image: '/img/case-mainframe.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-mainframe.jpg`,
           link: '#'
         },
         {
           title: 'Multi-Region Kubernetes Migration',
           category: 'Platform Migration',
           description: 'Migrated 150 microservices to EKS across 3 regions with zero downtime.',
-          image: '/img/case-k8s-migration.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-k8s-migration.jpg`,
           link: '#'
         },
         {
           title: 'Data Warehouse Modernization',
           category: 'Data Migration',
           description: 'Migrated 50TB Teradata to Snowflake with automated SQL translation.',
-          image: '/img/case-dw.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-dw.jpg`,
           link: '#'
         }
       ]}

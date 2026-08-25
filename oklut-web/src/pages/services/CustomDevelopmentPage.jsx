@@ -35,21 +35,21 @@ export default function CustomDevelopmentPage() {
           title: 'ERP Platform for Manufacturing',
           category: 'Enterprise Software',
           description: 'Built a modular ERP integrating finance, inventory, HR, and procurement for a mid-market manufacturer.',
-          image: '/img/case-erp.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-erp.jpg`,
           link: '#'
         },
         {
           title: 'SaaS Platform for Logistics',
           category: 'SaaS Product',
           description: 'Developed a multi-tenant logistics management platform with real-time tracking and analytics.',
-          image: '/img/case-logistics.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-logistics.jpg`,
           link: '#'
         },
         {
           title: 'Mobile App for Healthcare',
           category: 'Mobile App',
           description: 'Created a HIPAA-compliant patient engagement app with telehealth and appointment management.',
-          image: '/img/case-healthcare.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-healthcare.jpg`,
           link: '#'
         }
       ]}

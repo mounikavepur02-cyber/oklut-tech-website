@@ -54,8 +54,8 @@ export default function ManagedServicesPage() {
                 src={sideImageUrl}
                 alt="Managed Services"
                 onError={(e) => {
-                  if (e.currentTarget.src !== '/img/shared-services-hero.jpg') {
-                    e.currentTarget.src = '/img/shared-services-hero.jpg'
+                  if (e.currentTarget.src !== `${import.meta.env.BASE_URL}img/shared-services-hero.jpg`) {
+                    e.currentTarget.src = `${import.meta.env.BASE_URL}img/shared-services-hero.jpg`
                   }
                 }}
               />

@@ -36,21 +36,21 @@ export default function ProcessAutomationPage() {
           title: 'Invoice Processing Automation',
           category: 'Finance Automation',
           description: 'Automated end-to-end AP processing for 50k+ invoices/month with 95% straight-through rate.',
-          image: '/img/case-invoice.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-invoice.jpg`,
           link: '#'
         },
         {
           title: 'Customer Onboarding Bot',
           category: 'KYC Automation',
           description: 'Reduced onboarding from 3 days to 15 minutes with automated document verification.',
-          image: '/img/case-kyc.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-kyc.jpg`,
           link: '#'
         },
         {
           title: 'HR Process Automation',
           category: 'HR Automation',
           description: 'Automated leave management, expense claims, and performance reviews for 2000+ employees.',
-          image: '/img/case-hr.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-hr.jpg`,
           link: '#'
         }
       ]}

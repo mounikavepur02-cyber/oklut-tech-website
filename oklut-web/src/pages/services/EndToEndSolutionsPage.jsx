@@ -36,21 +36,21 @@ export default function EndToEndSolutionsPage() {
           title: 'FinTech Product Build & Run',
           category: 'FinTech',
           description: 'End-to-end build of digital lending platform — from discovery to 24/7 operations.',
-          image: '/img/case-fintech-e2e.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-fintech-e2e.jpg`,
           link: '#'
         },
         {
           title: 'Healthcare Platform Lifecycle',
           category: 'Healthcare',
           description: 'Designed, built, and operate patient engagement platform serving 2M+ users.',
-          image: '/img/case-healthcare-e2e.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-healthcare-e2e.jpg`,
           link: '#'
         },
         {
           title: 'EdTech Product Evolution',
           category: 'EdTech',
           description: '3-year partnership evolving MVP to market-leading platform with 500k learners.',
-          image: '/img/case-edtech.jpg',
+          image: `${import.meta.env.BASE_URL}img/case-edtech.jpg`,
           link: '#'
         }
       ]}
