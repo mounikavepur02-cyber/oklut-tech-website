@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - domain
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -38,6 +39,16 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         run: npm run build
+
+      - name: Add SPA fallback and .nojekyll
+        working-directory: oklut-web
+        run: |
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
+          echo "Build output:"
+          ls -lh dist/
+          echo "--- dist/index.html first 20 lines ---"
+          head -n 20 dist/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
