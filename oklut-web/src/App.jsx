@@ -25,19 +25,22 @@ const BookConsultationPage = lazy(() => import('./pages/BookConsultationPage'))
 
 
 
-const EndToEndSolutionsPage = lazy(() => import('./pages/services/EndToEndSolutionsPage'))
 const SharedServicesPage = lazy(() => import('./pages/services/SharedServicesPage'))
-// Premium pages merged from dinesh/services + chandu/services (modern layouts + assets)
+// Premium pages merged from dinesh/services + chandu/services (modern layouts + assets) + newly created for completeness
 const CustomDevelopmentPage = lazy(() => import('./pages/CustomDevelopmentPage'))
 const PilotPrototypingPagePremium = lazy(() => import('./pages/PilotPrototypingPage'))
 const SolutionEngineeringPagePremium = lazy(() => import('./pages/SolutionEngineeringPage'))
 const CentreOfExcellencePage = lazy(() => import('./pages/CentreOfExcellencePage'))
-// Fallback generic templates kept for other services
+const DigitalTransformationPagePremium = lazy(() => import('./pages/DigitalTransformationPage'))
+const MigrationServicesPagePremium = lazy(() => import('./pages/MigrationServicesPage'))
+const EndToEndSolutionsPagePremium = lazy(() => import('./pages/EndToEndSolutionsPage'))
+// Fallback generic templates kept for legacy / other services
 const ProcessAutomationPage = lazy(() => import('./pages/services/ProcessAutomationPage'))
 const CenterOfExcellencePage = lazy(() => import('./pages/services/CenterOfExcellencePage'))
 const SolutionEngineeringPage = lazy(() => import('./pages/services/SolutionEngineeringPage'))
 const DigitalTransformationPage = lazy(() => import('./pages/services/DigitalTransformationPage'))
 const MigrationServicesPage = lazy(() => import('./pages/services/MigrationServicesPage'))
+const EndToEndSolutionsPage = lazy(() => import('./pages/services/EndToEndSolutionsPage'))
 const OneStopSolutionsPage = lazy(() => import('./pages/services/OneStopSolutionsPage'))
 const PilotPrototypingPage = lazy(() => import('./pages/services/PilotPrototypingPage'))
 const ManagedServicesPage = lazy(() => import('./pages/services/ManagedServicesPage'))
@@ -1341,7 +1344,7 @@ function App() {
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/products" element={<ProductsPage />} />
             
-            <Route path="/services/end-to-end-solutions" element={<EndToEndSolutionsPage />} />
+            <Route path="/services/end-to-end-solutions" element={<EndToEndSolutionsPagePremium />} />
             <Route path="/services/pilot-prototyping" element={<PilotPrototypingPagePremium />} />
             <Route path="/services/shared-services" element={<SharedServicesPage />} />
             <Route path="/services/custom-development" element={<CustomDevelopmentPage />} />
@@ -1349,14 +1352,17 @@ function App() {
             <Route path="/services/center-of-excellence" element={<CentreOfExcellencePage />} />
             <Route path="/services/centre-of-excellence" element={<CentreOfExcellencePage />} />
             <Route path="/services/solution-engineering" element={<SolutionEngineeringPagePremium />} />
-            <Route path="/services/digital-transformation" element={<DigitalTransformationPage />} />
-            <Route path="/services/migration-services" element={<MigrationServicesPage />} />
+            <Route path="/services/digital-transformation" element={<DigitalTransformationPagePremium />} />
+            <Route path="/services/migration-services" element={<MigrationServicesPagePremium />} />
             <Route path="/services/one-stop-solutions" element={<OneStopSolutionsPage />} />
             <Route path="/services/managed-services" element={<ManagedServicesPage />} />
             {/* Legacy fallback routes kept for backwards compat */}
             <Route path="/services/pilot-prototyping-legacy" element={<PilotPrototypingPage />} />
             <Route path="/services/solution-engineering-legacy" element={<SolutionEngineeringPage />} />
             <Route path="/services/center-of-excellence-legacy" element={<CenterOfExcellencePage />} />
+            <Route path="/services/digital-transformation-legacy" element={<DigitalTransformationPage />} />
+            <Route path="/services/migration-services-legacy" element={<MigrationServicesPage />} />
+            <Route path="/services/end-to-end-legacy" element={<EndToEndSolutionsPage />} />
           </Routes>
         </Suspense>
       </main>
