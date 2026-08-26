@@ -102,12 +102,12 @@ const HRMS_SOLUTIONS = [
 ]
 
 const TECH_NAV_ITEMS = [
-  { label: 'AI & Robotics', href: '#gallery' },
-  { label: 'Business Automation', href: '#gallery' },
-  { label: 'Cloud Migrations', href: '#gallery' },
-  { label: 'Data Centers', href: '#gallery' },
-  { label: 'Cognitive Analytics & AI', href: '#gallery' },
-  { label: 'Information & Reporting Systems', href: '#gallery' },
+  { label: 'AI & Robotics', to: '/services/solution-engineering' },
+  { label: 'Business Automation', to: '/services/process-automation' },
+  { label: 'Cloud Migrations', to: '/services/migration-services' },
+  { label: 'Data Centers', to: '/services/managed-services' },
+  { label: 'Cognitive Analytics & AI', to: '/services/digital-transformation' },
+  { label: 'Information & Reporting Systems', to: '/services/end-to-end-solutions' },
   { label: 'Managed Services', to: '/services/managed-services' },
   { label: 'One-Stop Solutions', to: '/services/one-stop-solutions' },
 ]
