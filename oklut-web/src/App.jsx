@@ -26,7 +26,7 @@ const BookConsultationPage = lazy(() => import('./pages/BookConsultationPage'))
 
 
 const SharedServicesPage = lazy(() => import('./pages/services/SharedServicesPage'))
-// Premium pages merged from dinesh/services + chandu/services (modern layouts + assets) + newly created for completeness
+// Premium pages merged from dinesh/services + chandu/services (modern layouts + assets) + newly created for completeness + remote via upload
 const CustomDevelopmentPage = lazy(() => import('./pages/CustomDevelopmentPage'))
 const PilotPrototypingPagePremium = lazy(() => import('./pages/PilotPrototypingPage'))
 const SolutionEngineeringPagePremium = lazy(() => import('./pages/SolutionEngineeringPage'))
@@ -34,6 +34,8 @@ const CentreOfExcellencePage = lazy(() => import('./pages/CentreOfExcellencePage
 const DigitalTransformationPagePremium = lazy(() => import('./pages/DigitalTransformationPage'))
 const MigrationServicesPagePremium = lazy(() => import('./pages/MigrationServicesPage'))
 const EndToEndSolutionsPagePremium = lazy(() => import('./pages/EndToEndSolutionsPage'))
+const AIRoboticsPage = lazy(() => import('./pages/services/AIRobotics'))
+const InformationReportingSystemsPage = lazy(() => import('./pages/services/InformationReportingSystems'))
 // Fallback generic templates kept for legacy / other services
 const ProcessAutomationPage = lazy(() => import('./pages/services/ProcessAutomationPage'))
 const CenterOfExcellencePage = lazy(() => import('./pages/services/CenterOfExcellencePage'))
@@ -105,12 +107,12 @@ const HRMS_SOLUTIONS = [
 ]
 
 const TECH_NAV_ITEMS = [
-  { label: 'AI & Robotics', to: '/services/solution-engineering' },
+  { label: 'AI & Robotics', to: '/services/ai-robotics' },
   { label: 'Business Automation', to: '/services/process-automation' },
   { label: 'Cloud Migrations', to: '/services/migration-services' },
   { label: 'Data Centers', to: '/services/managed-services' },
   { label: 'Cognitive Analytics & AI', to: '/services/digital-transformation' },
-  { label: 'Information & Reporting Systems', to: '/services/end-to-end-solutions' },
+  { label: 'Information & Reporting Systems', to: '/services/information-reporting-systems' },
   { label: 'Managed Services', to: '/services/managed-services' },
   { label: 'One-Stop Solutions', to: '/services/one-stop-solutions' },
 ]
@@ -1356,6 +1358,8 @@ function App() {
             <Route path="/services/migration-services" element={<MigrationServicesPagePremium />} />
             <Route path="/services/one-stop-solutions" element={<OneStopSolutionsPage />} />
             <Route path="/services/managed-services" element={<ManagedServicesPage />} />
+            <Route path="/services/ai-robotics" element={<AIRoboticsPage />} />
+            <Route path="/services/information-reporting-systems" element={<InformationReportingSystemsPage />} />
             {/* Legacy fallback routes kept for backwards compat */}
             <Route path="/services/pilot-prototyping-legacy" element={<PilotPrototypingPage />} />
             <Route path="/services/solution-engineering-legacy" element={<SolutionEngineeringPage />} />
