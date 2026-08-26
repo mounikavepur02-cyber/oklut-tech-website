@@ -1,0 +1,631 @@
+{
+  "nav": {
+    "about": "Nosotros",
+    "services": "Servicios",
+    "products": "Productos",
+    "perspectives": "Perspectivas",
+    "technologies": "Tecnologías",
+    "contact": "Contacto",
+    "careers": "Carreras",
+    "signIn": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "signOut": "Cerrar sesión",
+    "chooseLanguage": "Elige tu idioma",
+    "searchLanguage": "Buscar idioma",
+    "resetEnglish": "Restablecer a inglés",
+    "noResults": "No se encontraron idiomas"
+  },
+  "hero": {
+    "eyebrow": "Oklut Technologies — Hyderabad",
+    "title": "Software, diseñado para la forma en que <em>tu negocio</em> opera.",
+    "description": "Oklut es una empresa de productos digitales y servicios de TI. Diseñamos, construimos y escalamos software personalizado, productos web y móviles, infraestructura en la nube e IA — para empresas que compiten por la ejecución.",
+    "bookConsultation": "Reservar una consulta gratuita",
+    "exploreServices": "Explorar servicios",
+    "years": "años",
+    "projects": "proyectos",
+    "retention": "retención",
+    "location": "Madhapur, Hyderabad",
+    "since": "Oklut Technologies — desde 2012",
+    "metaStudio": "Estudio de productos digitales",
+    "metaTech": "Web · Móvil · Nube · IA"
+  },
+  "about": {
+    "eyebrow": "Sobre nosotros",
+    "title": "La mejor solución de TI — <em>Oklut Technologies</em>",
+    "description": "Oklut Technologies es una filial india de TI y una de las empresas líderes en India en diseño web y desarrollo de aplicaciones web. Hemos dominado los sistemas de gestión de contenido y el desarrollo de aplicaciones móviles, incluyendo iPhone, iPad y Android. Ofrecemos una variedad de servicios especializados principalmente en diseño y desarrollo de sitios web — construidos sobre confianza, calidad y asociación a largo plazo.",
+    "awardWinning": "Galardonados",
+    "awardText": "Reconocidos por la excelencia en la ingeniería de productos web y móviles.",
+    "professionalStaff": "Personal profesional",
+    "staffText": "Ingenieros senior y responsables que se hacen cargo del trabajo desde la primera llamada hasta el lanzamiento.",
+    "support247": "Soporte 24/7",
+    "supportText": "Servicios administrados y línea de asistencia que responde cuando lo necesitas.",
+    "fairPrices": "Precios justos",
+    "pricesText": "Presupuestos honestos y facturación transparente en cada compromiso."
+  },
+  "stats": {
+    "happyClients": "Clientes satisfechos",
+    "projectsDone": "Proyectos realizados",
+    "winAwards": "Premios ganados"
+  },
+  "insights": {
+    "eyebrow": "Perspectivas",
+    "title": "Perspectivas y pensamiento del estudio",
+    "item1Date": "Jul 2026",
+    "item1Tag": "Producto",
+    "item1Title": "Un enfoque modular de ERP para empresas en crecimiento",
+    "item1Text": "Cómo estructuramos los compromisos de ERP para que finanzas, inventario, RRHH y compras se integren sin un programa de varios años.",
+    "item2Date": "May 2026",
+    "item2Tag": "Empresa",
+    "item2Title": "Reconocidos entre las empresas de TI líderes en Hyderabad",
+    "item2Text": "Nuestro equipo de ingeniería ha sido reconocido por la excelencia en la entrega y la satisfacción del cliente en ingeniería de productos digitales.",
+    "item3Date": "Mar 2026",
+    "item3Tag": "Personas",
+    "item3Title": "Contratación: ingenieros senior para hacer crecer nuestra práctica de Cloud e IA",
+    "item3Text": "Estamos expandiendo nuestros equipos de nube, datos e IA — roles remotos, propiedad senior y trabajo en productos reales."
+  },
+  "technologies": {
+    "title": "Tecnologías",
+    "selectTechnology": "Selecciona una tecnología",
+    "headline": "La tecnología que impulsa los negocios globales",
+    "sub": "Empoderando a organizaciones en todo el mundo con soluciones tecnológicas inteligentes, escalables e innovadoras.",
+    "options": {
+      "aiRobotics": "IA y Robótica",
+      "businessAutomation": "Automatización de negocios",
+      "cloudMigrations": "Migraciones a la nube",
+      "dataCenters": "Centros de datos",
+      "cognitiveAnalytics": "Analítica cognitiva e IA",
+      "informationReporting": "Sistemas de información e informes",
+      "managedServices": "Servicios administrados",
+      "oneStopSolutions": "Soluciones integrales"
+    }
+  },
+  "contact": {
+    "eyebrow": "Contacto",
+    "title": "Habla con un ingeniero senior, no con un guion de ventas",
+    "sub": "Comparte un poco sobre tu proyecto y te responderemos en un día hábil.",
+    "reachUs": "Contáctanos directamente",
+    "preferConversation": "¿Prefieres conversar? Estamos a una llamada de distancia.",
+    "contactLede": "La forma más rápida de avanzar es una breve conversación. Contáctanos por cualquier canal a continuación, o reserva un espacio y vendremos preparados.",
+    "phone": "Teléfono",
+    "email": "Correo electrónico",
+    "office": "Oficina",
+    "hours": "Horario",
+    "hoursValue": "Lun – Sáb, 9:30 – 18:30 IST",
+    "bookSlot": "Reservar un espacio de consulta",
+    "sendMessage": "Envíanos un mensaje",
+    "fieldsRequired": "Los campos marcados con * son obligatorios.",
+    "fullName": "Nombre completo *",
+    "emailLabel": "Correo electrónico *",
+    "company": "Empresa",
+    "subject": "Asunto",
+    "messageLabel": "Mensaje *",
+    "sending": "Enviando…",
+    "sendBtn": "Enviar mensaje",
+    "successMsg": "¡Mensaje enviado! Se ha enviado una copia a tu correo electrónico.",
+    "errorMsg": "No se pudo guardar tu mensaje. Verifica que la tabla contact_messages exista, luego intenta de nuevo."
+  },
+  "services": {
+    "eyebrow": "Servicios",
+    "title": "Lo que hacemos",
+    "sub": "De la estrategia a las operaciones administradas, ofrecemos alianzas tecnológicas de extremo a extremo para empresas que compiten por la ejecución.",
+    "items": {
+      "customDevelopment": {
+        "label": "Desarrollo personalizado",
+        "description": "Productos web, móviles y API a medida construidos según tus requisitos exactos."
+      },
+      "processAutomation": {
+        "label": "Automatización de procesos",
+        "description": "Agiliza los flujos de trabajo y elimina el esfuerzo manual con automatización inteligente."
+      },
+      "centerOfExcellence": {
+        "label": "Centro de excelencia",
+        "description": "Integra un hub de ingeniería de alto rendimiento con estándares compartidos y reutilización."
+      },
+      "solutionEngineering": {
+        "label": "Ingeniería de soluciones",
+        "description": "Diseña sistemas resilientes y escalables desde el descubrimiento hasta la producción."
+      },
+      "digitalTransformation": {
+        "label": "Transformación digital",
+        "description": "Moderniza la tecnología, los procesos y la cultura para competir en un mundo digital."
+      },
+      "endToEndSolutions": {
+        "label": "Soluciones de extremo a extremo",
+        "description": "Entrega de ciclo completo desde la estrategia y diseño hasta las operaciones 24/7."
+      },
+      "migrationServices": {
+        "label": "Servicios de migración",
+        "description": "Mueve aplicaciones, datos e infraestructura a la nube de forma segura y rentable."
+      },
+      "pilotPrototyping": {
+        "label": "Piloto y prototipado",
+        "description": "Valida ideas rápidamente con pilotos de bajo riesgo y prototipos de nivel de producción."
+      },
+      "sharedServices": {
+        "label": "Servicios compartidos",
+        "description": "Plataformas centralizadas y servicios administrados que escalan entre equipos."
+      }
+    }
+  },
+  "products": {
+    "featured": "Productos destacados",
+    "featuredSub": "Simplifica las operaciones, conecta equipos, automatiza procesos e impulsa un crecimiento empresarial más inteligente.",
+    "seeAll": "Ver todos los productos",
+    "featuredProducts": "PRODUCTOS DESTACADOS",
+    "meetAutonomous": "Conoce la fuerza laboral autónoma",
+    "meetAutonomousText": "Transforma tus operaciones con agentes de IA que trabajan junto a tu equipo para manejar tareas complejas y repetitivas.",
+    "learnMore": "Más información",
+    "erp": {
+      "title": "Una plataforma lista para todo",
+      "sub": "Empoderar a las empresas con soluciones de gestión empresarial conectadas, inteligentes y escalables.",
+      "explore": "Explorar soluciones ERP",
+      "gridTitle": "SOLUCIONES ERP",
+      "promoTitle": "ERP modular para el crecimiento",
+      "promoText": "Despliega funcionalidades ERP modulares rápidamente sin la complejidad de los sistemas plurianuales tradicionales.",
+      "scheduleDemo": "Programar una demo"
+    },
+    "it": {
+      "title": "Soluciones de TI",
+      "sub": "Infraestructura, seguridad y DevOps de nivel empresarial para mantener tu negocio en funcionamiento.",
+      "explore": "Explorar soluciones de TI",
+      "gridTitle": "SOLUCIONES DE TI",
+      "promoTitle": "Infraestructura de TI confiable",
+      "promoText": "Construye una base tecnológica resiliente con servicios de nube administrada, seguridad y DevOps.",
+      "getStarted": "Comenzar"
+    },
+    "crm": {
+      "title": "Soluciones CRM",
+      "sub": "Gestión de relaciones con clientes para agilizar los flujos de ventas, soporte y marketing.",
+      "explore": "Explorar soluciones CRM",
+      "gridTitle": "SOLUCIONES CRM",
+      "promoTitle": "Cierra más tratos",
+      "promoText": "Empodera a tus equipos de ventas y soporte con datos de cliente unificados e automatización inteligente.",
+      "startTrial": "Prueba gratuita"
+    },
+    "hrms": {
+      "title": "Soluciones HRMS",
+      "sub": "Gestión de recursos humanos que cubre nómina, reclutamiento, desempeño y compromiso de los empleados.",
+      "explore": "Explorar soluciones HRMS",
+      "gridTitle": "SOLUCIONES HRMS",
+      "promoTitle": "Simplifica las operaciones de RRHH",
+      "promoText": "Automatiza los flujos de trabajo de RRHH desde el reclutamiento hasta la jubilación con una plataforma moderna centrada en el empleado.",
+      "requestDemo": "Solicitar demo"
+    },
+    "sidebar": {
+      "featuredProducts": "Productos destacados",
+      "erpSolutions": "Soluciones ERP",
+      "solutions": "SOLUCIONES"
+    },
+    "items": {
+      "oklutAiSuite": {
+        "title": "Oklut AI Suite",
+        "description": "Agentes autónomos inteligentes y herramientas que automatizan flujos de trabajo complejos y operaciones de clientes."
+      },
+      "cloudNexus": {
+        "title": "CloudNexus",
+        "description": "Plataforma de gestión multi-nube que optimiza el rendimiento, la seguridad, el cumplimiento y los costos."
+      },
+      "workSync": {
+        "title": "WorkSync",
+        "description": "Hub de colaboración y productividad híbrida con gestión integrada de tareas, chat y documentos."
+      },
+      "dataStream": {
+        "title": "DataStream",
+        "description": "Motor de analítica en tiempo real que transforma flujos de eventos de negocio en información procesable."
+      },
+      "oklutErpCore": {
+        "title": "Oklut ERP Core",
+        "description": "Arquitectura empresarial unificada que conecta finanzas, activos, RRHH, compras e inventario."
+      },
+      "hrmsPro": {
+        "title": "HRMS Pro",
+        "description": "Plataforma de experiencia del empleado que cubre nómina, beneficios, reseñas de desempeño y autoservicio."
+      },
+      "supplyChainIq": {
+        "title": "SupplyChain IQ",
+        "description": "Seguimiento logístico en tiempo real, operaciones de almacén automatizadas y pronóstico de demanda."
+      },
+      "financeHub": {
+        "title": "Finance Hub",
+        "description": "Gestión avanzada del libro mayor, flujos de facturación, cumplimiento automatizado e informes de flujo de caja en tiempo real."
+      },
+      "cloudInfrastructure": {
+        "title": "Infraestructura en la nube",
+        "description": "Arquitectura en la nube escalable, migración y gestión en AWS, Azure y GCP."
+      },
+      "cybersecuritySuite": {
+        "title": "Suite de ciberseguridad",
+        "description": "Monitoreo de seguridad de extremo a extremo, detección de amenazas y gestión de cumplimiento."
+      },
+      "devopsPipeline": {
+        "title": "Pipeline DevOps",
+        "description": "Automatización CI/CD, contenedorización e infraestructura como código para una entrega más rápida."
+      },
+      "managedItServices": {
+        "title": "Servicios de TI administrados",
+        "description": "Monitoreo de infraestructura 24/7, respuesta a incidentes y mantenimiento proactivo."
+      },
+      "salesCrm": {
+        "title": "CRM de ventas",
+        "description": "Gestión de pipeline, puntuación de leads, seguimiento de tratos y pronóstico de ventas en una plataforma."
+      },
+      "customerSupportHub": {
+        "title": "Centro de soporte al cliente",
+        "description": "Tickets, base de conocimiento, chat en vivo y gestión de soporte omnicanal."
+      },
+      "marketingAutomation": {
+        "title": "Automatización de marketing",
+        "description": "Orquestación de campañas, automatización por correo electrónico, nurturing de leads y analítica."
+      },
+      "customer360View": {
+        "title": "Vista 360 del cliente",
+        "description": "Perfiles de cliente unificados que combinan datos de ventas, soporte e interacción."
+      },
+      "coreHr": {
+        "title": "RRHH fundamentales",
+        "description": "Registros de empleados, jerarquía organizacional, gestión de permisos y seguimiento de asistencia."
+      },
+      "payrollCompliance": {
+        "title": "Nómina y cumplimiento",
+        "description": "Procesamiento automatizado de nómina, cálculos fiscales y cumplimiento legal."
+      },
+      "performanceManagement": {
+        "title": "Gestión del desempeño",
+        "description": "Seguimiento de OKR, reseñas 360°, establecimiento de objetivos y planes de desarrollo de empleados."
+      },
+      "recruitmentPortal": {
+        "title": "Portal de reclutamiento",
+        "description": "Publicaciones de empleo, seguimiento de candidatos, programación de entrevistas y flujos de incorporación."
+      }
+    }
+  },
+  "techNav": {
+    "aiRobotics": "IA y Robótica",
+    "businessAutomation": "Automatización de negocios",
+    "cloudMigrations": "Migraciones a la nube",
+    "dataCenters": "Centros de datos",
+    "cognitiveAnalyticsAi": "Analítica cognitiva e IA",
+    "informationReportingSystems": "Sistemas de información e informes",
+    "managedServices": "Servicios administrados",
+    "oneStopSolutions": "Soluciones integrales"
+  },
+  "servicePage": {
+    "serviceOverview": "Resumen del servicio",
+    "whatWeOffer": "Lo que ofrecemos",
+    "whyChooseOklut": "Por qué elegir Oklut",
+    "benefitsOfWorking": "Beneficios de trabajar con nosotros",
+    "techStack": "Stack tecnológico",
+    "technologiesWeUse": "Tecnologías que utilizamos",
+    "ourWork": "Nuestro trabajo",
+    "relatedProjects": "Proyectos relacionados",
+    "viewCaseStudy": "Ver estudio de caso",
+    "readyToDiscuss": "¿Listo para discutir tu proyecto de {{title}}?",
+    "seniorEngineersReady": "Nuestros ingenieros senior están listos para ayudarte a planificar, diseñar y construir tu solución.",
+    "startProject": "Iniciar tu proyecto",
+    "howItWorks": "Cómo funciona"
+  },
+  "consultation": {
+    "badge": "Reservar una consulta gratuita",
+    "title": "Planeemos tu proyecto <span class='hero-accent'>juntos</span>",
+    "description": "Programa una llamada sin compromiso con nuestros consultores. Discute tus requisitos, explora el enfoque técnico adecuado y obtén un presupuesto claro — todo en menos de 30 minutos.",
+    "bookSlot": "Reserva tu espacio",
+    "howItWorks": "Cómo funciona",
+    "accountRequired": "Cuenta requerida",
+    "signInToBook": "Inicia sesión para reservar tu consulta",
+    "accountRequiredText": "Necesitarás una cuenta de Oklut para solicitar una consulta. Inicia sesión o crea una — toma menos de un minuto.",
+    "signInToContinue": "Iniciar sesión para continuar",
+    "newToOklut": "¿Nuevo en Oklut?",
+    "createAccount": "Crear una cuenta",
+    "requestMeeting": "Solicitar una reunión",
+    "tellUsAboutProject": "Cuéntanos sobre tu proyecto",
+    "fillDetails": "Completa tus datos y confirmaremos tu espacio de consulta por correo electrónico.",
+    "fullName": "Nombre completo *",
+    "email": "Correo electrónico *",
+    "phone": "Teléfono *",
+    "company": "Empresa",
+    "serviceOfInterest": "Servicio de interés *",
+    "selectService": "Selecciona un servicio…",
+    "preferredDate": "Fecha preferida *",
+    "preferredTime": "Hora preferida *",
+    "selectTimeSlot": "Selecciona un horario…",
+    "estimatedBudget": "Presupuesto estimado",
+    "selectRange": "Selecciona un rango…",
+    "projectRequirements": "Requisitos del proyecto",
+    "booking": "Reservando…",
+    "bookFreeConsultation": "Reservar mi consulta gratuita",
+    "freeNote": "100% gratuita y sin compromiso. Normalmente respondemos dentro de 24 horas.",
+    "whatToExpect": "Qué esperar",
+    "preferToReachUs": "¿Prefieres contactarnos directamente?",
+    "callUs": "Llámanos",
+    "emailUs": "Escríbenos",
+    "visitUs": "Visítanos",
+    "whyBookWithUs": "Por qué reservar con nosotros",
+    "freeCallTitle": "Una llamada gratuita que realmente ayuda",
+    "freeCallNoPressure": "Llamada gratuita, sin presión",
+    "freeCallNoPressureText": "Cada primera consulta es gratuita. No hay compromiso de compra — solo consejos honestos.",
+    "seniorConsultants": "Solo consultores senior",
+    "seniorConsultantsText": "Tu reunión es dirigida por ingenieros y consultores senior que construyen para vivir.",
+    "clearTimelines": "Cronogramas y presupuestos claros",
+    "clearTimelinesText": "Sal con un siguiente paso definido, un cronograma realista y una tarificación transparente para tu proyecto.",
+    "services": {
+      "customSoftware": "Desarrollo de software personalizado",
+      "webMobile": "Desarrollo de aplicaciones web y móviles",
+      "cloudDevops": "Soluciones Cloud y DevOps",
+      "aiMl": "IA y aprendizaje automático",
+      "itConsulting": "Consultoría de TI",
+      "digitalMarketing": "Marketing digital y SEO",
+      "erpSolutions": "Soluciones ERP",
+      "other": "Otro / No estoy seguro"
+    },
+    "budgets": {
+      "under1L": "Menos de ₹1L",
+      "1to5L": "₹1L – ₹5L",
+      "5to10L": "₹5L – ₹10L",
+      "above10L": "₹10L+",
+      "notDecided": "Aún no decidido"
+    },
+    "expectPoints": {
+      "understandGoals": {
+        "title": "Entender tus objetivos",
+        "text": "Escuchamos primero. Una llamada de 30 minutos para mapear las necesidades de tu negocio, audiencia y resultados deseados."
+      },
+      "technicalDirection": {
+        "title": "Obtener dirección técnica",
+        "text": "Nuestros ingenieros comparten la arquitectura, stack y enfoque adecuados para tu proyecto."
+      },
+      "clearQuote": {
+        "title": "Recibir un presupuesto claro",
+        "text": "Sal con un estimado transparente, cronograma y próximos pasos — sin compromiso."
+      }
+    },
+    "validation": {
+      "nameRequired": "El nombre completo es obligatorio.",
+      "emailRequired": "El correo electrónico es obligatorio.",
+      "emailInvalid": "Ingresa un correo electrónico válido.",
+      "phoneRequired": "El número de teléfono es obligatorio.",
+      "phoneInvalid": "Ingresa un número de teléfono válido.",
+      "serviceRequired": "Por favor elige un servicio.",
+      "dateRequired": "Elige una fecha preferida.",
+      "timeRequired": "Elige un horario preferido.",
+      "messageTooShort": "Agrega un poco más de detalle (al menos 10 caracteres).",
+      "signInRequired": "Por favor inicia sesión para reservar tu consulta.",
+      "couldNotBook": "No se pudo reservar tu consulta. Verifica que la tabla consultations exista, luego intenta de nuevo.",
+      "bookedSuccess": "¡Consulta reservada! Nuestro equipo confirmará tu espacio por correo electrónico en breve."
+    }
+  },
+  "careers": {
+    "badge": "Carreras en Oklut",
+    "title": "Construye el futuro",
+    "titleAccent": "Con nosotros",
+    "description": "Únete a un equipo senior que entrega software personalizado, infraestructura en la nube e IA para empresas ambiciosas. Amigable con el remoto, enfocado en el crecimiento y siempre aprendiendo.",
+    "viewOpenRoles": "Ver puestos abiertos",
+    "trackApplications": "Rastrear aplicaciones",
+    "whyJoinOklut": "Por qué unirse a Oklut",
+    "remoteFriendly": "Amigable con remoto",
+    "highGrowthProjects": "Proyectos de alto crecimiento",
+    "healthBenefits": "Salud y beneficios",
+    "flexibleHours": "Horarios flexibles",
+    "openPositions": "Puestos abiertos",
+    "openRoles": "Puestos abiertos",
+    "exploreOpportunities": "Explora oportunidades en ingeniería, diseño y más allá.",
+    "careersTitle": "Carreras en Oklut Technologies — Puestos abiertos en Hyderabad",
+    "careersDescription": "Explora los puestos abiertos en Oklut Technologies. Puestos senior en ingeniería, diseño e IA en Hyderabad, India — amigable con el remoto y enfocado en el crecimiento."
+  },
+  "auth": {
+    "welcomeBack": "Bienvenido de nuevo",
+    "createAccount": "Crear cuenta",
+    "forgotPassword": "Olvidaste tu contraseña",
+    "createNewPassword": "Crear nueva contraseña",
+    "welcomeBackDesc": "Inicia sesión en tu cuenta de Oklut.",
+    "createAccountDesc": "Únete a Oklut Technologies hoy.",
+    "forgotDesc": "Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
+    "recoveryDesc": "Elige una contraseña nueva y fuerte para tu cuenta.",
+    "fullName": "Nombre completo",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "confirmNewPassword": "Confirmar nueva contraseña",
+    "forgotPasswordLink": "¿Olvidaste tu contraseña?",
+    "privacyPolicy": "Acepto la política de <1>Privacidad y Seguridad</1> de Oklut.",
+    "sendResetLink": "Enviar enlace de restablecimiento",
+    "signIn": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "pleaseWait": "Por favor espera…",
+    "rememberedPassword": "¿Recordaste tu contraseña?",
+    "signInLink": "Iniciar sesión",
+    "noAccount": "¿No tienes una cuenta?",
+    "signUpLink": "Registrarse",
+    "hasAccount": "¿Ya tienes una cuenta?",
+    "changedMind": "¿Cambiaste de opinión?",
+    "backToSignIn": "Volver al inicio de sesión",
+    "resetSent": "¡Enlace de restablecimiento enviado! Revisa tu correo electrónico para crear una nueva contraseña.",
+    "passwordUpdated": "Tu contraseña ha sido actualizada. Inicia sesión con tu nueva contraseña.",
+    "accountCreated": "¡Cuenta creada! Revisa tu correo electrónico para confirmar tu registro, luego inicia sesión.",
+    "validation": {
+      "fullNameRequired": "El nombre completo es obligatorio.",
+      "emailRequired": "El correo electrónico es obligatorio.",
+      "emailInvalid": "Ingresa un correo electrónico válido.",
+      "passwordRequired": "La contraseña es obligatoria.",
+      "passwordMinLength": "La contraseña debe tener al menos 6 caracteres.",
+      "passwordsNoMatch": "Las contraseñas no coinciden.",
+      "acceptTerms": "Por favor acepta la política de privacidad y seguridad de Oklut para continuar."
+    }
+  },
+  "applyModal": {
+    "applyTo": "Aplicar a Oklut Technologies",
+    "signInOrCreate": "Inicia sesión o crea un perfil para aplicar a {{jobTitle}}.",
+    "signIn": "Iniciar sesión",
+    "createAccount": "Crear cuenta",
+    "applyTitle": "Aplicar: {{jobTitle}}",
+    "department": "Oklut Technologies",
+    "location": "Hyderabad, India",
+    "fixFields": "Por favor corrige los campos resaltados antes de enviar.",
+    "jobRole": "Puesto *",
+    "autoFilled": "Completado automáticamente según el puesto seleccionado.",
+    "fullName": "Nombre completo *",
+    "email": "Correo electrónico *",
+    "phone": "Teléfono *",
+    "linkedinUrl": "URL de LinkedIn",
+    "portfolioUrl": "URL del portafolio",
+    "resumeUpload": "Carga de CV *",
+    "resumeDragDrop": "Arrastra y suelta tu CV aquí, o <1>explorar archivos</1>",
+    "resumeHint": "PDF, DOC o DOCX · Máx 5 MB",
+    "resumeUploading": "Cargando tu CV…",
+    "coverLetter": "Carta de presentación",
+    "coverLetterPlaceholder": "Cuéntanos por qué eres un gran candidato para este puesto…",
+    "submitting": "Enviando…",
+    "submitApplication": "Enviar solicitud",
+    "applicationSubmitted": "Solicitud enviada",
+    "thankYou": "¡Gracias, {{firstName}}! Tu solicitud para <1>{{jobTitle}}</1> ha sido enviada exitosamente.",
+    "confirmationEmail": "Un correo de confirmación está en camino a tu bandeja de entrada.",
+    "step1": "Nuestro equipo revisa tu CV y carta de presentación.",
+    "step2": "Los candidatos preseleccionados son invitados a una conversación.",
+    "step3": "Seguimos por correo electrónico — mantente atento a tu bandeja de entrada.",
+    "emailFailed": "No pudimos enviar un correo de confirmación en este momento. Tu solicitud ha sido guardada — por favor contáctanos en <1>info@oklut.com</1> si tienes alguna pregunta.",
+    "done": "Listo",
+    "remove": "Eliminar",
+    "validation": {
+      "nameRequired": "El nombre es obligatorio.",
+      "emailRequired": "El correo electrónico es obligatorio.",
+      "emailInvalid": "Ingresa un correo electrónico válido.",
+      "phoneRequired": "El número de teléfono es obligatorio.",
+      "phoneInvalid": "Ingresa un número de teléfono válido.",
+      "resumeRequired": "Por favor sube tu CV.",
+      "urlInvalid": "Ingresa una URL completa (https://…).",
+      "resumeFormat": "El CV debe ser un archivo PDF, DOC o DOCX.",
+      "resumeSize": "El CV debe ser de 5 MB o menos.",
+      "uploadFailed": "No se pudo cargar tu CV. Por favor intenta de nuevo.",
+      "submitFailed": "No se pudo enviar tu solicitud. Verifica que la tabla job_applications exista, luego intenta de nuevo.",
+      "noResume": "No se seleccionó ningún CV."
+    },
+    "newHere": "¿Nuevo aquí?",
+    "createAnAccount": "Crear una cuenta",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "signInLink": "Iniciar sesión",
+    "acceptPrivacy": "Acepto la política de <1>Privacidad y Seguridad</1> de Oklut.",
+    "signingIn": "Iniciando sesión…",
+    "creatingAccount": "Creando cuenta…",
+    "createAccountContinue": "Crear cuenta y continuar",
+    "accountCreatedNotice": "¡Cuenta creada! Revisa {{email}} para confirmar tu registro y poder subir tu CV. Puedes continuar con tu solicitud a continuación."
+  },
+  "chatbot": {
+    "chatWithOklutAi": "Chatear con Oklut AI",
+    "openChatLabel": "Abrir el chat del asistente IA de Oklut",
+    "chatTitle": "Asistente IA de Oklut",
+    "online": "En línea",
+    "expandLabel": "Expandir el chatbot",
+    "minimizeLabel": "Minimizar el chatbot",
+    "closeLabel": "Cerrar el chatbot",
+    "expand": "Expandir",
+    "minimize": "Minimizar",
+    "close": "Cerrar",
+    "popularTopics": "Temas populares",
+    "askPlaceholder": "Pregunta sobre Oklut...",
+    "messageLabel": "Enviar mensaje al asistente IA de Oklut",
+    "sendLabel": "Enviar mensaje",
+    "sendTitle": "Enviar mensaje",
+    "enterToSend": "Enter para enviar · Shift+Enter para nueva línea",
+    "newChat": "Nueva conversación"
+  },
+  "cookieConsent": {
+    "title": "Valoramos tu privacidad",
+    "description": "Usamos cookies para mejorar tu experiencia de navegación. Puedes aceptar todas las cookies, rechazar las no esenciales o personalizar tus preferencias. Las cookies esenciales siempre están habilitadas para garantizar el correcto funcionamiento del sitio.",
+    "acceptAll": "Aceptar todas",
+    "rejectNonEssential": "Rechazar no esenciales",
+    "managePreferences": "Gestionar preferencias",
+    "privacyPolicy": "Política de privacidad"
+  },
+  "cookiePreferences": {
+    "title": "Gestionar preferencias de cookies",
+    "description": "Elige qué categorías de cookies permites. Las cookies esenciales permanecen habilitadas para mantener el sitio funcionando.",
+    "essential": "Esenciales",
+    "essentialDesc": "Necesarias para el funcionamiento del sitio (autenticación, seguridad, balanceo de carga). No se pueden desactivar.",
+    "analytics": "Analítica",
+    "analyticsDesc": "Nos ayudan a entender cómo los visitantes usan el sitio para mejorarlo. Deshabilitadas por defecto.",
+    "marketing": "Marketing",
+    "marketingDesc": "Se usan para mostrarte ofertas y campañas relevantes. Deshabilitadas por defecto.",
+    "cancel": "Cancelar",
+    "savePreferences": "Guardar preferencias"
+  },
+  "privacy": {
+    "badge": "Legal",
+    "title": "Política de privacidad",
+    "description": "Cómo Oklut Technologies recopila, usa y protege tu información personal y cookies.",
+    "lastUpdated": "Última actualización: agosto 2026",
+    "managingPreferences": "Gestionar tus preferencias",
+    "managingPreferencesDesc": "Puedes revisar o cambiar qué cookies permites en cualquier momento desde el panel de preferencias de cookies.",
+    "manageCookiePreferences": "Gestionar preferencias de cookies",
+    "section1": {
+      "title": "1. Información que recopilamos",
+      "body": [
+        "Recopilamos la información que proporcionas directamente (como tu nombre y correo electrónico cuando envías el formulario de contacto o creas una cuenta) e información recopilada automáticamente a través de cookies y tecnologías similares, como páginas visitadas, tipo de dispositivo y ubicación aproximada."
+      ]
+    },
+    "section2": {
+      "title": "2. Cómo usamos las cookies",
+      "body": [
+        "Las cookies esenciales siempre están habilitadas porque el sitio no puede funcionar correctamente sin ellas. Almacenan el estado de sesión y autenticación y recuerdan tus preferencias de cookies.",
+        "Las cookies de analítica nos ayudan a entender cómo los visitantes usan el sitio para mejorarlo. Las cookies de marketing se usan para mostrarte ofertas y campañas relevantes. Estas categorías solo se habilitan con tu consentimiento y pueden cambiarse en cualquier momento desde el panel de preferencias."
+      ]
+    },
+    "section3": {
+      "title": "3. Base legal (RGPD)",
+      "body": [
+        "Procesamos datos personales en las siguientes bases legales: tu consentimiento (para cookies no esenciales y marketing), ejecución de un contrato (para los servicios que solicitas), obligación legal e intereses legítimos donde tus derechos no los anulan. Puedes retirar tu consentimiento en cualquier momento sin afectar la legalidad del procesamiento realizado antes de la retirada."
+      ]
+    },
+    "section4": {
+      "title": "4. Tus derechos",
+      "body": [
+        "Dependiendo de tu ubicación, puedes tener derecho a acceder, rectificar, eliminar o restringir el procesamiento de tus datos personales, oponerte al procesamiento y a la portabilidad de datos. También puedes presentar una queja ante tu autoridad de supervisión local."
+      ]
+    },
+    "section5": {
+      "title": "5. Retención y seguridad de datos",
+      "body": [
+        "Retenemos los datos personales solo el tiempo necesario para los fines descritos en esta política. Aplicamos medidas técnicas y organizativas apropiadas para proteger tu información contra acceso, alteración, divulgación o destrucción no autorizada."
+      ]
+    },
+    "section6": {
+      "title": "6. Servicios de terceros",
+      "body": [
+        "Algunas cookies pueden ser establecidas por proveedores terceros (como plataformas de analítica o publicidad) que nos ayudan a operar el sitio. Estos proveedores procesan datos bajo sus propias políticas de privacidad y solo cuando has consentido la categoría relevante."
+      ]
+    },
+    "contactUs": "7. Contáctanos",
+    "contactUsText": "Para preguntas sobre esta política o tus datos personales, contáctanos en <1>info@oklut.com</1> o llama al <3>+91-9014217124</3>."
+  },
+  "footer": {
+    "company": "Empresa",
+    "about": "Nosotros",
+    "careers": "Carreras",
+    "perspectives": "Perspectivas",
+    "technologies": "Tecnologías",
+    "contact": "Contacto",
+    "services": "Servicios",
+    "getInTouch": "Contáctanos",
+    "bookConsultation": "Reservar una consulta",
+    "copyright": "© {{year}} Oklut Technologies. Todos los derechos reservados.",
+    "cookiePreferences": "Preferencias de cookies",
+    "privacyPolicy": "Política de privacidad",
+    "description": "Oklut Technologies es una empresa de productos digitales y servicios de TI en Hyderabad, India. Diseñamos, construimos y escalamos software para empresas que compiten por la ejecución."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Reintentar",
+    "close": "Cerrar",
+    "backToTop": "Volver arriba",
+    "skipToContent": "Ir al contenido"
+  },
+  "phoneInput": {
+    "searchPlaceholder": "Buscar país o código…",
+    "noResults": "No se encontraron países.",
+    "countryCodeLabel": "Código telefónico del país",
+    "required": "El número de teléfono es obligatorio.",
+    "incomplete": "El número de teléfono debe contener exactamente {{count}} dígitos.",
+    "tooLong": "El número de teléfono no puede contener más de {{count}} dígitos.",
+    "invalid": "Ingresa un número de teléfono válido para {{country}}."
+  }
+}

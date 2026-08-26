@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../lib/auth'
 import { useDocumentMeta } from '../lib/useDocumentMeta'
+import { useTranslation } from '../i18n/TranslationContext'
 import ApplyModal from '../components/ApplyModal'
 import JobIcon from '../components/careers/JobIcon'
 import OpenRoles from '../components/careers/OpenRoles'
@@ -58,6 +59,7 @@ function buildJobPostingStructuredData(jobs) {
 
 function CareersPage() {
   const { user } = useAuth()
+  const { t } = useTranslation()
   const [jobs, setJobs] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -95,9 +97,8 @@ function CareersPage() {
   const structuredData = useMemo(() => buildJobPostingStructuredData(jobs), [jobs])
 
   useDocumentMeta({
-    title: 'Careers at Oklut Technologies — Open Roles & Jobs in Hyderabad',
-    description:
-      'Explore open roles at Oklut Technologies. Senior engineering, design and AI positions in Hyderabad, India — remote-friendly and growth-focused.',
+    title: t('careers.careersTitle'),
+    description: t('careers.careersDescription'),
     jsonLd: jobs.length > 0 ? structuredData : undefined,
   })
 
@@ -111,32 +112,31 @@ function CareersPage() {
             <div className="careers-hero-content">
               <span className="badge">
                 <JobIcon name="sparkle" size={13} />
-                Careers at Oklut
+                {t('careers.badge')}
               </span>
               <h1>
-                Build the Future
-                <span className="hero-accent"> With Us</span>
+                {t('careers.title')}
+                <span className="hero-accent"> {t('careers.titleAccent')}</span>
               </h1>
               <p>
-                Join a senior team shipping custom software, cloud infrastructure, and AI
-                for ambitious companies. Remote-friendly, growth-focused, and always learning.
+                {t('careers.description')}
               </p>
               <div className="hero-actions">
-                <a href="#open-roles" className="btn btn-cta btn-lg">View Open Roles</a>
-                <a href="#my-applications" className="btn btn-glass btn-lg">Track Applications</a>
+                <a href="#open-roles" className="btn btn-cta btn-lg">{t('careers.viewOpenRoles')}</a>
+                <a href="#my-applications" className="btn btn-glass btn-lg">{t('careers.trackApplications')}</a>
               </div>
             </div>
             <div className="careers-hero-visual" aria-hidden="true">
               <div className="glass-card">
                 <div className="glass-card-head">
-                  <span className="glass-card-kicker">Why join Oklut</span>
+                  <span className="glass-card-kicker">{t('careers.whyJoinOklut')}</span>
                   <span className="glass-card-pulse" />
                 </div>
                 <ul className="glass-perks">
-                  <li><span className="glass-perk-icon"><JobIcon name="globe" /></span>Remote-friendly</li>
-                  <li><span className="glass-perk-icon"><JobIcon name="rocket" /></span>High-growth projects</li>
-                  <li><span className="glass-perk-icon"><JobIcon name="shield" /></span>Health &amp; benefits</li>
-                  <li><span className="glass-perk-icon"><JobIcon name="clock" /></span>Flexible working hours</li>
+                  <li><span className="glass-perk-icon"><JobIcon name="globe" /></span>{t('careers.remoteFriendly')}</li>
+                  <li><span className="glass-perk-icon"><JobIcon name="rocket" /></span>{t('careers.highGrowthProjects')}</li>
+                  <li><span className="glass-perk-icon"><JobIcon name="shield" /></span>{t('careers.healthBenefits')}</li>
+                  <li><span className="glass-perk-icon"><JobIcon name="clock" /></span>{t('careers.flexibleHours')}</li>
                 </ul>
               </div>
             </div>
@@ -147,9 +147,9 @@ function CareersPage() {
       <section className="section" id="open-roles">
         <div className="container">
           <div className="section-header">
-            <span className="badge">Open Positions</span>
-            <h2>Open Roles</h2>
-            <p>Explore opportunities across engineering, design, and beyond.</p>
+            <span className="badge">{t('careers.openPositions')}</span>
+            <h2>{t('careers.openRoles')}</h2>
+            <p>{t('careers.exploreOpportunities')}</p>
           </div>
           <OpenRoles
             jobs={jobs}

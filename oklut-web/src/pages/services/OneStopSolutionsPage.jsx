@@ -2,7 +2,8 @@ import { ServicePageTemplate } from './ServicePageTemplate'
 
 export default function OneStopSolutionsPage() {
   return (
-    <ServicePageTemplate
+    <div className="one-stop-page">
+      <ServicePageTemplate
       title="One-Stop Solutions"
       tagline="Complete Digital Transformation"
       heroImage={`${import.meta.env.BASE_URL}img/one-stop-solutions-hero.png`}
@@ -11,7 +12,8 @@ export default function OneStopSolutionsPage() {
       sectionHeadline="Your Single Partner for All Digital Needs"
       sectionDescription="We consolidate multiple technology services into a unified, seamless experience. No more juggling vendors, no more integration headaches — just one trusted partner delivering comprehensive results."
       overviewImage={`${import.meta.env.BASE_URL}img/one-stop-overview.jpg`}
-      ctaText="Get a Complete Solution"
+      showCta={false}
     />
+    </div>
   )
 }

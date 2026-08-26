@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom'
 import { useBodyScrollLock } from '../../lib/useBodyScrollLock'
 import { useFocusTrap } from '../../lib/useFocusTrap'
 import { useCookieConsent } from './CookieConsentProvider'
-
-const BANNER_MESSAGE =
-  'We use cookies to improve your browsing experience. You can accept all cookies, reject non-essential cookies, or customize your preferences. Essential cookies are always enabled to ensure the website functions correctly.'
+import { useTranslation } from '../../i18n/TranslationContext'
 
 export function CookieConsentBanner() {
   const { decided, acceptAll, rejectNonEssential, openPreferences } = useCookieConsent()
+  const { t } = useTranslation()
 
   const panelRef = useRef<HTMLDivElement>(null)
   const primaryRef = useRef<HTMLButtonElement>(null)
@@ -41,8 +40,8 @@ export function CookieConsentBanner() {
             </svg>
           </span>
           <div>
-            <h2 id="cookie-banner-title">We value your privacy</h2>
-            <p id="cookie-banner-description">{BANNER_MESSAGE}</p>
+            <h2 id="cookie-banner-title">{t('cookieConsent.title')}</h2>
+            <p id="cookie-banner-description">{t('cookieConsent.description')}</p>
           </div>
         </div>
 
@@ -53,24 +52,24 @@ export function CookieConsentBanner() {
             className="btn btn-primary"
             onClick={acceptAll}
           >
-            Accept All
+            {t('cookieConsent.acceptAll')}
           </button>
           <button
             type="button"
             className="btn btn-outline"
             onClick={rejectNonEssential}
           >
-            Reject Non-Essential
+            {t('cookieConsent.rejectNonEssential')}
           </button>
         </div>
 
         <div className="cookie-banner-links">
           <button type="button" className="link-btn" onClick={openPreferences}>
-            Manage Preferences
+            {t('cookieConsent.managePreferences')}
           </button>
           <span aria-hidden="true">·</span>
           <Link to="/privacy" className="link-btn">
-            Privacy Policy
+            {t('cookieConsent.privacyPolicy')}
           </Link>
         </div>
       </div>

@@ -4,10 +4,17 @@ import { supabase } from '../lib/supabase'
 import { getAuthErrorMessage, useAuth } from '../lib/auth'
 import { useFocusTrap } from '../lib/useFocusTrap'
 import { useBodyScrollLock } from '../lib/useBodyScrollLock'
+import { useTranslation } from '../i18n/TranslationContext'
+import PhoneInput from './PhoneInput'
+import {
+  DEFAULT_COUNTRY,
+  formatE164,
+  phoneValidationMessage,
+  validatePhoneDigits,
+} from '../lib/phone'
 
 const URL_RE = /^https?:\/\/.+\..+/
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const PHONE_RE = /^[+]?[\d\s().-]{7,20}$/
 
 const RESUME_ACCEPT =
   '.pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
@@ -26,11 +33,12 @@ const FIELD_IDS = {
 
 function ApplyModal({ job, user, onClose, onSubmitted }) {
   const { signIn, signUp } = useAuth()
+  const { t } = useTranslation()
 
   const [step, setStep] = useState(user ? 'form' : 'gate')
   const [gateMode, setGateMode] = useState('signin')
 
-  const [form, setForm] = useState({ name: '', email: '', phone: '', linkedin_url: '', portfolio_url: '', resume_url: '', cover_letter: '' })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', phone_country: DEFAULT_COUNTRY, linkedin_url: '', portfolio_url: '', resume_url: '', cover_letter: '' })
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle')
   const [serverMessage, setServerMessage] = useState(null)
@@ -141,24 +149,35 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
     if (serverMessage) setServerMessage(null)
   }
 
+  const handlePhoneChange = ({ phone, country }) => {
+    setForm((f) => ({ ...f, phone, phone_country: country }))
+    setErrors((prev) => {
+      if (!prev.phone) return prev
+      const next = { ...prev }
+      delete next.phone
+      return next
+    })
+    if (serverMessage) setServerMessage(null)
+  }
+
   const validate = () => {
     const next = {}
-    if (!form.name.trim()) next.name = 'Name is required.'
-    if (!form.email.trim()) next.email = 'Email is required.'
-    else if (!EMAIL_RE.test(form.email)) next.email = 'Enter a valid email.'
-    if (!form.phone.trim()) next.phone = 'Phone number is required.'
-    else if (!PHONE_RE.test(form.phone.trim())) next.phone = 'Enter a valid phone number.'
-    if (!resumeFile && !form.resume_url) next.resume = 'Please upload your resume.'
+    if (!form.name.trim()) next.name = t('applyModal.validation.nameRequired')
+    if (!form.email.trim()) next.email = t('applyModal.validation.emailRequired')
+    else if (!EMAIL_RE.test(form.email)) next.email = t('applyModal.validation.emailInvalid')
+    const phoneResult = validatePhoneDigits(form.phone, form.phone_country)
+    if (phoneResult) next.phone = phoneValidationMessage(t, phoneResult)
+    if (!resumeFile && !form.resume_url) next.resume = t('applyModal.validation.resumeRequired')
     for (const field of ['linkedin_url', 'portfolio_url']) {
       if (form[field].trim() && !URL_RE.test(form[field].trim())) {
-        next[field] = 'Enter a full URL (https://…).'
+        next[field] = t('applyModal.validation.urlInvalid')
       }
     }
     return next
   }
 
   const uploadResume = async () => {
-    if (!resumeFile) throw new Error('No resume selected.')
+    if (!resumeFile) throw new Error(t('applyModal.validation.noResume'))
     const safeName = resumeFile.name.replace(/[^a-z0-9._-]/gi, '-').toLowerCase()
     const applicant = user?.id || 'guest'
     const path = `${applicant}/${job.id}/${Date.now()}-${safeName}`.toLowerCase()
@@ -199,12 +218,12 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
       return
     }
     if (!RESUME_EXT_RE.test(file.name)) {
-      setResumeError('Resume must be a PDF, DOC, or DOCX file.')
+      setResumeError(t('applyModal.validation.resumeFormat'))
       setResumeFile(null)
       return
     }
     if (file.size > MAX_RESUME_SIZE) {
-      setResumeError('Resume must be 5 MB or smaller.')
+      setResumeError(t('applyModal.validation.resumeSize'))
       setResumeFile(null)
       return
     }
@@ -244,7 +263,7 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
         applicant_id: user?.id ?? null,
         name: form.name.trim(),
         email: form.email.trim(),
-        phone: form.phone.trim(),
+        phone: formatE164(form.phone, form.phone_country),
         linkedin_url: form.linkedin_url.trim() || null,
         portfolio_url: form.portfolio_url.trim() || null,
         resume_url: resumeUrl || null,
@@ -256,7 +275,7 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
       setStatus('idle')
       setServerMessage({
         type: 'error',
-        text: 'Could not submit your application. Check that the job_applications table exists, then try again.',
+        text: t('applyModal.validation.submitFailed'),
       })
     } else {
       setStatus('success')
@@ -334,21 +353,21 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
 
   const validateSignIn = () => {
     const next = {}
-    if (!signInForm.email.trim()) next.email = 'Email is required.'
-    else if (!EMAIL_RE.test(signInForm.email.trim())) next.email = 'Enter a valid email.'
-    if (!signInForm.password) next.password = 'Password is required.'
-    if (!signInAccepted) next.acceptedTerms = 'Please accept the Oklut Privacy Policy and Security Policy to continue.'
+    if (!signInForm.email.trim()) next.email = t('applyModal.validation.emailRequired')
+    else if (!EMAIL_RE.test(signInForm.email.trim())) next.email = t('applyModal.validation.emailInvalid')
+    if (!signInForm.password) next.password = t('applyModal.validation.passwordRequired') || 'Password is required.'
+    if (!signInAccepted) next.acceptedTerms = t('auth.validation.acceptTerms')
     return next
   }
 
   const validateSignup = () => {
     const next = {}
-    if (!signupForm.fullName.trim()) next.fullName = 'Full name is required.'
-    if (!signupForm.email.trim()) next.email = 'Email is required.'
-    else if (!EMAIL_RE.test(signupForm.email.trim())) next.email = 'Enter a valid email.'
-    if (!signupForm.password) next.password = 'Password is required.'
-    else if (signupForm.password.length < 6) next.password = 'Password must be at least 6 characters.'
-    if (signupForm.confirmPassword !== signupForm.password) next.confirmPassword = 'Passwords do not match.'
+    if (!signupForm.fullName.trim()) next.fullName = t('applyModal.validation.nameRequired')
+    if (!signupForm.email.trim()) next.email = t('applyModal.validation.emailRequired')
+    else if (!EMAIL_RE.test(signupForm.email.trim())) next.email = t('applyModal.validation.emailInvalid')
+    if (!signupForm.password) next.password = t('applyModal.validation.passwordRequired') || 'Password is required.'
+    else if (signupForm.password.length < 6) next.password = t('auth.validation.passwordMinLength')
+    if (signupForm.confirmPassword !== signupForm.password) next.confirmPassword = t('auth.validation.passwordsNoMatch')
     return next
   }
 
@@ -415,8 +434,8 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
     <>
       <div className="modal-header">
         <span className="brand-mark">O</span>
-        <h2 id="apply-modal-title">Apply to Oklut Technologies</h2>
-        <p>Sign in or create a profile to apply for {job.title}.</p>
+        <h2 id="apply-modal-title">{t('applyModal.applyTo')}</h2>
+        <p>{t('applyModal.signInOrCreate', { jobTitle: job.title })}</p>
       </div>
 
       <div className="auth-tabs" role="tablist" aria-label="Account access">
@@ -429,7 +448,7 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
           className={`auth-tab${gateMode === 'signin' ? ' auth-tab-active' : ''}`}
           onClick={() => switchGate('signin')}
         >
-          Sign In
+          {t('applyModal.signIn')}
         </button>
         <button
           type="button"
@@ -440,7 +459,7 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
           className={`auth-tab${gateMode === 'signup' ? ' auth-tab-active' : ''}`}
           onClick={() => switchGate('signup')}
         >
-          Create Account
+          {t('applyModal.createAccount')}
         </button>
       </div>
 
@@ -515,14 +534,14 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
             </div>
 
             <button type="submit" className="btn btn-primary" disabled={signInStatus === 'submitting'}>
-              {signInStatus === 'submitting' ? 'Signing in…' : 'Sign In'}
+              {signInStatus === 'submitting' ? t('applyModal.signingIn') : t('applyModal.signIn')}
             </button>
           </form>
 
           <p className="apply-gate-note">
-            New here?{' '}
+            {t('applyModal.newHere')}{' '}
             <button type="button" className="link-btn" onClick={() => switchGate('signup')}>
-              Create an account
+              {t('applyModal.createAnAccount')}
             </button>
           </p>
         </div>
@@ -617,14 +636,14 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
             </div>
 
             <button type="submit" className="btn btn-primary" disabled={signupStatus === 'submitting'}>
-              {signupStatus === 'submitting' ? 'Creating account…' : 'Create Account & Continue'}
+              {signupStatus === 'submitting' ? t('applyModal.creatingAccount') : t('applyModal.createAccountContinue')}
             </button>
           </form>
 
           <p className="apply-gate-note">
-            Already have an account?{' '}
+            {t('applyModal.alreadyHaveAccount')}{' '}
             <button type="button" className="link-btn" onClick={() => switchGate('signin')}>
-              Sign in
+              {t('applyModal.signInLink')}
             </button>
           </p>
         </div>
@@ -636,8 +655,8 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
     <>
       <div className="modal-header">
         <span className="brand-mark">O</span>
-        <h2 id="apply-modal-title">Apply: {job.title}</h2>
-        <p>{job.department || 'Oklut Technologies'} · {job.location || 'Hyderabad, India'}</p>
+        <h2 id="apply-modal-title">{t('applyModal.applyTitle', { jobTitle: job.title })}</h2>
+        <p>{job.department || t('applyModal.department')} · {job.location || t('applyModal.location')}</p>
       </div>
 
       {notice && (
@@ -654,13 +673,13 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
 
       {Object.keys(errors).length > 0 && (
         <div className="alert alert-error" role="alert">
-          Please fix the highlighted fields below before submitting.
+          {t('applyModal.fixFields')}
         </div>
       )}
 
       <form className="modal-form" onSubmit={handleSubmit} noValidate>
         <div className="input-group">
-          <label htmlFor="apply-role">Job Role *</label>
+          <label htmlFor="apply-role">{t('applyModal.jobRole')}</label>
           <input
             id="apply-role"
             value={job.title}
@@ -669,13 +688,13 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
             aria-describedby="apply-role-hint"
           />
           <span id="apply-role-hint" className="field-hint">
-            Auto-filled from the role you selected.
+            {t('applyModal.autoFilled')}
           </span>
         </div>
 
         <div className="grid grid-2">
           <div className="input-group">
-            <label htmlFor="apply-name">Full Name *</label>
+            <label htmlFor="apply-name">{t('applyModal.fullName')}</label>
             <input
               ref={nameInputRef}
               id="apply-name"
@@ -691,7 +710,7 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
             {errors.name && <span id="apply-name-error" className="error-message" role="alert">{errors.name}</span>}
           </div>
           <div className="input-group">
-            <label htmlFor="apply-email">Email *</label>
+            <label htmlFor="apply-email">{t('applyModal.email')}</label>
             <input
               id="apply-email"
               name="email"
@@ -709,25 +728,20 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
         </div>
 
         <div className="input-group">
-          <label htmlFor="apply-phone">Phone *</label>
-          <input
+          <label htmlFor="apply-phone">{t('applyModal.phone')}</label>
+          <PhoneInput
             id="apply-phone"
             name="phone"
-            type="tel"
             value={form.phone}
-            onChange={handleChange}
-            placeholder="+91 98765 43210"
-            autoComplete="tel"
-            className={errors.phone ? 'input-error' : ''}
-            aria-invalid={errors.phone ? 'true' : undefined}
-            aria-describedby={errors.phone ? 'apply-phone-error' : undefined}
+            country={form.phone_country}
+            onChange={handlePhoneChange}
+            error={errors.phone}
           />
-          {errors.phone && <span id="apply-phone-error" className="error-message" role="alert">{errors.phone}</span>}
         </div>
 
         <div className="grid grid-2">
           <div className="input-group">
-            <label htmlFor="apply-linkedin">LinkedIn URL</label>
+            <label htmlFor="apply-linkedin">{t('applyModal.linkedinUrl')}</label>
             <input
               id="apply-linkedin"
               name="linkedin_url"
@@ -742,7 +756,7 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
             {errors.linkedin_url && <span id="apply-linkedin-error" className="error-message" role="alert">{errors.linkedin_url}</span>}
           </div>
           <div className="input-group">
-            <label htmlFor="apply-portfolio">Portfolio URL</label>
+            <label htmlFor="apply-portfolio">{t('applyModal.portfolioUrl')}</label>
             <input
               id="apply-portfolio"
               name="portfolio_url"
@@ -759,7 +773,7 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
         </div>
 
         <div className="input-group">
-          <label htmlFor="apply-resume-dropzone">Resume Upload *</label>
+          <label htmlFor="apply-resume-dropzone">{t('applyModal.resumeUpload')}</label>
           <div
             id="apply-resume-dropzone"
             className={`resume-dropzone${resumeFile ? ' resume-dropzone-filled' : ''}${resumeError || errors.resume ? ' resume-dropzone-error' : ''}`}
@@ -812,13 +826,13 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
                   }}
                   aria-label={`Remove ${resumeFile.name}`}
                 >
-                  Remove
+                  {t('applyModal.remove')}
                 </button>
               </div>
             ) : status === 'submitting' ? (
               <div className="resume-upload">
                 <p className="resume-dropzone-status" id="resume-upload-status">
-                  Uploading your resume…
+                  {t('applyModal.resumeUploading')}
                 </p>
                 <div
                   className="progress-track"
@@ -836,9 +850,9 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
               <>
                 <span className="resume-dropzone-icon" aria-hidden="true">⬆</span>
                 <p className="resume-dropzone-text">
-                  Drag &amp; drop your resume here, or <span className="resume-browse">browse files</span>
+                  <span dangerouslySetInnerHTML={{ __html: t('applyModal.resumeDragDrop') }} />
                 </p>
-                <p className="resume-hint">PDF, DOC, or DOCX · Max 5 MB</p>
+                <p className="resume-hint">{t('applyModal.resumeHint')}</p>
               </>
             )}
           </div>
@@ -848,12 +862,12 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
         </div>
 
         <div className="input-group">
-          <label htmlFor="apply-cover">Cover Letter</label>
-          <textarea id="apply-cover" name="cover_letter" value={form.cover_letter} onChange={handleChange} placeholder="Tell us why you are a great fit for this role…" />
+          <label htmlFor="apply-cover">{t('applyModal.coverLetter')}</label>
+          <textarea id="apply-cover" name="cover_letter" value={form.cover_letter} onChange={handleChange} placeholder={t('applyModal.coverLetterPlaceholder')} />
         </div>
 
         <button type="submit" className="btn btn-primary btn-lg" disabled={status === 'submitting'}>
-          {status === 'submitting' ? 'Submitting…' : 'Submit Application'}
+          {status === 'submitting' ? t('applyModal.submitting') : t('applyModal.submitApplication')}
         </button>
       </form>
     </>
@@ -890,36 +904,33 @@ function ApplyModal({ job, user, onClose, onSubmitted }) {
               <circle className="success-check-circle" cx="26" cy="26" r="24" />
               <path className="success-check-mark" d="M14 27l8 8 16-16" />
             </svg>
-            <h2 id="apply-modal-title">Application Submitted</h2>
+            <h2 id="apply-modal-title">{t('applyModal.applicationSubmitted')}</h2>
             <p className="apply-success-thanks">
-              Thank you, {firstName}! Your application for <strong>{job.title}</strong> has been
-              submitted successfully.
+              {t('applyModal.thankYou', { firstName, jobTitle: job.title })}
               {emailStatus === 'sent'
-                ? ' A confirmation email is on its way to your inbox.'
+                ? ` ${t('applyModal.confirmationEmail')}`
                 : ''}
             </p>
             <div className="apply-success-steps">
               <div className="apply-success-step">
                 <span className="apply-success-step-num">1</span>
-                <p>Our team reviews your resume and cover letter.</p>
+                <p>{t('applyModal.step1')}</p>
               </div>
               <div className="apply-success-step">
                 <span className="apply-success-step-num">2</span>
-                <p>Shortlisted candidates are invited to a conversation.</p>
+                <p>{t('applyModal.step2')}</p>
               </div>
               <div className="apply-success-step">
                 <span className="apply-success-step-num">3</span>
-                <p>We follow up by email — keep an eye on your inbox.</p>
+                <p>{t('applyModal.step3')}</p>
               </div>
             </div>
             {emailStatus === 'failed' && (
               <p className="apply-email-note">
-                We could not send a confirmation email at this time. Your application has been
-                saved — please contact us at{' '}
-                <a href="mailto:info@oklut.com">info@oklut.com</a> if you have any questions.
+                <span dangerouslySetInnerHTML={{ __html: t('applyModal.emailFailed') }} />
               </p>
             )}
-            <button type="button" className="btn btn-primary" onClick={onClose}>Done</button>
+            <button type="button" className="btn btn-primary" onClick={onClose}>{t('applyModal.done')}</button>
           </div>
         ) : step === 'form' ? (
           renderApplicationForm()

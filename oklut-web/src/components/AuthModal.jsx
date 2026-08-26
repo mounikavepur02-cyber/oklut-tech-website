@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { getAuthErrorMessage, useAuth } from '../lib/auth'
+import { useTranslation } from '../i18n/TranslationContext'
 
 function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
   const { signUp, signIn, isRecovery, resetPassword, updatePassword } = useAuth()
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [form, setForm] = useState({ fullName: '', email: '', password: '', confirmPassword: '' })
   const [acceptedTerms, setAcceptedTerms] = useState(false)
@@ -37,23 +39,23 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
   const validate = () => {
     const next = {}
     if (view === 'forgot') {
-      if (!form.email.trim()) next.email = 'Email is required.'
-      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = 'Enter a valid email.'
+      if (!form.email.trim()) next.email = t('auth.validation.emailRequired')
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = t('auth.validation.emailInvalid')
       return next
     }
     if (view === 'recovery') {
-      if (!form.password) next.password = 'New password is required.'
-      else if (form.password.length < 6) next.password = 'Password must be at least 6 characters.'
-      if (form.confirmPassword !== form.password) next.confirmPassword = 'Passwords do not match.'
+      if (!form.password) next.password = t('auth.validation.passwordRequired')
+      else if (form.password.length < 6) next.password = t('auth.validation.passwordMinLength')
+      if (form.confirmPassword !== form.password) next.confirmPassword = t('auth.validation.passwordsNoMatch')
       return next
     }
-    if (!isLogin && !form.fullName.trim()) next.fullName = 'Full name is required.'
-    if (!form.email.trim()) next.email = 'Email is required.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = 'Enter a valid email.'
-    if (!form.password) next.password = 'Password is required.'
-    else if (form.password.length < 6) next.password = 'Password must be at least 6 characters.'
-    if (!isLogin && form.confirmPassword !== form.password) next.confirmPassword = 'Passwords do not match.'
-    if (isLogin && !acceptedTerms) next.acceptedTerms = 'Please accept the Oklut Privacy Policy and Security Policy to continue.'
+    if (!isLogin && !form.fullName.trim()) next.fullName = t('auth.validation.fullNameRequired')
+    if (!form.email.trim()) next.email = t('auth.validation.emailRequired')
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = t('auth.validation.emailInvalid')
+    if (!form.password) next.password = t('auth.validation.passwordRequired')
+    else if (form.password.length < 6) next.password = t('auth.validation.passwordMinLength')
+    if (!isLogin && form.confirmPassword !== form.password) next.confirmPassword = t('auth.validation.passwordsNoMatch')
+    if (isLogin && !acceptedTerms) next.acceptedTerms = t('auth.validation.acceptTerms')
     return next
   }
 
@@ -70,7 +72,7 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
         await resetPassword(form.email.trim())
         setServerMessage({
           type: 'info',
-          text: 'Password reset link sent! Check your email to create a new password.',
+          text: t('auth.resetSent'),
         })
         setStatus('idle')
       } else if (view === 'recovery') {
@@ -79,7 +81,7 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
         setView('login')
         setServerMessage({
           type: 'success',
-          text: 'Your password has been updated. Sign in with your new password.',
+          text: t('auth.passwordUpdated'),
         })
         setStatus('idle')
       } else if (isLogin) {
@@ -90,7 +92,7 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
         await signUp(form.email.trim(), form.password, form.fullName.trim())
         setServerMessage({
           type: 'info',
-          text: 'Account created! Check your email to confirm your signup, then sign in.',
+          text: t('auth.accountCreated'),
         })
         setStatus('idle')
       }
@@ -122,16 +124,16 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
         <div className="modal-header">
           <span className="brand-mark">O</span>
           <h2>
-            {view === 'forgot' ? 'Forgot Password' : view === 'recovery' ? 'Create New Password' : isLogin ? 'Welcome Back' : 'Create Account'}
+            {view === 'forgot' ? t('auth.forgotPassword') : view === 'recovery' ? t('auth.createNewPassword') : isLogin ? t('auth.welcomeBack') : t('auth.createAccount')}
           </h2>
           <p>
             {view === 'forgot'
-              ? 'Enter your email and we will send you a link to reset your password.'
+              ? t('auth.forgotDesc')
               : view === 'recovery'
-                ? 'Choose a strong new password for your account.'
+                ? t('auth.recoveryDesc')
                 : isLogin
-                  ? 'Sign in to your Oklut account.'
-                  : 'Join Oklut Technologies today.'}
+                  ? t('auth.welcomeBackDesc')
+                  : t('auth.createAccountDesc')}
           </p>
         </div>
 
@@ -144,7 +146,7 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
         <form className="modal-form" onSubmit={handleSubmit} noValidate>
           {view === 'signup' && (
             <div className="input-group">
-              <label htmlFor="fullName">Full Name</label>
+              <label htmlFor="fullName">{t('auth.fullName')}</label>
               <input
                 id="fullName"
                 name="fullName"
@@ -160,7 +162,7 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
 
           {view !== 'recovery' && (
             <div className="input-group">
-              <label htmlFor="auth-email">Email</label>
+              <label htmlFor="auth-email">{t('auth.email')}</label>
               <input
                 id="auth-email"
                 name="email"
@@ -177,7 +179,7 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
 
           {view !== 'forgot' && (
           <div className="input-group">
-            <label htmlFor="auth-password">{view === 'recovery' ? 'New Password' : 'Password'}</label>
+            <label htmlFor="auth-password">{view === 'recovery' ? t('auth.newPassword') : t('auth.password')}</label>
             <input
               id="auth-password"
               name="password"
@@ -194,7 +196,7 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
 
           {view !== 'login' && view !== 'forgot' && (
             <div className="input-group">
-              <label htmlFor="confirmPassword">{view === 'recovery' ? 'Confirm New Password' : 'Confirm Password'}</label>
+              <label htmlFor="confirmPassword">{view === 'recovery' ? t('auth.confirmNewPassword') : t('auth.confirmPassword')}</label>
               <input
                 id="confirmPassword"
                 name="confirmPassword"
@@ -213,7 +215,7 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
             <>
               <div className="auth-row">
                 <button type="button" className="link-btn forgot-link" onClick={goTo('forgot')}>
-                  Forgot password?
+                  {t('auth.forgotPasswordLink')}
                 </button>
               </div>
               <div className="input-group">
@@ -226,7 +228,7 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
                     aria-invalid={errors.acceptedTerms ? 'true' : undefined}
                   />
                   <span>
-                    I accept the Oklut <Link to="/privacy">Privacy &amp; Security</Link> policy.
+                    <span dangerouslySetInnerHTML={{ __html: t('auth.privacyPolicy') }} />
                   </span>
                 </label>
                 {errors.acceptedTerms && <span className="error-message">{errors.acceptedTerms}</span>}
@@ -235,44 +237,44 @@ function AuthModal({ open, mode, onClose, onSwitchMode, redirectTo }) {
           )}
           <button type="submit" className="btn btn-primary btn-lg" disabled={status === 'submitting'}>
             {status === 'submitting'
-              ? 'Please wait…'
+              ? t('auth.pleaseWait')
               : view === 'forgot'
-                ? 'Send Reset Link'
+                ? t('auth.sendResetLink')
                 : view === 'recovery'
-                  ? 'Create New Password'
+                  ? t('auth.createNewPassword')
                   : isLogin
-                    ? 'Sign In'
-                    : 'Sign Up'}
+                    ? t('auth.signIn')
+                    : t('auth.signUp')}
           </button>
         </form>
 
         <div className="modal-footer">
           {view === 'forgot' ? (
             <p>
-              Remembered your password?{' '}
+              {t('auth.rememberedPassword')}{' '}
               <button type="button" className="link-btn" onClick={goTo('login')}>
-                Sign in
+                {t('auth.signInLink')}
               </button>
             </p>
           ) : view === 'recovery' ? (
             <p>
-              Changed your mind?{' '}
+              {t('auth.changedMind')}{' '}
               <button type="button" className="link-btn" onClick={goTo('login')}>
-                Back to sign in
+                {t('auth.backToSignIn')}
               </button>
             </p>
           ) : isLogin ? (
             <p>
-              Don&apos;t have an account?{' '}
+              {t('auth.noAccount')}{' '}
               <button type="button" className="link-btn" onClick={switchTo('signup')}>
-                Sign up
+                {t('auth.signUpLink')}
               </button>
             </p>
           ) : (
             <p>
-              Already have an account?{' '}
+              {t('auth.hasAccount')}{' '}
               <button type="button" className="link-btn" onClick={switchTo('login')}>
-                Sign in
+                {t('auth.signInLink')}
               </button>
             </p>
           )}

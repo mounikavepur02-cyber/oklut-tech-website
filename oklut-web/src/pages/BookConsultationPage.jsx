@@ -2,17 +2,14 @@ import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../lib/auth'
 import { useDocumentMeta } from '../lib/useDocumentMeta'
-
-const SERVICES = [
-  'Custom Software Development',
-  'Web & Mobile App Development',
-  'Cloud & DevOps Solutions',
-  'AI & Machine Learning',
-  'IT Consulting',
-  'Digital Marketing & SEO',
-  'ERP Solutions',
-  'Other / Not sure yet',
-]
+import { useTranslation } from '../i18n/TranslationContext'
+import PhoneInput from '../components/PhoneInput'
+import {
+  DEFAULT_COUNTRY,
+  formatE164,
+  phoneValidationMessage,
+  validatePhoneDigits,
+} from '../lib/phone'
 
 const TIME_SLOTS = [
   '9:00 AM – 10:00 AM',
@@ -21,23 +18,6 @@ const TIME_SLOTS = [
   '2:00 PM – 3:00 PM',
   '3:30 PM – 4:30 PM',
   '5:00 PM – 6:00 PM',
-]
-
-const BUDGETS = ['Under ₹1L', '₹1L – ₹5L', '₹5L – ₹10L', '₹10L+', 'Not decided yet']
-
-const EXPECT_POINTS = [
-  {
-    title: 'Understand your goals',
-    text: 'We listen first. A 30-minute call to map your business needs, audience and desired outcomes.',
-  },
-  {
-    title: 'Get technical direction',
-    text: 'Our engineers share the right architecture, stack and approach for your project.',
-  },
-  {
-    title: 'Receive a clear quote',
-    text: 'Walk away with a transparent estimate, timeline and next steps — no obligation.',
-  },
 ]
 
 const CONTACT = {
@@ -51,10 +31,12 @@ const CONTACT = {
 
 function BookConsultationPage({ onRequireAuth }) {
   const { user, loading } = useAuth()
+  const { t } = useTranslation()
   const [form, setForm] = useState({
     name: '',
     email: '',
     phone: '',
+    phone_country: DEFAULT_COUNTRY,
     company: '',
     service: '',
     preferred_date: '',
@@ -67,9 +49,8 @@ function BookConsultationPage({ onRequireAuth }) {
   const [toast, setToast] = useState(null)
 
   useDocumentMeta({
-    title: 'Book a Free Consultation — Oklut Technologies',
-    description:
-      'Schedule a free consultation with Oklut Technologies. Discuss your project requirements, get technical direction and request a quote for software, cloud, AI and digital marketing services.',
+    title: t('consultation.badge') + ' — Oklut Technologies',
+    description: t('consultation.description'),
   })
 
   useEffect(() => {
@@ -94,18 +75,28 @@ function BookConsultationPage({ onRequireAuth }) {
     setForm((f) => ({ ...f, [name]: value }))
   }
 
+  const handlePhoneChange = ({ phone, country }) => {
+    setForm((f) => ({ ...f, phone, phone_country: country }))
+    setErrors((prev) => {
+      if (!prev.phone) return prev
+      const next = { ...prev }
+      delete next.phone
+      return next
+    })
+  }
+
   const validate = () => {
     const next = {}
-    if (!form.name.trim()) next.name = 'Full name is required.'
-    if (!form.email.trim()) next.email = 'Email is required.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = 'Enter a valid email.'
-    if (!form.phone.trim()) next.phone = 'Phone number is required.'
-    else if (!/^[+0-9()\-\s]{7,20}$/.test(form.phone.trim())) next.phone = 'Enter a valid phone number.'
-    if (!form.service) next.service = 'Please choose a service.'
-    if (!form.preferred_date) next.preferred_date = 'Pick a preferred date.'
-    if (!form.preferred_time) next.preferred_time = 'Pick a preferred time slot.'
+    if (!form.name.trim()) next.name = t('consultation.validation.nameRequired')
+    if (!form.email.trim()) next.email = t('consultation.validation.emailRequired')
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = t('consultation.validation.emailInvalid')
+    const phoneResult = validatePhoneDigits(form.phone, form.phone_country)
+    if (phoneResult) next.phone = phoneValidationMessage(t, phoneResult)
+    if (!form.service) next.service = t('consultation.validation.serviceRequired')
+    if (!form.preferred_date) next.preferred_date = t('consultation.validation.dateRequired')
+    if (!form.preferred_time) next.preferred_time = t('consultation.validation.timeRequired')
     if (form.message.trim().length > 0 && form.message.trim().length < 10) {
-      next.message = 'Add a little more detail (at least 10 characters).'
+      next.message = t('consultation.validation.messageTooShort')
     }
     return next
   }
@@ -115,7 +106,7 @@ function BookConsultationPage({ onRequireAuth }) {
     if (!user) {
       setToast({
         type: 'error',
-        text: 'Please sign in to book your consultation.',
+        text: t('consultation.validation.signInRequired'),
       })
       return
     }
@@ -129,7 +120,7 @@ function BookConsultationPage({ onRequireAuth }) {
         user_id: user.id,
         name: form.name.trim(),
         email: form.email.trim(),
-        phone: form.phone.trim(),
+        phone: formatE164(form.phone, form.phone_country),
         company: form.company.trim() || null,
         service: form.service,
         preferred_date: form.preferred_date,
@@ -143,7 +134,7 @@ function BookConsultationPage({ onRequireAuth }) {
       setStatus('idle')
       setToast({
         type: 'error',
-        text: 'Could not book your consultation. Check that the consultations table exists, then try again.',
+        text: t('consultation.validation.couldNotBook'),
       })
     } else {
       setStatus('success')
@@ -151,6 +142,7 @@ function BookConsultationPage({ onRequireAuth }) {
         name: '',
         email: '',
         phone: '',
+        phone_country: DEFAULT_COUNTRY,
         company: '',
         service: '',
         preferred_date: '',
@@ -160,7 +152,7 @@ function BookConsultationPage({ onRequireAuth }) {
       })
       setToast({
         type: 'success',
-        text: 'Consultation booked! Our team will confirm your time slot via email shortly.',
+        text: t('consultation.validation.bookedSuccess'),
       })
     }
   }
@@ -170,20 +162,19 @@ function BookConsultationPage({ onRequireAuth }) {
       <section className="careers-hero consult-hero">
         <div className="container">
           <div className="consult-hero-inner">
-            <span className="badge">Book a Free Consultation</span>
+            <span className="badge">{t('consultation.badge')}</span>
             <h1>
-              Let&apos;s Plan Your Project <span className="hero-accent">Together</span>
+              <span dangerouslySetInnerHTML={{ __html: t('consultation.title') }} />
             </h1>
             <p>
-              Schedule a no-obligation call with our consultants. Discuss your requirements,
-              explore the right technical approach and get a clear quote — all in under 30 minutes.
+              {t('consultation.description')}
             </p>
             <div className="hero-actions">
               <a href="#consultation-form" className="btn btn-cta btn-lg">
-                Book Your Slot
+                {t('consultation.bookSlot')}
               </a>
               <a href="#how-it-works" className="btn btn-glass btn-lg">
-                How It Works
+                {t('consultation.howItWorks')}
               </a>
             </div>
           </div>
@@ -195,34 +186,33 @@ function BookConsultationPage({ onRequireAuth }) {
           {!loading && !user ? (
             <div className="card contact-form consult-card consult-auth-gate">
               <div className="section-header consult-heading">
-                <span className="badge">Account Required</span>
-                <h2>Sign in to book your consultation</h2>
+                <span className="badge">{t('consultation.accountRequired')}</span>
+                <h2>{t('consultation.signInToBook')}</h2>
                 <p>
-                  You&apos;ll need an Oklut account to request a consultation. Sign in or create
-                  one — it takes less than a minute.
+                  {t('consultation.accountRequiredText')}
                 </p>
               </div>
               <button type="button" className="btn btn-primary btn-lg" onClick={() => onRequireAuth('login')}>
-                Sign In to Continue
+                {t('consultation.signInToContinue')}
               </button>
               <p className="apply-gate-note">
-                New to Oklut?{' '}
+                {t('consultation.newToOklut')}{' '}
                 <button type="button" className="link-btn" onClick={() => onRequireAuth('signup')}>
-                  Create an account
+                  {t('consultation.createAccount')}
                 </button>
               </p>
             </div>
           ) : !loading && user ? (
           <div className="card contact-form consult-card">
             <div className="section-header consult-heading">
-              <span className="badge">Request a Meeting</span>
-              <h2>Tell Us About Your Project</h2>
-              <p>Fill in your details and we will confirm your consultation slot by email.</p>
+              <span className="badge">{t('consultation.requestMeeting')}</span>
+              <h2>{t('consultation.tellUsAboutProject')}</h2>
+              <p>{t('consultation.fillDetails')}</p>
             </div>
             <form onSubmit={handleSubmit} noValidate>
               <div className="grid grid-2">
                 <div className="input-group">
-                  <label htmlFor="name">Full Name *</label>
+                  <label htmlFor="name">{t('consultation.fullName')}</label>
                   <input
                     id="name"
                     name="name"
@@ -239,7 +229,7 @@ function BookConsultationPage({ onRequireAuth }) {
                   )}
                 </div>
                 <div className="input-group">
-                  <label htmlFor="email">Email *</label>
+                  <label htmlFor="email">{t('consultation.email')}</label>
                   <input
                     id="email"
                     name="email"
@@ -259,25 +249,18 @@ function BookConsultationPage({ onRequireAuth }) {
               </div>
               <div className="grid grid-2">
                 <div className="input-group">
-                  <label htmlFor="phone">Phone *</label>
-                  <input
+                  <label htmlFor="phone">{t('consultation.phone')}</label>
+                  <PhoneInput
                     id="phone"
                     name="phone"
-                    type="tel"
                     value={form.phone}
-                    onChange={handleChange}
-                    placeholder="+91 90000 00000"
-                    autoComplete="tel"
-                    aria-invalid={errors.phone ? 'true' : undefined}
-                    aria-describedby={errors.phone ? 'phone-error' : undefined}
-                    className={errors.phone ? 'input-error' : ''}
+                    country={form.phone_country}
+                    onChange={handlePhoneChange}
+                    error={errors.phone}
                   />
-                  {errors.phone && (
-                    <span className="error-message" id="phone-error">{errors.phone}</span>
-                  )}
                 </div>
                 <div className="input-group">
-                  <label htmlFor="company">Company</label>
+                  <label htmlFor="company">{t('consultation.company')}</label>
                   <input
                     id="company"
                     name="company"
@@ -289,7 +272,7 @@ function BookConsultationPage({ onRequireAuth }) {
                 </div>
               </div>
               <div className="input-group">
-                <label htmlFor="service">Service of Interest *</label>
+                <label htmlFor="service">{t('consultation.serviceOfInterest')}</label>
                 <select
                   id="service"
                   name="service"
@@ -299,9 +282,9 @@ function BookConsultationPage({ onRequireAuth }) {
                   aria-describedby={errors.service ? 'service-error' : undefined}
                   className={errors.service ? 'input-error' : ''}
                 >
-                  <option value="">Select a service…</option>
-                  {SERVICES.map((s) => (
-                    <option key={s} value={s}>{s}</option>
+                  <option value="">{t('consultation.selectService')}</option>
+                  {Object.entries(t('consultation.services', { returnObjects: true })).map(([key, label]) => (
+                    <option key={key} value={label}>{label}</option>
                   ))}
                 </select>
                 {errors.service && (
@@ -310,7 +293,7 @@ function BookConsultationPage({ onRequireAuth }) {
               </div>
               <div className="grid grid-2">
                 <div className="input-group">
-                  <label htmlFor="preferred_date">Preferred Date *</label>
+                  <label htmlFor="preferred_date">{t('consultation.preferredDate')}</label>
                   <input
                     id="preferred_date"
                     name="preferred_date"
@@ -327,7 +310,7 @@ function BookConsultationPage({ onRequireAuth }) {
                   )}
                 </div>
                 <div className="input-group">
-                  <label htmlFor="preferred_time">Preferred Time *</label>
+                  <label htmlFor="preferred_time">{t('consultation.preferredTime')}</label>
                   <select
                     id="preferred_time"
                     name="preferred_time"
@@ -337,7 +320,7 @@ function BookConsultationPage({ onRequireAuth }) {
                     aria-describedby={errors.preferred_time ? 'time-error' : undefined}
                     className={errors.preferred_time ? 'input-error' : ''}
                   >
-                    <option value="">Select a time slot…</option>
+                    <option value="">{t('consultation.selectTimeSlot')}</option>
                     {TIME_SLOTS.map((t) => (
                       <option key={t} value={t}>{t}</option>
                     ))}
@@ -348,21 +331,21 @@ function BookConsultationPage({ onRequireAuth }) {
                 </div>
               </div>
               <div className="input-group">
-                <label htmlFor="budget">Estimated Budget</label>
+                <label htmlFor="budget">{t('consultation.estimatedBudget')}</label>
                 <select
                   id="budget"
                   name="budget"
                   value={form.budget}
                   onChange={handleChange}
                 >
-                  <option value="">Select a range…</option>
-                  {BUDGETS.map((b) => (
-                    <option key={b} value={b}>{b}</option>
+                  <option value="">{t('consultation.selectRange')}</option>
+                  {Object.entries(t('consultation.budgets', { returnObjects: true })).map(([key, label]) => (
+                    <option key={key} value={label}>{label}</option>
                   ))}
                 </select>
               </div>
               <div className="input-group">
-                <label htmlFor="message">Project Requirements</label>
+                <label htmlFor="message">{t('consultation.projectRequirements')}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -379,10 +362,10 @@ function BookConsultationPage({ onRequireAuth }) {
                 )}
               </div>
               <button type="submit" className="btn btn-primary btn-lg" disabled={status === 'submitting'}>
-                {status === 'submitting' ? 'Booking…' : 'Book My Free Consultation'}
+                {status === 'submitting' ? t('consultation.booking') : t('consultation.bookFreeConsultation')}
               </button>
               <p className="consult-note">
-                100% free and no obligation. We normally respond within 24 hours.
+                {t('consultation.freeNote')}
               </p>
             </form>
           </div>
@@ -390,8 +373,8 @@ function BookConsultationPage({ onRequireAuth }) {
 
           <aside className="consult-side">
             <div className="consult-info card">
-              <h3>What to Expect</h3>
-              {EXPECT_POINTS.map((p, i) => (
+              <h3>{t('consultation.whatToExpect')}</h3>
+              {Object.values(t('consultation.expectPoints', { returnObjects: true })).map((p, i) => (
                 <div className="consult-step" key={p.title}>
                   <span className="consult-step-num">{i + 1}</span>
                   <div>
@@ -403,18 +386,18 @@ function BookConsultationPage({ onRequireAuth }) {
             </div>
 
             <div className="consult-info card">
-              <h3>Prefer to Reach Us Directly?</h3>
+              <h3>{t('consultation.preferToReachUs')}</h3>
               <ul className="consult-contact">
                 <li>
-                  <strong>Call us</strong>
+                  <strong>{t('consultation.callUs')}</strong>
                   <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
                 </li>
                 <li>
-                  <strong>Email us</strong>
+                  <strong>{t('consultation.emailUs')}</strong>
                   <a href={CONTACT.emailHref}>{CONTACT.email}</a>
                 </li>
                 <li>
-                  <strong>Visit us</strong>
+                  <strong>{t('consultation.visitUs')}</strong>
                   <span>{CONTACT.address}</span>
                 </li>
               </ul>
@@ -426,24 +409,24 @@ function BookConsultationPage({ onRequireAuth }) {
       <section className="section consult-why" id="how-it-works">
         <div className="container">
           <div className="section-header">
-            <span className="badge">Why Book With Us</span>
-            <h2>A Free Call That Actually Helps</h2>
+            <span className="badge">{t('consultation.whyBookWithUs')}</span>
+            <h2>{t('consultation.freeCallTitle')}</h2>
           </div>
 <div className="products-grid">
             <article className="card product-card">
               <div className="product-icon preview-icon">1</div>
-              <h3>Free Call, No Pressure</h3>
-              <p>Every first consultation is free. There is no obligation to buy — just honest advice.</p>
+              <h3>{t('consultation.freeCallNoPressure')}</h3>
+              <p>{t('consultation.freeCallNoPressureText')}</p>
             </article>
             <article className="card product-card">
               <div className="product-icon preview-icon">2</div>
-              <h3>Senior Consultants Only</h3>
-              <p>Your meeting is led by senior engineers and consultants who build for a living.</p>
+              <h3>{t('consultation.seniorConsultants')}</h3>
+              <p>{t('consultation.seniorConsultantsText')}</p>
             </article>
             <article className="card product-card">
               <div className="product-icon preview-icon">3</div>
-              <h3>Clear Timelines &amp; Quotes</h3>
-              <p>Leave with a defined next step, realistic timeline and transparent pricing for your project.</p>
+              <h3>{t('consultation.clearTimelines')}</h3>
+              <p>{t('consultation.clearTimelinesText')}</p>
             </article>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { useTranslation } from './i18n/TranslationContext'
 import { supabase } from './lib/supabase'
 import { useAuth } from './lib/auth'
 import AuthModal from './components/AuthModal'
@@ -35,6 +36,7 @@ const MigrationServicesPage = lazy(() => import('./pages/services/MigrationServi
 const OneStopSolutionsPage = lazy(() => import('./pages/services/OneStopSolutionsPage'))
 const PilotPrototypingPage = lazy(() => import('./pages/services/PilotPrototypingPage'))
 const ManagedServicesPage = lazy(() => import('./pages/services/ManagedServicesPage'))
+const ProductsPage = lazy(() => import('./pages/ProductsPage'))
 
 const CONTACT = {
   phone: '+91-9014217124',
@@ -51,11 +53,13 @@ mapsHref:
 const NAV_ITEMS = [
   { id: 'about', label: 'About' },
   { id: 'services', label: 'Services', hasDropdown: true },
-  { id: 'products', label: 'Products', hasDropdown: true },
+  { id: 'products', label: 'Products' },
   { id: 'news', label: 'Perspectives' },
   { id: 'gallery', label: 'Technologies', hasDropdown: true },
   { id: 'contact', label: 'Contact' },
 ]
+
+
 
 const FEATURED_PRODUCTS = [
   { title: 'Oklut AI Suite', description: 'Intelligent autonomous agents and tools that automate complex workflows and customer operations.' },
@@ -109,58 +113,67 @@ const SERVICES = [
     slug: 'custom-development',
     icon: 'code',
     description: 'Bespoke web, mobile and API products built around your exact requirements.',
+    translationKey: 'customDevelopment',
   },
   {
     label: 'Process Automation',
     slug: 'process-automation',
     icon: 'gears',
     description: 'Streamline workflows and remove manual effort with intelligent automation.',
+    translationKey: 'processAutomation',
   },
   {
     label: 'Center of Excellence',
     slug: 'center-of-excellence',
     icon: 'award',
     description: 'Embed a high-performing engineering hub with shared standards and reuse.',
+    translationKey: 'centerOfExcellence',
   },
   {
     label: 'Solution Engineering',
     slug: 'solution-engineering',
     icon: 'layers',
     description: 'Architect resilient, scalable systems from discovery to production.',
+    translationKey: 'solutionEngineering',
   },
   {
     label: 'Digital Transformation',
     slug: 'digital-transformation',
     icon: 'trendingUp',
     description: 'Modernize technology, processes and culture to compete in a digital-first world.',
+    translationKey: 'digitalTransformation',
   },
   {
     label: 'End-to-End Solutions',
     slug: 'end-to-end-solutions',
     icon: 'package',
     description: 'Full-lifecycle delivery from strategy and design through 24/7 operations.',
+    translationKey: 'endToEndSolutions',
   },
   {
     label: 'Migration Services',
     slug: 'migration-services',
     icon: 'cloud',
     description: 'Move applications, data and infrastructure to the cloud securely and cost-effectively.',
+    translationKey: 'migrationServices',
   },
   {
     label: 'Pilot & Prototyping',
     slug: 'pilot-prototyping',
     icon: 'rocket',
     description: 'Validate ideas fast with low-risk pilots and production-grade prototypes.',
+    translationKey: 'pilotPrototyping',
   },
   {
     label: 'Shared Services',
     slug: 'shared-services',
     icon: 'server',
     description: 'Centralized platforms and managed services that scale across teams.',
+    translationKey: 'sharedServices',
   },
 ]
 
-const SECTION_IDS = ['top', 'about', 'services', 'news', 'gallery', 'contact']
+const SECTION_IDS = ['top', 'about', 'gallery', 'news', 'services', 'contact']
 
 const NAV_OFFSET = 78
 
@@ -200,112 +213,19 @@ function SectionLink({ id, children, className = '', isActive = false, onNavigat
   )
 }
 
-const POPULAR_LANGUAGES = [
-  { code: 'en', name: 'English', native: 'English' },
-  { code: 'te', name: 'Telugu', native: 'తెలుగు' },
-  { code: 'hi', name: 'Hindi', native: 'हिंदी' },
-  { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ' },
-  { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
-]
-
-const WORLD_LANGUAGES = [
-  { code: 'en', name: 'English', native: 'English' },
-  { code: 'te', name: 'Telugu', native: 'తెలుగు' },
-  { code: 'hi', name: 'Hindi', native: 'हिंदी' },
-  { code: 'kn', name: 'Kannada', native: 'ಕನ್ನಡ' },
-  { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
-  { code: 'ml', name: 'Malayalam', native: 'മലയാളം' },
-  { code: 'bn', name: 'Bengali', native: 'বাংলা' },
-  { code: 'mr', name: 'Marathi', native: 'मराठी' },
-  { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી' },
-  { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ' },
-  { code: 'ur', name: 'Urdu', native: 'اردو' },
-  { code: 'ar', name: 'Arabic', native: 'العربية' },
-  { code: 'zh', name: 'Chinese', native: '中文' },
-  { code: 'ja', name: 'Japanese', native: '日本語' },
-  { code: 'ko', name: 'Korean', native: '한국어' },
-  { code: 'es', name: 'Spanish', native: 'Español' },
-  { code: 'fr', name: 'French', native: 'Français' },
-  { code: 'de', name: 'German', native: 'Deutsch' },
-  { code: 'it', name: 'Italian', native: 'Italiano' },
-  { code: 'pt', name: 'Portuguese', native: 'Português' },
-  { code: 'ru', name: 'Russian', native: 'Русский' },
-  { code: 'nl', name: 'Dutch', native: 'Nederlands' },
-  { code: 'tr', name: 'Turkish', native: 'Türkçe' },
-  { code: 'el', name: 'Greek', native: 'Ελληνικά' },
-  { code: 'he', name: 'Hebrew', native: 'עברית' },
-  { code: 'th', name: 'Thai', native: 'ไทย' },
-  { code: 'vi', name: 'Vietnamese', native: 'Tiếng Việt' },
-  { code: 'id', name: 'Indonesian', native: 'Bahasa Indonesia' },
-  { code: 'ms', name: 'Malay', native: 'Bahasa Melayu' },
-  { code: 'sw', name: 'Swahili', native: 'Kiswahili' },
-  { code: 'fa', name: 'Persian', native: 'فارسی' },
-  { code: 'pl', name: 'Polish', native: 'Polski' },
-  { code: 'uk', name: 'Ukrainian', native: 'Українська' },
-  { code: 'ro', name: 'Romanian', native: 'Română' },
-  { code: 'cs', name: 'Czech', native: 'Čeština' },
-  { code: 'sv', name: 'Swedish', native: 'Svenska' },
-  { code: 'no', name: 'Norwegian', native: 'Norsk' },
-  { code: 'da', name: 'Danish', native: 'Dansk' },
-  { code: 'fi', name: 'Finnish', native: 'Suomi' },
-  { code: 'hu', name: 'Hungarian', native: 'Magyar' },
-  { code: 'sk', name: 'Slovak', native: 'Slovenčina' },
-  { code: 'bg', name: 'Bulgarian', native: 'Български' },
-  { code: 'hr', name: 'Croatian', native: 'Hrvatski' },
-  { code: 'sr', name: 'Serbian', native: 'Српски' },
-  { code: 'sl', name: 'Slovenian', native: 'Slovenščina' },
-  { code: 'et', name: 'Estonian', native: 'Eesti' },
-  { code: 'lv', name: 'Latvian', native: 'Latviešu' },
-  { code: 'lt', name: 'Lithuanian', native: 'Lietuvių' },
-  { code: 'is', name: 'Icelandic', native: 'Íslenska' },
-  { code: 'ga', name: 'Irish', native: 'Gaeilge' },
-  { code: 'mt', name: 'Maltese', native: 'Malti' },
-  { code: 'cy', name: 'Welsh', native: 'Cymraeg' },
-  { code: 'sq', name: 'Albanian', native: 'Shqip' },
-  { code: 'mk', name: 'Macedonian', native: 'Македонски' },
-  { code: 'bs', name: 'Bosnian', native: 'Bosanski' },
-  { code: 'af', name: 'Afrikaans', native: 'Afrikaans' },
-  { code: 'zu', name: 'Zulu', native: 'isiZulu' },
-  { code: 'am', name: 'Amharic', native: 'አማርኛ' },
-  { code: 'yo', name: 'Yoruba', native: 'Yorùbá' },
-  { code: 'ha', name: 'Hausa', native: 'Hausa' },
-  { code: 'ig', name: 'Igbo', native: 'Igbo' },
-  { code: 'ne', name: 'Nepali', native: 'नेपाली' },
-  { code: 'si', name: 'Sinhala', native: 'සිංහල' },
-  { code: 'my', name: 'Burmese', native: 'မြန်မာစာ' },
-  { code: 'km', name: 'Khmer', native: 'ភាសាខ្មែរ' },
-  { code: 'lo', name: 'Lao', native: 'ພາສາລາວ' },
-  { code: 'ka', name: 'Georgian', native: 'ქართული' },
-  { code: 'hy', name: 'Armenian', native: 'Հայերեն' },
-  { code: 'az', name: 'Azerbaijani', native: 'Azərbaycan' },
-  { code: 'uz', name: 'Uzbek', native: 'Oʻzbek' },
-  { code: 'kk', name: 'Kazakh', native: 'Қазақ' },
-  { code: 'mn', name: 'Mongolian', native: 'Монгол хэл' },
-  { code: 'tl', name: 'Filipino', native: 'Filipino' },
-  { code: 'haw', name: 'Hawaiian', native: 'ʻŌlelo Hawaiʻi' },
-  { code: 'mi', name: 'Maori', native: 'Te Reo Māori' },
-  { code: 'sm', name: 'Samoan', native: 'Gagana Samoa' },
-  { code: 'to', name: 'Tongan', native: 'Lea Faka-Tonga' },
-]
 
 function Navbar({ onSignIn, onSignUp }) {
   const { user, signOut } = useAuth()
+  const { t } = useTranslation()
   const location = useLocation()
   const [userMenuOpen, setUserMenuOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
-  const [productsOpen, setProductsOpen] = useState(false)
-  const [productsTab, setProductsTab] = useState('featured')
   const [techOpen, setTechOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [langOpen, setLangOpen] = useState(false)
-  const [langSearch, setLangSearch] = useState('')
-  const [selectedLang, setSelectedLang] = useState(POPULAR_LANGUAGES[0])
   const [activeSection, setActiveSection] = useState('')
   const [scrolled, setScrolled] = useState(false)
   const servicesRef = useRef(null)
-  const productsRef = useRef(null)
   const techRef = useRef(null)
-  const langRef = useRef(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -325,15 +245,8 @@ function Navbar({ onSignIn, onSignUp }) {
       if (servicesRef.current && !servicesRef.current.contains(e.target)) {
         setServicesOpen(false)
       }
-      if (productsRef.current && !productsRef.current.contains(e.target)) {
-        setProductsOpen(false)
-      }
       if (techRef.current && !techRef.current.contains(e.target)) {
         setTechOpen(false)
-      }
-      if (langRef.current && !langRef.current.contains(e.target)) {
-        setLangOpen(false)
-        setLangSearch('')
       }
     }
     document.addEventListener('mousedown', onOutside)
@@ -386,7 +299,11 @@ function Navbar({ onSignIn, onSignUp }) {
           isActive={location.pathname === '/' && activeSection === 'top'}
           onNavigate={closeMobile}
         >
-          <img src={`${import.meta.env.BASE_URL}img/logo.jpg`} alt="Oklut Technologies logo" className="brand-logo" />
+          <img
+            src={`${import.meta.env.BASE_URL}img/logo.jpg`}
+            alt="Oklut Technologies logo"
+            className="brand-logo"
+          />
         </SectionLink>
         <nav className={`nav-links ${mobileOpen ? 'nav-links-open' : ''}`} aria-label="Main navigation">
           {NAV_ITEMS.map((item) => {
@@ -404,11 +321,10 @@ function Navbar({ onSignIn, onSignUp }) {
                     aria-expanded={servicesOpen}
                     onClick={() => {
                       setServicesOpen((o) => !o)
-                      setProductsOpen(false)
                       setTechOpen(false)
                     }}
                   >
-                    <span>Services</span>
+                    <span>{t('nav.services')}</span>
                     <span
                       className={`services-chevron ${servicesOpen ? 'is-open' : ''}`}
                       aria-hidden="true"
@@ -427,7 +343,7 @@ function Navbar({ onSignIn, onSignUp }) {
                           key={s.slug}
                           href={s.externalUrl}
                           className="services-dropdown-item"
-                          onClick={closeMobile}
+                          onClick={() => { closeMobile(); setServicesOpen(false) }}
                         >
                           {s.label}
                         </a>
@@ -436,192 +352,12 @@ function Navbar({ onSignIn, onSignUp }) {
                           key={s.slug}
                           to={`/services/${s.slug}`}
                           className="services-dropdown-item"
-                          onClick={closeMobile}
+                          onClick={() => { closeMobile(); setServicesOpen(false) }}
                         >
                           {s.label}
                         </Link>
                       )
                     ))}
-                  </div>
-                </div>
-              )
-            }
-            if (item.hasDropdown && item.id === 'products') {
-              const tabConfig = {
-                featured: { items: FEATURED_PRODUCTS, title: 'Featured Products', sub: 'Simplify operations, connect teams, automate processes, and drive smarter business growth.', btnText: 'See All Products', gridTitle: 'FEATURED PRODUCTS', promoTitle: 'Meet the Autonomous Workforce', promoText: 'Transform your operations with AI agents that work alongside your team to handle complex, repetitive tasks.', promoBtnText: 'Learn More' },
-                erp: { items: ERP_SOLUTIONS, title: 'One Platform Ready for Anything', sub: 'Empowering businesses with connected, intelligent, and scalable enterprise management solutions.', btnText: 'Explore ERP Solutions', gridTitle: 'ERP SOLUTIONS', promoTitle: 'Modular ERP for Growth', promoText: 'Deploy modular ERP features rapidly without the complexity of traditional multi-year systems.', promoBtnText: 'Schedule Demo' },
-                it: { items: IT_SOLUTIONS, title: 'IT Solutions', sub: 'Enterprise-grade infrastructure, security, and DevOps solutions to keep your business running.', btnText: 'Explore IT Solutions', gridTitle: 'IT SOLUTIONS', promoTitle: 'Reliable IT Infrastructure', promoText: 'Build a resilient technology foundation with managed cloud, security, and DevOps services.', promoBtnText: 'Get Started' },
-                crm: { items: CRM_SOLUTIONS, title: 'CRM Solutions', sub: 'Customer relationship management to streamline sales, support, and marketing workflows.', btnText: 'Explore CRM Solutions', gridTitle: 'CRM SOLUTIONS', promoTitle: 'Close More Deals', promoText: 'Empower your sales and support teams with unified customer data and intelligent automation.', promoBtnText: 'Start Free Trial' },
-                hrms: { items: HRMS_SOLUTIONS, title: 'HRMS Solutions', sub: 'Human resource management covering payroll, recruitment, performance, and employee engagement.', btnText: 'Explore HRMS Solutions', gridTitle: 'HRMS SOLUTIONS', promoTitle: 'Simplify HR Operations', promoText: 'Automate HR workflows from recruitment to retirement with a modern, employee-first platform.', promoBtnText: 'Request Demo' },
-              };
-              const activeTab = tabConfig[productsTab] || tabConfig.featured;
-
-              return (
-                <div
-                  key={item.id}
-                  className="services-dropdown-wrap products-mega-dropdown-wrap"
-                  ref={productsRef}
-                >
-                  <button
-                    type="button"
-                    className="services-toggle"
-                    aria-haspopup="menu"
-                    aria-expanded={productsOpen}
-                    onClick={() => {
-                      setProductsOpen((o) => !o)
-                      setServicesOpen(false)
-                      setTechOpen(false)
-                    }}
-                  >
-                    <span>Products</span>
-                    <span
-                      className={`services-chevron ${productsOpen ? 'is-open' : ''}`}
-                      aria-hidden="true"
-                    >
-                      <Icon name="chevron" />
-                    </span>
-                  </button>
-                  <div
-                    className={`products-dropdown ${productsOpen ? 'is-open' : ''}`}
-                    role="menu"
-                    aria-label="Products"
-                  >
-                    {/* Desktop layout */}
-                    <div className="mega-menu-desktop-only">
-                      <div className="mega-menu-sidebar">
-                        <button
-                          type="button"
-                          className={`mega-menu-tab-btn ${productsTab === 'featured' ? 'is-active' : ''}`}
-                          onClick={() => setProductsTab('featured')}
-                        >
-                          <span>Featured Products</span>
-                          <span className="mega-menu-tab-chevron"><Icon name="chevronRight" /></span>
-                        </button>
-                        <button
-                          type="button"
-                          className={`mega-menu-tab-btn ${productsTab === 'erp' ? 'is-active' : ''}`}
-                          onClick={() => setProductsTab('erp')}
-                        >
-                          <span>ERP Solutions</span>
-                          <span className="mega-menu-tab-chevron"><Icon name="chevronRight" /></span>
-                        </button>
-                        <div className="mega-menu-sidebar-heading">SOLUTIONS</div>
-                        <button
-                          type="button"
-                          className={`mega-menu-tab-btn ${productsTab === 'it' ? 'is-active' : ''}`}
-                          onClick={() => setProductsTab('it')}
-                        >
-                          <span>IT</span>
-                          <span className="mega-menu-tab-chevron"><Icon name="chevronRight" /></span>
-                        </button>
-                        <button
-                          type="button"
-                          className={`mega-menu-tab-btn ${productsTab === 'crm' ? 'is-active' : ''}`}
-                          onClick={() => setProductsTab('crm')}
-                        >
-                          <span>CRM</span>
-                          <span className="mega-menu-tab-chevron"><Icon name="chevronRight" /></span>
-                        </button>
-                        <button
-                          type="button"
-                          className={`mega-menu-tab-btn ${productsTab === 'hrms' ? 'is-active' : ''}`}
-                          onClick={() => setProductsTab('hrms')}
-                        >
-                          <span>HRMS</span>
-                          <span className="mega-menu-tab-chevron"><Icon name="chevronRight" /></span>
-                        </button>
-                      </div>
-
-                      <div className="mega-menu-main">
-                        <div className="mega-menu-main-header">
-                          <h3 className="mega-menu-title">{activeTab.title}</h3>
-                          <p className="mega-menu-subtitle">{activeTab.sub}</p>
-                          <Link to="/book-consultation" className="btn btn-outline btn-sm mega-menu-cta" onClick={() => { setProductsOpen(false); closeMobile(); }}>
-                            {activeTab.btnText}
-                          </Link>
-                        </div>
-                        <div className="mega-menu-divider" />
-                        <div className="mega-menu-grid-title">{activeTab.gridTitle}</div>
-                        <div className="mega-menu-grid">
-                          {activeTab.items.map((prod, idx) => (
-                            <Link key={idx} to="/book-consultation" className="mega-menu-grid-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
-                              <h4>{prod.title}</h4>
-                              <p>{prod.description}</p>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="mega-menu-promo">
-                        <div className="mega-menu-promo-card">
-                          <h3>{activeTab.promoTitle}</h3>
-                          <p>{activeTab.promoText}</p>
-                          <Link to="/book-consultation" className="btn btn-primary btn-sm" onClick={() => { setProductsOpen(false); closeMobile(); }}>
-                            {activeTab.promoBtnText}
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Mobile layout */}
-                    <div className="mega-menu-mobile-only">
-                      <div className="mega-menu-mobile-section">
-                        <div className="mega-menu-mobile-heading">Featured Products</div>
-                        <div className="mega-menu-mobile-list">
-                          {FEATURED_PRODUCTS.map((prod, idx) => (
-                            <Link key={idx} to="/book-consultation" className="mega-menu-mobile-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
-                              <strong>{prod.title}</strong>
-                              <span>{prod.description}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="mega-menu-mobile-section">
-                        <div className="mega-menu-mobile-heading">One Platform Ready for Anything</div>
-                        <div className="mega-menu-mobile-list">
-                          {ERP_SOLUTIONS.map((prod, idx) => (
-                            <Link key={idx} to="/book-consultation" className="mega-menu-mobile-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
-                              <strong>{prod.title}</strong>
-                              <span>{prod.description}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="mega-menu-mobile-section">
-                        <div className="mega-menu-mobile-heading">Solutions</div>
-                        <div className="mega-menu-mobile-sub-heading">IT</div>
-                        <div className="mega-menu-mobile-list">
-                          {IT_SOLUTIONS.map((prod, idx) => (
-                            <Link key={idx} to="/book-consultation" className="mega-menu-mobile-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
-                              <strong>{prod.title}</strong>
-                              <span>{prod.description}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="mega-menu-mobile-section">
-                        <div className="mega-menu-mobile-sub-heading">CRM</div>
-                        <div className="mega-menu-mobile-list">
-                          {CRM_SOLUTIONS.map((prod, idx) => (
-                            <Link key={idx} to="/book-consultation" className="mega-menu-mobile-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
-                              <strong>{prod.title}</strong>
-                              <span>{prod.description}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="mega-menu-mobile-section">
-                        <div className="mega-menu-mobile-sub-heading">HRMS</div>
-                        <div className="mega-menu-mobile-list">
-                          {HRMS_SOLUTIONS.map((prod, idx) => (
-                            <Link key={idx} to="/book-consultation" className="mega-menu-mobile-item" onClick={() => { setProductsOpen(false); closeMobile(); }}>
-                              <strong>{prod.title}</strong>
-                              <span>{prod.description}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               )
@@ -641,10 +377,9 @@ function Navbar({ onSignIn, onSignUp }) {
                     onClick={() => {
                       setTechOpen((o) => !o)
                       setServicesOpen(false)
-                      setProductsOpen(false)
                     }}
                   >
-                    <span>Technologies</span>
+                    <span>{t('nav.technologies')}</span>
                     <span
                       className={`services-chevron ${techOpen ? 'is-open' : ''}`}
                       aria-hidden="true"
@@ -682,6 +417,18 @@ function Navbar({ onSignIn, onSignUp }) {
                 </div>
               )
             }
+            if (item.id === 'products') {
+              return (
+                <Link
+                  key={item.id}
+                  to="/products"
+                  className={location.pathname === '/products' ? 'active' : ''}
+                  onClick={closeMobile}
+                >
+                  {item.label}
+                </Link>
+              )
+            }
             return (
               <SectionLink
                 key={item.id}
@@ -699,7 +446,7 @@ function Navbar({ onSignIn, onSignUp }) {
             rel="noopener noreferrer"
             onClick={closeMobile}
           >
-            Careers
+            {t('nav.careers')}
           </a>
           <div className="auth-area">
             {user ? (
@@ -733,7 +480,7 @@ function Navbar({ onSignIn, onSignUp }) {
                         }
                       }}
                     >
-                      Sign Out
+                      {t('nav.signOut')}
                     </button>
                   </div>
                 )}
@@ -741,117 +488,13 @@ function Navbar({ onSignIn, onSignUp }) {
             ) : (
               <>
                 <button type="button" className="btn btn-ghost btn-sm nav-signin" onClick={onSignIn}>
-                  Sign In
+                  {t('nav.signIn')}
                 </button>
                 <button type="button" className="btn btn-primary btn-sm nav-cta" onClick={onSignUp}>
-                  Sign Up
+                  {t('nav.signUp')}
                 </button>
               </>
             )}
-            <div className="lang-selector-wrap" ref={langRef}>
-              <button
-                type="button"
-                className="lang-selector"
-                aria-haspopup="listbox"
-                aria-expanded={langOpen}
-                onClick={() => setLangOpen((o) => !o)}
-              >
-                <Icon name="globe" className="lang-icon" />
-                <span className="lang-text">{selectedLang.native}</span>
-                <Icon name="chevron" className={`lang-chevron ${langOpen ? 'is-open' : ''}`} />
-              </button>
-              {langOpen && (
-                <div className="lang-dropdown" role="listbox" aria-label="Choose your language">
-                  <div className="lang-dropdown-header">
-                    <span className="lang-dropdown-title">Choose your language</span>
-                  </div>
-                  <div className="lang-search">
-                    <Icon name="search" className="lang-search-icon" />
-                    <input
-                      type="text"
-                      className="lang-search-input"
-                      placeholder="Search language"
-                      value={langSearch}
-                      onChange={(e) => setLangSearch(e.target.value)}
-                      onClick={(e) => e.stopPropagation()}
-                      autoFocus
-                    />
-                  </div>
-                  <div className="lang-options">
-                    {/* Reset to English option */}
-                    <button
-                      type="button"
-                      className="lang-option"
-                      role="option"
-                      onClick={() => {
-                        setSelectedLang(POPULAR_LANGUAGES[0])
-                        setLangOpen(false)
-                        setLangSearch('')
-                        // Reset to English
-                        const select = document.querySelector('.goog-te-combo')
-                        if (select) {
-                          select.value = 'en'
-                          select.dispatchEvent(new Event('change'))
-                        }
-                        // Remove Google Translate banner
-                        const banner = document.querySelector('.goog-te-banner-frame')
-                        if (banner) banner.remove()
-                        document.body.style.top = '0px'
-                      }}
-                    >
-                      <span className="lang-option-native">English</span>
-                      <span className="lang-option-name">Reset to English</span>
-                      {selectedLang.code === 'en' && <Icon name="check" className="lang-option-check" />}
-                    </button>
-                    {(() => {
-                      const query = langSearch.trim().toLowerCase()
-                      const results = query
-                        ? WORLD_LANGUAGES.filter(
-                            (l) =>
-                              l.name.toLowerCase().includes(query) ||
-                              l.native.toLowerCase().includes(query)
-                          )
-                        : POPULAR_LANGUAGES
-                      return results.map((l) => (
-                        <button
-                          key={l.code}
-                          type="button"
-                          className={`lang-option ${selectedLang.code === l.code ? 'is-selected' : ''}`}
-                          role="option"
-                          aria-selected={selectedLang.code === l.code}
-                          onClick={() => {
-                            setSelectedLang(l)
-                            setLangOpen(false)
-                            setLangSearch('')
-                            // Trigger Google Translate
-                            const select = document.querySelector('.goog-te-combo')
-                            if (select) {
-                              select.value = l.code
-                              select.dispatchEvent(new Event('change'))
-                            }
-                          }}
-                        >
-                          <span className="lang-option-native">{l.native}</span>
-                          <span className="lang-option-name">{l.name}</span>
-                          {selectedLang.code === l.code && <Icon name="check" className="lang-option-check" />}
-                        </button>
-                      ))
-                    })()}
-                    {langSearch.trim() && (() => {
-                      const query = langSearch.trim().toLowerCase()
-                      const results = WORLD_LANGUAGES.filter(
-                        (l) =>
-                          l.name.toLowerCase().includes(query) ||
-                          l.native.toLowerCase().includes(query)
-                      )
-                      return results.length === 0 ? (
-                        <div className="lang-no-results">No languages found</div>
-                      ) : null
-                    })()}
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
         </nav>
         <button
@@ -871,6 +514,7 @@ function Navbar({ onSignIn, onSignUp }) {
 }
 
 function Hero() {
+  const { t } = useTranslation()
   return (
     <section id="top" className="hero">
       <video
@@ -890,19 +534,17 @@ function Hero() {
         <div className="hero-content">
           <span className="eyebrow reveal">
             <span className="eyebrow-bar" aria-hidden="true" />
-            Oklut Technologies — Hyderabad
+            {t('hero.eyebrow')}
           </span>
           <h1 className="reveal">
-            Software, engineered for the way <em>your business</em> runs.
+            <span dangerouslySetInnerHTML={{ __html: t('hero.title') }} />
           </h1>
           <p className="hero-sub reveal">
-            Oklut is a digital product and IT services company. We design, build and scale custom
-            software, web and mobile products, cloud infrastructure and AI — for companies that
-            compete on execution.
+            {t('hero.description')}
           </p>
           <div className="hero-actions reveal">
             <Link to="/book-consultation" className="btn btn-primary btn-lg">
-              Book a free consultation
+              {t('hero.bookConsultation')}
               <Icon name="arrow" />
             </Link>
             <a
@@ -913,31 +555,31 @@ function Hero() {
                 scrollToSection('services')
               }}
             >
-              Explore services
+              {t('hero.exploreServices')}
             </a>
           </div>
           <ul className="hero-facts reveal">
             <li>
-              <strong>12+</strong> years
+              <strong>12+</strong> {t('hero.years')}
             </li>
             <li>
-              <strong>320+</strong> projects
+              <strong>320+</strong> {t('hero.projects')}
             </li>
             <li>
-              <strong>98%</strong> retention
+              <strong>98%</strong> {t('hero.retention')}
             </li>
           </ul>
           <div className="hero-location reveal">
             <span>
-              <Icon name="pin" /> Madhapur, Hyderabad
+              <Icon name="pin" /> {t('hero.location')}
             </span>
-            <span>Oklut Technologies — since 2012</span>
+            <span>{t('hero.since')}</span>
           </div>
         </div>
       </div>
       <div className="hero-meta" aria-hidden="true">
-        <span>Digital product studio</span>
-        <span>Web · Mobile · Cloud · AI</span>
+        <span>{t('hero.metaStudio')}</span>
+        <span>{t('hero.metaTech')}</span>
       </div>
     </section>
   )
@@ -958,11 +600,12 @@ function SectionHead({ index, eyebrow, title, sub, center = false }) {
 }
 
 function About() {
+  const { t } = useTranslation()
   const features = [
-    { icon: 'award', title: 'Award Winning', text: 'Recognized for delivery excellence across web and mobile product engineering.', color: '#f59e0b' },
-    { icon: 'users', title: 'Professional Staff', text: 'Senior, accountable engineers who own the work from first call to go-live.', color: '#3b82f6' },
-    { icon: 'clock', title: '24/7 Support', text: 'Managed services and a support line that answers when you need it.', color: '#10b981' },
-    { icon: 'star', title: 'Fair Prices', text: 'Honest estimates and transparent billing on every single engagement.', color: '#8b5cf6' },
+    { icon: 'award', title: t('about.awardWinning'), text: t('about.awardText'), color: '#f59e0b' },
+    { icon: 'users', title: t('about.professionalStaff'), text: t('about.staffText'), color: '#3b82f6' },
+    { icon: 'clock', title: t('about.support247'), text: t('about.supportText'), color: '#10b981' },
+    { icon: 'star', title: t('about.fairPrices'), text: t('about.pricesText'), color: '#8b5cf6' },
   ]
   return (
     <section id="about" className="section about-section">
@@ -970,17 +613,13 @@ function About() {
         <div className="about-statement reveal">
           <span className="eyebrow">
             <span className="eyebrow-bar" aria-hidden="true" />
-            About Us
+            {t('about.eyebrow')}
           </span>
           <h2>
-            The Best IT Solution — <em>Oklut Technologies</em>
+            <span dangerouslySetInnerHTML={{ __html: t('about.title') }} />
           </h2>
           <p className="about-lede">
-            Oklut Technologies is an Indian subsidiary IT company and one of India's leading web
-            design and web application development companies. We have mastered content management
-            systems and mobile application development, including iPhone, iPad and Android app
-            development. We offer a variety of services specialized mainly in website designing
-            and development — built on trust, quality and long-term partnership.
+            {t('about.description')}
           </p>
           <div className="about-features-grid">
             {features.map((f) => (
@@ -1051,10 +690,11 @@ function CountUp({ end, suffix = '', duration = 1600 }) {
 }
 
 function Stats() {
+  const { t } = useTranslation()
   const stats = [
-    { value: 1056, suffix: '+', label: 'Happy clients' },
-    { value: 328, suffix: '+', label: 'Projects done' },
-    { value: 23, suffix: '+', label: 'Win awards' },
+    { value: 1056, suffix: '+', label: t('stats.happyClients') },
+    { value: 328, suffix: '+', label: t('stats.projectsDone') },
+    { value: 23, suffix: '+', label: t('stats.winAwards') },
   ]
   return (
     <section className="statsband" aria-label="Company statistics">
@@ -1071,30 +711,31 @@ function Stats() {
 }
 
 function Insights() {
+  const { t } = useTranslation()
   const items = [
     {
-      date: 'Jul 2026',
-      tag: 'Product',
-      title: 'A modular ERP approach for growing enterprises',
-      text: 'How we structure ERP engagements so finance, inventory, HR and procurement integrate without a multi-year programme.',
+      date: t('insights.item1Date'),
+      tag: t('insights.item1Tag'),
+      title: t('insights.item1Title'),
+      text: t('insights.item1Text'),
     },
     {
-      date: 'May 2026',
-      tag: 'Company',
-      title: 'Recognized among leading IT firms in Hyderabad',
-      text: 'Our engineering team has been recognized for delivery excellence and client satisfaction in digital product engineering.',
+      date: t('insights.item2Date'),
+      tag: t('insights.item2Tag'),
+      title: t('insights.item2Title'),
+      text: t('insights.item2Text'),
     },
     {
-      date: 'Mar 2026',
-      tag: 'People',
-      title: 'Hiring: senior engineers to grow our cloud & AI practice',
-      text: 'We are growing our cloud, data and AI teams — remote-friendly roles, senior ownership and real product work.',
+      date: t('insights.item3Date'),
+      tag: t('insights.item3Tag'),
+      title: t('insights.item3Title'),
+      text: t('insights.item3Text'),
     },
   ]
   return (
     <section id="news" className="section insights-section">
       <div className="container">
-        <SectionHead eyebrow="Perspectives" title="Perspectives and thinking from the studio" />
+        <SectionHead eyebrow={t('insights.eyebrow')} title={t('insights.title')} />
         <ul className="insights-list">
           {items.map((n, i) => (
             <li className="insights-row reveal" key={n.title} style={{ transitionDelay: `${i * 70}ms` }}>
@@ -1116,19 +757,20 @@ function Insights() {
 }
 
 function Technologies() {
+  const { t } = useTranslation()
   const [selectedTech, setSelectedTech] = useState('')
   const navigate = useNavigate()
 
   const techOptions = [
-    { value: '', label: 'Select a Technology' },
-    { value: 'ai-robotics', label: 'AI & Robotics' },
-    { value: 'business-automation', label: 'Business Automation' },
-    { value: 'cloud-migrations', label: 'Cloud Migrations' },
-    { value: 'data-centers', label: 'Data Centers' },
-    { value: 'cognitive-analytics', label: 'Cognitive Analytics & AI' },
-    { value: 'information-reporting', label: 'Information & Reporting Systems' },
-    { value: 'managed-services', label: 'Managed Services' },
-    { value: 'one-stop-solutions', label: 'One-Stop Solutions' },
+    { value: '', label: t('technologies.selectTechnology') },
+    { value: 'ai-robotics', label: t('technologies.options.aiRobotics') },
+    { value: 'business-automation', label: t('technologies.options.businessAutomation') },
+    { value: 'cloud-migrations', label: t('technologies.options.cloudMigrations') },
+    { value: 'data-centers', label: t('technologies.options.dataCenters') },
+    { value: 'cognitive-analytics', label: t('technologies.options.cognitiveAnalytics') },
+    { value: 'information-reporting', label: t('technologies.options.informationReporting') },
+    { value: 'managed-services', label: t('technologies.options.managedServices') },
+    { value: 'one-stop-solutions', label: t('technologies.options.oneStopSolutions') },
   ]
 
   const techRoutes = {
@@ -1140,7 +782,7 @@ function Technologies() {
     <section id="gallery" className="section tech-section">
       <div className="container">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '16px' }}>
-          <h2 style={{ fontSize: '14px', fontWeight: '600', color: 'var(--c1)', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>Technologies</h2>
+          <h2 style={{ fontSize: '14px', fontWeight: '600', color: 'var(--c1)', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>{t('technologies.title')}</h2>
           <select
             value={selectedTech}
             onChange={(e) => {
@@ -1168,8 +810,8 @@ function Technologies() {
           </select>
         </div>
         <SectionHead
-          title="Technology That Drives Global Business"
-          sub="Empowering organizations worldwide with intelligent, scalable, and innovative technology solutions."
+          title={t('technologies.headline')}
+          sub={t('technologies.sub')}
           center
         />
       </div>
@@ -1178,6 +820,7 @@ function Technologies() {
 }
 
 function ContactForm() {
+  const { t } = useTranslation()
   const [form, setForm] = useState({ name: '', email: '', company: '', subject: '', message: '' })
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle')
@@ -1196,10 +839,10 @@ function ContactForm() {
 
   const validate = () => {
     const next = {}
-    if (!form.name.trim()) next.name = 'Name is required.'
-    if (!form.email.trim()) next.email = 'Email is required.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = 'Enter a valid email.'
-    if (!form.message.trim()) next.message = 'Message is required.'
+    if (!form.name.trim()) next.name = t('contact.validation.nameRequired') || 'Name is required.'
+    if (!form.email.trim()) next.email = t('contact.validation.emailRequired') || 'Email is required.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = t('contact.validation.emailInvalid') || 'Enter a valid email.'
+    if (!form.message.trim()) next.message = t('contact.validation.messageRequired') || 'Message is required.'
     return next
   }
 
@@ -1214,11 +857,11 @@ function ContactForm() {
 
     if (error) {
       setStatus('idle')
-      setToast({ type: 'error', text: 'Could not save your message. Check that the contact_messages table exists, then try again.' })
+      setToast({ type: 'error', text: t('contact.errorMsg') })
     } else {
       setStatus('success')
       setForm({ name: '', email: '', company: '', subject: '', message: '' })
-      setToast({ type: 'success', text: 'Message sent! A copy has been emailed to you.' })
+      setToast({ type: 'success', text: t('contact.successMsg') })
       try {
         const { error: emailError } = await supabase.functions.invoke('send-contact-message', {
           body: {
@@ -1241,23 +884,22 @@ function ContactForm() {
     <section id="contact" className="section contact-section">
       <div className="container">
         <SectionHead
-          eyebrow="Contact"
-          title="Talk to a senior engineer, not a sales script"
-          sub="Share a little about your project and we will respond within one business day."
+          eyebrow={t('contact.eyebrow')}
+          title={t('contact.title')}
+          sub={t('contact.sub')}
         />
         <div className="contact-layout">
           <div className="contact-info reveal">
             <div className="contact-panel">
               <span className="eyebrow">
                 <span className="eyebrow-bar" aria-hidden="true" />
-                Reach us directly
+                {t('contact.reachUs')}
               </span>
               <h3 className="contact-panel-title">
-                Prefer a conversation? We are one call away.
+                {t('contact.preferConversation')}
               </h3>
               <p className="contact-lede">
-                The fastest way to move forward is a short conversation. Reach us on any channel
-                below, or book a slot and we will come to you prepared.
+                {t('contact.contactLede')}
               </p>
               <ul className="contact-list">
                 <li>
@@ -1267,7 +909,7 @@ function ContactForm() {
                     </a>
                   </span>
                   <span className="contact-channel">
-                    <small>Phone</small>
+                    <small>{t('contact.phone')}</small>
                     <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
                   </span>
                 </li>
@@ -1278,7 +920,7 @@ function ContactForm() {
                     </a>
                   </span>
                   <span className="contact-channel">
-                    <small>Email</small>
+                    <small>{t('contact.email')}</small>
                     <a href={CONTACT.emailHref}>{CONTACT.email}</a>
                   </span>
                 </li>
@@ -1289,22 +931,35 @@ function ContactForm() {
                     </a>
                   </span>
                   <span className="contact-channel">
-                    <small>Office</small>
+                    <small>{t('contact.office')}</small>
                     <a href={CONTACT.mapsHref} target="_blank" rel="noopener noreferrer">
                       {CONTACT.address}
                     </a>
                   </span>
                 </li>
                 <li>
+                  <span className="contact-icon">
+                    <a href="https://www.google.com/maps/search/South+Africa+Office" target="_blank" rel="noopener noreferrer" aria-label="Open South Africa office location on Google Maps">
+                      <Icon name="pin" />
+                    </a>
+                  </span>
+                  <span className="contact-channel">
+                    <small>South Africa Office</small>
+                    <a href="https://www.google.com/maps/search/South+Africa+Office" target="_blank" rel="noopener noreferrer">
+                      Unit 11 Sunset View, 10 Hazy Street, Newcastle, Kwa-Zulu Natal, 2930
+                    </a>
+                  </span>
+                </li>
+                <li>
                   <span className="contact-icon"><Icon name="clock" /></span>
                   <span className="contact-channel">
-                    <small>Hours</small>
-                    <strong>Mon – Sat, 9:30 – 18:30 IST</strong>
+                    <small>{t('contact.hours')}</small>
+                    <strong>{t('contact.hoursValue')}</strong>
                   </span>
                 </li>
               </ul>
               <Link to="/book-consultation" className="btn btn-primary">
-                Book a consultation slot
+                {t('contact.bookSlot')}
                 <Icon name="arrow" />
               </Link>
             </div>
@@ -1312,12 +967,12 @@ function ContactForm() {
 
           <form className="card contact-form reveal" onSubmit={handleSubmit} noValidate>
             <div className="contact-form-head">
-              <h3>Send us a message</h3>
-              <p>Fields marked with * are required.</p>
+              <h3>{t('contact.sendMessage')}</h3>
+              <p>{t('contact.fieldsRequired')}</p>
             </div>
             <div className="grid grid-2">
               <div className="input-group">
-                <label htmlFor="name">Full Name *</label>
+                <label htmlFor="name">{t('contact.fullName')}</label>
                 <input
                   id="name"
                   name="name"
@@ -1332,7 +987,7 @@ function ContactForm() {
                 {errors.name && <span className="error-message" id="name-error">{errors.name}</span>}
               </div>
               <div className="input-group">
-                <label htmlFor="email">Email *</label>
+                <label htmlFor="email">{t('contact.emailLabel')}</label>
                 <input
                   id="email"
                   name="email"
@@ -1350,16 +1005,16 @@ function ContactForm() {
             </div>
             <div className="grid grid-2">
               <div className="input-group">
-                <label htmlFor="company">Company</label>
+                <label htmlFor="company">{t('contact.company')}</label>
                 <input id="company" name="company" value={form.company} onChange={handleChange} placeholder="Company Inc." autoComplete="organization" />
               </div>
               <div className="input-group">
-                <label htmlFor="subject">Subject</label>
+                <label htmlFor="subject">{t('contact.subject')}</label>
                 <input id="subject" name="subject" value={form.subject} onChange={handleChange} placeholder="Project inquiry" />
               </div>
             </div>
             <div className="input-group">
-              <label htmlFor="message">Message *</label>
+              <label htmlFor="message">{t('contact.messageLabel')}</label>
               <textarea
                 id="message"
                 name="message"
@@ -1373,7 +1028,7 @@ function ContactForm() {
               {errors.message && <span className="error-message" id="message-error">{errors.message}</span>}
             </div>
             <button type="submit" className="btn btn-primary btn-lg" disabled={status === 'submitting'}>
-              {status === 'submitting' ? 'Sending…' : 'Send message'}
+              {status === 'submitting' ? t('contact.sending') : t('contact.sendBtn')}
               {status !== 'submitting' && <Icon name="arrow" />}
             </button>
           </form>
@@ -1442,6 +1097,7 @@ function BackToTop() {
 
 function Footer() {
   const { openPreferences } = useCookieConsent()
+  const { t } = useTranslation()
 
   return (
     <footer className="footer">
@@ -1454,8 +1110,7 @@ function Footer() {
             </span>
           </SectionLink>
           <p>
-            Oklut Technologies is a digital product and IT services company in Hyderabad, India.
-            We design, build and scale software for companies that compete on execution.
+            {t('footer.description')}
           </p>
           <address>
             <a
@@ -1470,33 +1125,33 @@ function Footer() {
           </address>
         </div>
         <div>
-          <h4>Company</h4>
+          <h4>{t('footer.company')}</h4>
           <ul>
-            <li><SectionLink id="about">About</SectionLink></li>
-            <li><Link to="/careers">Careers</Link></li>
-            <li><SectionLink id="news">Perspectives</SectionLink></li>
-            <li><SectionLink id="gallery">Technologies</SectionLink></li>
-            <li><SectionLink id="contact">Contact</SectionLink></li>
+            <li><SectionLink id="about">{t('footer.about')}</SectionLink></li>
+            <li><Link to="/careers">{t('footer.careers')}</Link></li>
+            <li><SectionLink id="news">{t('footer.perspectives')}</SectionLink></li>
+            <li><SectionLink id="gallery">{t('footer.technologies')}</SectionLink></li>
+            <li><SectionLink id="contact">{t('footer.contact')}</SectionLink></li>
           </ul>
         </div>
         <div>
-          <h4>Services</h4>
+          <h4>{t('footer.services')}</h4>
           <ul>
             {SERVICES.map((s) => (
               <li key={s.slug}>
                 {s.externalUrl ? (
                   <a href={s.externalUrl} target="_blank" rel="noopener noreferrer">
-                    {s.label}
+                    {t(`services.items.${s.translationKey}.label`)}
                   </a>
                 ) : (
-                  <Link to={`/services/${s.slug}`}>{s.label}</Link>
+                  <Link to={`/services/${s.slug}`}>{t(`services.items.${s.translationKey}.label`)}</Link>
                 )}
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <h4>Get in touch</h4>
+          <h4>{t('footer.getInTouch')}</h4>
           <ul className="footer-contact">
             <li>
               <a href={CONTACT.phoneHref}><Icon name="phone" /> {CONTACT.phone}</a>
@@ -1505,20 +1160,20 @@ function Footer() {
               <a href={CONTACT.emailHref}><Icon name="mail" /> {CONTACT.email}</a>
             </li>
             <li>
-              <a href="/book-consultation"><Icon name="calendar" /> Book a consultation</a>
+              <a href="/book-consultation"><Icon name="calendar" /> {t('footer.bookConsultation')}</a>
             </li>
           </ul>
         </div>
       </div>
       <div className="container footer-bottom">
-        <p>© {new Date().getFullYear()} Oklut Technologies. All rights reserved.</p>
+        <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
         <div className="footer-legal">
           <button type="button" className="link-btn" onClick={openPreferences}>
-            Cookie Preferences
+            {t('footer.cookiePreferences')}
           </button>
           <span aria-hidden="true">·</span>
           <Link to="/privacy" className="link-btn">
-            Privacy Policy
+            {t('footer.privacyPolicy')}
           </Link>
         </div>
       </div>
@@ -1527,13 +1182,14 @@ function Footer() {
 }
 
 function Services() {
+  const { t } = useTranslation()
   return (
     <section id="services" className="section services-section">
       <div className="container">
         <SectionHead
-          eyebrow="Services"
-          title="What we do"
-          sub="From strategy to managed operations, we deliver end-to-end technology partnerships for companies that compete on execution."
+          eyebrow={t('services.eyebrow')}
+          title={t('services.title')}
+          sub={t('services.sub')}
           center
         />
         <div className="services-grid">
@@ -1552,8 +1208,8 @@ function Services() {
                   <Icon name="arrow" />
                 </span>
               </div>
-              <h3>{s.label}</h3>
-              <p>{s.description}</p>
+              <h3>{t(`services.items.${s.translationKey}.label`)}</h3>
+              <p>{t(`services.items.${s.translationKey}.description`)}</p>
             </Link>
           ))}
         </div>
@@ -1646,7 +1302,11 @@ function HomePage() {
 
 function App() {
   const { isRecovery } = useAuth()
+  const location = useLocation()
   const [authModal, setAuthModal] = useState({ open: false, mode: 'login', redirectTo: null })
+  const hideFooter =
+    location.pathname === '/products' ||
+    location.pathname.startsWith('/services/')
 
   const openAuth = (mode, redirectTo) => setAuthModal({ open: true, mode, redirectTo: redirectTo || null })
   const closeAuth = () => setAuthModal((prev) => ({ open: false, mode: prev.mode, redirectTo: null }))
@@ -1674,8 +1334,7 @@ function App() {
               }
             />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
-            
-            
+            <Route path="/products" element={<ProductsPage />} />
             
             <Route path="/services/end-to-end-solutions" element={<EndToEndSolutionsPage />} />
             <Route path="/services/pilot-prototyping" element={<PilotPrototypingPage />} />
@@ -1692,9 +1351,11 @@ function App() {
         </Suspense>
       </main>
       <BackToTop />
-      <div className="theme-light">
-        <Footer />
-      </div>
+      {!hideFooter && (
+        <div className="theme-light">
+          <Footer />
+        </div>
+      )}
       <AuthModal
         open={authModal.open}
         mode={authModal.mode}

@@ -5,32 +5,16 @@ import { DEFAULT_PREFERENCES } from '../../lib/cookieConsent'
 import type { CookiePreferences } from '../../lib/cookieConsent'
 import { Switch } from '../Switch'
 import { useCookieConsent } from './CookieConsentProvider'
+import { useTranslation } from '../../i18n/TranslationContext'
 
 interface CookieOption {
   key: keyof CookiePreferences
-  title: string
-  description: string
+  titleKey: string
+  descKey: string
 }
 
-const OPTIONS: CookieOption[] = [
-  {
-    key: 'analytics',
-    title: 'Analytics',
-    description:
-      'Help us understand how visitors use the site so we can improve it. Disabled by default.',
-  },
-  {
-    key: 'marketing',
-    title: 'Marketing',
-    description:
-      'Used to show you relevant offers and campaigns. Disabled by default.',
-  },
-]
-
-const ESSENTIAL_DESCRIPTION =
-  'Required for the website to function (authentication, security, load balancing). These cannot be disabled.'
-
 export function CookiePreferenceModal() {
+  const { t } = useTranslation()
   const {
     isPreferencesOpen,
     preferences,
@@ -71,6 +55,19 @@ export function CookiePreferenceModal() {
     setPrefs((current) => ({ ...current, [key]: !current[key] }))
   }
 
+  const OPTIONS: CookieOption[] = [
+    {
+      key: 'analytics',
+      titleKey: 'cookiePreferences.analytics',
+      descKey: 'cookiePreferences.analyticsDesc',
+    },
+    {
+      key: 'marketing',
+      titleKey: 'cookiePreferences.marketing',
+      descKey: 'cookiePreferences.marketingDesc',
+    },
+  ]
+
   return (
     <div
       className="cookie-modal"
@@ -94,18 +91,17 @@ export function CookiePreferenceModal() {
         </button>
 
         <div className="cookie-modal-header">
-          <h2 id="cookie-modal-title">Manage Cookie Preferences</h2>
+          <h2 id="cookie-modal-title">{t('cookiePreferences.title')}</h2>
           <p>
-            Choose which categories of cookies you allow. Essential cookies
-            remain enabled to keep the website functioning.
+            {t('cookiePreferences.description')}
           </p>
         </div>
 
         <div className="cookie-options">
           <div className="cookie-option">
             <div className="cookie-option-text">
-              <strong>Essential</strong>
-              <p>{ESSENTIAL_DESCRIPTION}</p>
+              <strong>{t('cookiePreferences.essential')}</strong>
+              <p>{t('cookiePreferences.essentialDesc')}</p>
             </div>
             <Switch
               id="cookie-essential"
@@ -118,12 +114,12 @@ export function CookiePreferenceModal() {
           {OPTIONS.map((option) => (
             <div className="cookie-option" key={option.key}>
               <div className="cookie-option-text">
-                <strong>{option.title}</strong>
-                <p>{option.description}</p>
+                <strong>{t(option.titleKey)}</strong>
+                <p>{t(option.descKey)}</p>
               </div>
               <Switch
                 id={`cookie-${option.key}`}
-                label={`${option.title} cookies`}
+                label={`${t(option.titleKey)} cookies`}
                 checked={prefs[option.key]}
                 onChange={() => toggle(option.key)}
                 innerRef={option.key === 'analytics' ? analyticsSwitchRef : undefined}
@@ -134,14 +130,14 @@ export function CookiePreferenceModal() {
 
         <div className="cookie-modal-actions">
           <button type="button" className="btn btn-outline" onClick={closePreferences}>
-            Cancel
+            {t('cookiePreferences.cancel')}
           </button>
           <button
             type="button"
             className="btn btn-primary"
             onClick={() => savePreferences(prefs)}
           >
-            Save Preferences
+            {t('cookiePreferences.savePreferences')}
           </button>
         </div>
       </div>

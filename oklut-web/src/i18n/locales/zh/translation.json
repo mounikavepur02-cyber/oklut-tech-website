@@ -1,0 +1,631 @@
+{
+  "nav": {
+    "about": "关于我们",
+    "services": "服务",
+    "products": "产品",
+    "perspectives": "观点",
+    "technologies": "技术",
+    "contact": "联系我们",
+    "careers": "职业生涯",
+    "signIn": "登录",
+    "signUp": "注册",
+    "signOut": "退出",
+    "chooseLanguage": "选择您的语言",
+    "searchLanguage": "搜索语言",
+    "resetEnglish": "重置为英语",
+    "noResults": "未找到语言"
+  },
+  "hero": {
+    "eyebrow": "Oklut 科技 — 海得拉巴",
+    "title": "软件，为您的<em>业务</em>方式而设计。",
+    "description": "Oklut 是一家数字产品和IT服务公司。我们为在执行中竞争的公司设计、构建和扩展定制软件、Web和移动产品、云基础设施和AI。",
+    "bookConsultation": "预约免费咨询",
+    "exploreServices": "探索服务",
+    "years": "年",
+    "projects": "个项目",
+    "retention": "留存率",
+    "location": "海得拉巴，马德哈普尔",
+    "since": "Oklut 科技 — 始于2012年",
+    "metaStudio": "数字产品工作室",
+    "metaTech": "Web · 移动 · 云 · AI"
+  },
+  "about": {
+    "eyebrow": "关于我们",
+    "title": "最佳IT解决方案 — <em>Oklut 科技</em>",
+    "description": "Oklut 科技是一家印度子公司IT公司，也是印度领先的网页设计和Web应用开发公司之一。我们精通内容管理系统和移动应用开发，包括iPhone、iPad和Android应用开发。我们提供专注于网站设计和开发的各种服务——建立在信任、质量和长期合作的基础上。",
+    "awardWinning": "获奖企业",
+    "awardText": "在Web和移动产品工程交付方面获得认可。",
+    "professionalStaff": "专业团队",
+    "staffText": "资深、负责的工程师，从第一次沟通到上线全程负责。",
+    "support247": "全天候支持",
+    "supportText": "托管服务和支持热线，在您需要时随时响应。",
+    "fairPrices": "公平价格",
+    "pricesText": "每次合作都提供诚实的报价和透明的计费。"
+  },
+  "stats": {
+    "happyClients": "满意客户",
+    "projectsDone": "完成项目",
+    "winAwards": "获奖数量"
+  },
+  "insights": {
+    "eyebrow": "观点",
+    "title": "工作室的观点与思考",
+    "item1Date": "2026年7月",
+    "item1Tag": "产品",
+    "item1Title": "面向成长型企业的模块化ERP方案",
+    "item1Text": "我们如何构建ERP项目，使财务、库存、HR和采购在无需多年计划的情况下整合。",
+    "item2Date": "2026年5月",
+    "item2Tag": "公司",
+    "item2Title": "被评为海得拉巴领先的IT公司之一",
+    "item2Text": "我们的工程团队因数字产品工程的卓越交付和客户满意度而获得认可。",
+    "item3Date": "2026年3月",
+    "item3Tag": "人才",
+    "item3Title": "招聘：资深工程师壮大我们的云和AI业务",
+    "item3Text": "我们正在壮大云、数据和AI团队——远程友好、资深职位和真实产品工作。"
+  },
+  "technologies": {
+    "title": "技术",
+    "selectTechnology": "选择技术",
+    "headline": "驱动全球业务的技术",
+    "sub": "以智能、可扩展和创新的技术解决方案赋能全球组织。",
+    "options": {
+      "aiRobotics": "AI与机器人",
+      "businessAutomation": "业务自动化",
+      "cloudMigrations": "云迁移",
+      "dataCenters": "数据中心",
+      "cognitiveAnalytics": "认知分析与AI",
+      "informationReporting": "信息与报告系统",
+      "managedServices": "托管服务",
+      "oneStopSolutions": "一站式解决方案"
+    }
+  },
+  "contact": {
+    "eyebrow": "联系我们",
+    "title": "与资深工程师对话，而非销售话术",
+    "sub": "分享一些关于您项目的信息，我们将在一个工作日内回复。",
+    "reachUs": "直接联系我们",
+    "preferConversation": "更喜欢对话？我们一通电话即可。",
+    "contactLede": "推进的最佳方式是简短的对话。通过以下任何渠道联系我们，或预约时段，我们将做好准备来与您沟通。",
+    "phone": "电话",
+    "email": "邮箱",
+    "office": "办公室",
+    "hours": "工作时间",
+    "hoursValue": "周一至周六，9:30 – 18:30 IST",
+    "bookSlot": "预约咨询时段",
+    "sendMessage": "给我们发消息",
+    "fieldsRequired": "带 * 的字段为必填项。",
+    "fullName": "全名 *",
+    "emailLabel": "邮箱 *",
+    "company": "公司",
+    "subject": "主题",
+    "messageLabel": "消息 *",
+    "sending": "发送中…",
+    "sendBtn": "发送消息",
+    "successMsg": "消息已发送！副本已发送到您的邮箱。",
+    "errorMsg": "无法保存您的消息。请检查contact_messages表是否存在，然后重试。"
+  },
+  "services": {
+    "eyebrow": "服务",
+    "title": "我们做什么",
+    "sub": "从战略到托管运营，我们为在执行中竞争的公司提供端到端的技术合作。",
+    "items": {
+      "customDevelopment": {
+        "label": "定制开发",
+        "description": "根据您的确切需求构建的定制Web、移动和API产品。"
+      },
+      "processAutomation": {
+        "label": "流程自动化",
+        "description": "通过智能自动化简化工作流程，消除手动操作。"
+      },
+      "centerOfExcellence": {
+        "label": "卓越中心",
+        "description": "建立共享标准和复用的高性能工程中心。"
+      },
+      "solutionEngineering": {
+        "label": "解决方案工程",
+        "description": "从发现到生产，构建弹性、可扩展的系统架构。"
+      },
+      "digitalTransformation": {
+        "label": "数字化转型",
+        "description": "现代化技术、流程和文化，在数字优先的世界中竞争。"
+      },
+      "endToEndSolutions": {
+        "label": "端到端解决方案",
+        "description": "从战略设计到24/7运营的全生命周期交付。"
+      },
+      "migrationServices": {
+        "label": "迁移服务",
+        "description": "安全且经济高效地将应用程序、数据和基础设施迁移到云端。"
+      },
+      "pilotPrototyping": {
+        "label": "试点与原型",
+        "description": "通过低风险试点和生产级原型快速验证想法。"
+      },
+      "sharedServices": {
+        "label": "共享服务",
+        "description": "可跨团队扩展的集中化平台和托管服务。"
+      }
+    }
+  },
+  "products": {
+    "featured": "精选产品",
+    "featuredSub": "简化运营、连接团队、自动化流程，推动更智能的业务增长。",
+    "seeAll": "查看所有产品",
+    "featuredProducts": "精选产品",
+    "meetAutonomous": "认识自主工作力",
+    "meetAutonomousText": "用与团队并肩工作的AI代理转变您的运营，处理复杂、重复的任务。",
+    "learnMore": "了解更多",
+    "erp": {
+      "title": "一个万能平台",
+      "sub": "以连接、智能和可扩展的企业管理解决方案赋能企业。",
+      "explore": "探索ERP解决方案",
+      "gridTitle": "ERP解决方案",
+      "promoTitle": "面向增长的模块化ERP",
+      "promoText": "无需传统多年系统的复杂性，快速部署模块化ERP功能。",
+      "scheduleDemo": "预约演示"
+    },
+    "it": {
+      "title": "IT解决方案",
+      "sub": "企业级基础设施、安全和DevOps解决方案，保持您的业务运转。",
+      "explore": "探索IT解决方案",
+      "gridTitle": "IT解决方案",
+      "promoTitle": "可靠的IT基础设施",
+      "promoText": "通过托管云、安全和DevOps服务构建弹性技术基础。",
+      "getStarted": "开始使用"
+    },
+    "crm": {
+      "title": "CRM解决方案",
+      "sub": "简化销售、支持和营销工作流程的客户关系管理。",
+      "explore": "探索CRM解决方案",
+      "gridTitle": "CRM解决方案",
+      "promoTitle": "达成更多交易",
+      "promoText": "以统一的客户数据和智能自动化赋能您的销售和支持团队。",
+      "startTrial": "开始免费试用"
+    },
+    "hrms": {
+      "title": "HRMS解决方案",
+      "sub": "涵盖薪资、招聘、绩效和员工参与的人力资源管理。",
+      "explore": "探索HRMS解决方案",
+      "gridTitle": "HRMS解决方案",
+      "promoTitle": "简化HR运营",
+      "promoText": "通过现代的、员工优先的平台自动化从招聘到退休的HR工作流程。",
+      "requestDemo": "请求演示"
+    },
+    "sidebar": {
+      "featuredProducts": "精选产品",
+      "erpSolutions": "ERP解决方案",
+      "solutions": "解决方案"
+    },
+    "items": {
+      "oklutAiSuite": {
+        "title": "Oklut AI套件",
+        "description": "智能自主代理和工具，自动化复杂工作流和客户运营。"
+      },
+      "cloudNexus": {
+        "title": "CloudNexus",
+        "description": "优化性能、安全、合规性和成本的多云管理平台。"
+      },
+      "workSync": {
+        "title": "WorkSync",
+        "description": "集成任务、聊天和文档管理的混合协作与生产力中心。"
+      },
+      "dataStream": {
+        "title": "DataStream",
+        "description": "将业务事件流转化为可操作洞察的实时分析引擎。"
+      },
+      "oklutErpCore": {
+        "title": "Oklut ERP Core",
+        "description": "连接财务、资产、HR、采购和库存的统一企业架构。"
+      },
+      "hrmsPro": {
+        "title": "HRMS Pro",
+        "description": "涵盖薪资、福利、绩效评估和自助服务的员工体验平台。"
+      },
+      "supplyChainIq": {
+        "title": "SupplyChain IQ",
+        "description": "实时物流跟踪、自动化仓储运营和需求预测。"
+      },
+      "financeHub": {
+        "title": "Finance Hub",
+        "description": "高级账本管理、计费工作流、自动化合规和实时现金流报告。"
+      },
+      "cloudInfrastructure": {
+        "title": "云基础设施",
+        "description": "跨AWS、Azure和GCP的可扩展云架构、迁移和管理。"
+      },
+      "cybersecuritySuite": {
+        "title": "网络安全套件",
+        "description": "端到端安全监控、威胁检测和合规管理。"
+      },
+      "devopsPipeline": {
+        "title": "DevOps流水线",
+        "description": "CI/CD自动化、容器化和基础设施即代码，加速交付。"
+      },
+      "managedItServices": {
+        "title": "托管IT服务",
+        "description": "24/7基础设施监控、事件响应和主动维护。"
+      },
+      "salesCrm": {
+        "title": "销售CRM",
+        "description": "一个平台中的管道管理、线索评分、交易跟踪和销售预测。"
+      },
+      "customerSupportHub": {
+        "title": "客户支持中心",
+        "description": "工单、知识库、实时聊天和全渠道支持管理。"
+      },
+      "marketingAutomation": {
+        "title": "营销自动化",
+        "description": "活动编排、邮件自动化、线索培育和分析。"
+      },
+      "customer360View": {
+        "title": "客户360视图",
+        "description": "结合销售、支持和交互数据的统一客户档案。"
+      },
+      "coreHr": {
+        "title": "核心HR",
+        "description": "员工记录、组织架构、假期管理和考勤跟踪。"
+      },
+      "payrollCompliance": {
+        "title": "薪资与合规",
+        "description": "自动化薪资处理、税务计算和法定合规。"
+      },
+      "performanceManagement": {
+        "title": "绩效管理",
+        "description": "OKR跟踪、360°评估、目标设定和员工发展计划。"
+      },
+      "recruitmentPortal": {
+        "title": "招聘门户",
+        "description": "职位发布、候选人跟踪、面试安排和入职工作流。"
+      }
+    }
+  },
+  "techNav": {
+    "aiRobotics": "AI与机器人",
+    "businessAutomation": "业务自动化",
+    "cloudMigrations": "云迁移",
+    "dataCenters": "数据中心",
+    "cognitiveAnalyticsAi": "认知分析与AI",
+    "informationReportingSystems": "信息与报告系统",
+    "managedServices": "托管服务",
+    "oneStopSolutions": "一站式解决方案"
+  },
+  "servicePage": {
+    "serviceOverview": "服务概述",
+    "whatWeOffer": "我们的服务",
+    "whyChooseOklut": "为什么选择Oklut",
+    "benefitsOfWorking": "与我们合作的优势",
+    "techStack": "技术栈",
+    "technologiesWeUse": "我们使用的技术",
+    "ourWork": "我们的作品",
+    "relatedProjects": "相关项目",
+    "viewCaseStudy": "查看案例研究",
+    "readyToDiscuss": "准备好讨论您的{{title}}项目了吗？",
+    "seniorEngineersReady": "我们的资深工程师已准备好帮助您规划、设计和构建解决方案。",
+    "startProject": "开始您的项目",
+    "howItWorks": "运作方式"
+  },
+  "consultation": {
+    "badge": "预约免费咨询",
+    "title": "让我们一起规划您的项目",
+    "description": "与我们的顾问预约无义务电话。讨论您的需求，探索合适的技术方案，获得清晰的报价——全部在30分钟内完成。",
+    "bookSlot": "预约您的时段",
+    "howItWorks": "运作方式",
+    "accountRequired": "需要账户",
+    "signInToBook": "登录以预约咨询",
+    "accountRequiredText": "您需要一个Oklut账户来请求咨询。登录或创建一个——只需不到一分钟。",
+    "signInToContinue": "登录以继续",
+    "newToOklut": "新用户？",
+    "createAccount": "创建账户",
+    "requestMeeting": "预约会议",
+    "tellUsAboutProject": "告诉我们您的项目",
+    "fillDetails": "填写您的详细信息，我们将通过电子邮件确认您的咨询时段。",
+    "fullName": "全名 *",
+    "email": "邮箱 *",
+    "phone": "电话 *",
+    "company": "公司",
+    "serviceOfInterest": "感兴趣的服务 *",
+    "selectService": "选择服务…",
+    "preferredDate": "首选日期 *",
+    "preferredTime": "首选时间 *",
+    "selectTimeSlot": "选择时间段…",
+    "estimatedBudget": "预估预算",
+    "selectRange": "选择范围…",
+    "projectRequirements": "项目需求",
+    "booking": "预约中…",
+    "bookFreeConsultation": "预约我的免费咨询",
+    "freeNote": "100%免费且无义务。我们通常在24小时内回复。",
+    "whatToExpect": "期待什么",
+    "preferToReachUs": "更喜欢直接联系我们？",
+    "callUs": "致电我们",
+    "emailUs": "发邮件给我们",
+    "visitUs": "访问我们",
+    "whyBookWithUs": "为什么选择我们",
+    "freeCallTitle": "真正有帮助的免费电话",
+    "freeCallNoPressure": "免费电话，无压力",
+    "freeCallNoPressureText": "每次首次咨询都是免费的。没有购买义务——只有诚实的建议。",
+    "seniorConsultants": "仅限资深顾问",
+    "seniorConsultantsText": "您的会议由资深工程师和顾问主持，他们以构建为生。",
+    "clearTimelines": "清晰的时间线和报价",
+    "clearTimelinesText": "获得明确的下一步、现实的时间表和透明的项目定价。",
+    "services": {
+      "customSoftware": "定制软件开发",
+      "webMobile": "Web和移动应用开发",
+      "cloudDevops": "云和DevOps解决方案",
+      "aiMl": "AI和机器学习",
+      "itConsulting": "IT咨询",
+      "digitalMarketing": "数字营销和SEO",
+      "erpSolutions": "ERP解决方案",
+      "other": "其他 / 还不确定"
+    },
+    "budgets": {
+      "under1L": "低于₹1L",
+      "1to5L": "₹1L – ₹5L",
+      "5to10L": "₹5L – ₹10L",
+      "above10L": "₹10L以上",
+      "notDecided": "尚未决定"
+    },
+    "expectPoints": {
+      "understandGoals": {
+        "title": "了解您的目标",
+        "text": "我们先倾听。30分钟的电话来了解您的业务需求、受众和期望成果。"
+      },
+      "technicalDirection": {
+        "title": "获得技术方向",
+        "text": "我们的工程师分享适合您项目的架构、技术栈和方法。"
+      },
+      "clearQuote": {
+        "title": "获得清晰报价",
+        "text": "获得透明的估算、时间表和后续步骤——无义务。"
+      }
+    },
+    "validation": {
+      "nameRequired": "全名是必填项。",
+      "emailRequired": "邮箱是必填项。",
+      "emailInvalid": "请输入有效的邮箱。",
+      "phoneRequired": "电话号码是必填项。",
+      "phoneInvalid": "请输入有效的电话号码。",
+      "serviceRequired": "请选择一项服务。",
+      "dateRequired": "请选择首选日期。",
+      "timeRequired": "请选择首选时间段。",
+      "messageTooShort": "请添加更多详细信息（至少10个字符）。",
+      "signInRequired": "请登录以预约咨询。",
+      "couldNotBook": "无法预约您的咨询。请检查consultations表是否存在，然后重试。",
+      "bookedSuccess": "咨询已预约！我们的团队将很快通过电子邮件确认您的时间段。"
+    }
+  },
+  "careers": {
+    "badge": "Oklut职业生涯",
+    "title": "共建未来",
+    "titleAccent": "与我们一起",
+    "description": "加入一个为雄心勃勃的公司交付定制软件、云基础设施和AI的资深团队。远程友好、注重成长、持续学习。",
+    "viewOpenRoles": "查看开放职位",
+    "trackApplications": "跟踪申请",
+    "whyJoinOklut": "为什么加入Oklut",
+    "remoteFriendly": "远程友好",
+    "highGrowthProjects": "高增长项目",
+    "healthBenefits": "健康与福利",
+    "flexibleHours": "弹性工作时间",
+    "openPositions": "开放职位",
+    "openRoles": "开放职位",
+    "exploreOpportunities": "探索工程、设计及其他领域的机遇。",
+    "careersTitle": "Oklut科技的职业生涯 — 海得拉巴的开放职位和工作",
+    "careersDescription": "探索Oklut科技的开放职位。海得拉巴的资深工程、设计和AI职位——远程友好且注重成长。"
+  },
+  "auth": {
+    "welcomeBack": "欢迎回来",
+    "createAccount": "创建账户",
+    "forgotPassword": "忘记密码",
+    "createNewPassword": "创建新密码",
+    "welcomeBackDesc": "登录您的Oklut账户。",
+    "createAccountDesc": "立即加入Oklut科技。",
+    "forgotDesc": "输入您的邮箱，我们将向您发送重置密码的链接。",
+    "recoveryDesc": "为您的账户选择一个强密码。",
+    "fullName": "全名",
+    "email": "邮箱",
+    "password": "密码",
+    "newPassword": "新密码",
+    "confirmPassword": "确认密码",
+    "confirmNewPassword": "确认新密码",
+    "forgotPasswordLink": "忘记密码？",
+    "privacyPolicy": "我接受Oklut的<1>隐私与安全</1>政策。",
+    "sendResetLink": "发送重置链接",
+    "signIn": "登录",
+    "signUp": "注册",
+    "pleaseWait": "请稍候…",
+    "rememberedPassword": "想起密码了？",
+    "signInLink": "登录",
+    "noAccount": "没有账户？",
+    "signUpLink": "注册",
+    "hasAccount": "已有账户？",
+    "changedMind": "改变主意了？",
+    "backToSignIn": "返回登录",
+    "resetSent": "密码重置链接已发送！请检查您的邮箱以创建新密码。",
+    "passwordUpdated": "您的密码已更新。请使用新密码登录。",
+    "accountCreated": "账户已创建！请检查您的邮箱确认注册，然后登录。",
+    "validation": {
+      "fullNameRequired": "全名是必填项。",
+      "emailRequired": "邮箱是必填项。",
+      "emailInvalid": "请输入有效的邮箱。",
+      "passwordRequired": "密码是必填项。",
+      "passwordMinLength": "密码必须至少6个字符。",
+      "passwordsNoMatch": "密码不匹配。",
+      "acceptTerms": "请接受Oklut隐私和安全政策以继续。"
+    }
+  },
+  "applyModal": {
+    "applyTo": "申请加入Oklut科技",
+    "signInOrCreate": "登录或创建档案以申请{{jobTitle}}。",
+    "signIn": "登录",
+    "createAccount": "创建账户",
+    "applyTitle": "申请：{{jobTitle}}",
+    "department": "Oklut科技",
+    "location": "海得拉巴，印度",
+    "fixFields": "请在提交前修复下面标记的字段。",
+    "jobRole": "职位 *",
+    "autoFilled": "从您选择的职位自动填充。",
+    "fullName": "全名 *",
+    "email": "邮箱 *",
+    "phone": "电话 *",
+    "linkedinUrl": "LinkedIn链接",
+    "portfolioUrl": "作品集链接",
+    "resumeUpload": "上传简历 *",
+    "resumeDragDrop": "将简历拖放到此处，或<1>浏览文件</1>",
+    "resumeHint": "PDF、DOC或DOCX · 最大5 MB",
+    "resumeUploading": "正在上传您的简历…",
+    "coverLetter": "求职信",
+    "coverLetterPlaceholder": "告诉我们为什么您非常适合这个职位…",
+    "submitting": "提交中…",
+    "submitApplication": "提交申请",
+    "applicationSubmitted": "申请已提交",
+    "thankYou": "谢谢您，{{firstName}}！您申请<1>{{jobTitle}}</1>的申请已成功提交。",
+    "confirmationEmail": "确认邮件正在发送到您的收件箱。",
+    "step1": "我们的团队会审核您的简历和求职信。",
+    "step2": "入围的候选人将被邀请进行面谈。",
+    "step3": "我们会通过邮件跟进——请关注您的收件箱。",
+    "emailFailed": "我们暂时无法发送确认邮件。您的申请已保存——如有问题，请联系<1>info@oklut.com</1>。",
+    "done": "完成",
+    "remove": "移除",
+    "validation": {
+      "nameRequired": "姓名是必填项。",
+      "emailRequired": "邮箱是必填项。",
+      "emailInvalid": "请输入有效的邮箱。",
+      "phoneRequired": "电话号码是必填项。",
+      "phoneInvalid": "请输入有效的电话号码。",
+      "resumeRequired": "请上传您的简历。",
+      "urlInvalid": "请输入完整URL（https://…）。",
+      "resumeFormat": "简历必须是PDF、DOC或DOCX文件。",
+      "resumeSize": "简历必须在5 MB以内。",
+      "uploadFailed": "无法上传您的简历。请重试。",
+      "submitFailed": "无法提交您的申请。请检查job_applications表是否存在，然后重试。",
+      "noResume": "未选择简历。"
+    },
+    "newHere": "新用户？",
+    "createAnAccount": "创建账户",
+    "alreadyHaveAccount": "已有账户？",
+    "signInLink": "登录",
+    "acceptPrivacy": "我接受Oklut的<1>隐私与安全</1>政策。",
+    "signingIn": "登录中…",
+    "creatingAccount": "创建账户中…",
+    "createAccountContinue": "创建账户并继续",
+    "accountCreatedNotice": "账户已创建！请检查{{email}}确认注册，以便上传简历。您可以在下方继续申请。"
+  },
+  "chatbot": {
+    "chatWithOklutAi": "与Oklut AI聊天",
+    "openChatLabel": "打开Oklut AI助手聊天",
+    "chatTitle": "Oklut AI助手",
+    "online": "在线",
+    "expandLabel": "展开聊天机器人",
+    "minimizeLabel": "最小化聊天机器人",
+    "closeLabel": "关闭聊天机器人",
+    "expand": "展开",
+    "minimize": "最小化",
+    "close": "关闭",
+    "popularTopics": "热门话题",
+    "askPlaceholder": "问我关于Oklut的问题...",
+    "messageLabel": "给Oklut AI助手发消息",
+    "sendLabel": "发送消息",
+    "sendTitle": "发送消息",
+    "enterToSend": "按回车发送 · Shift+Enter换行",
+    "newChat": "新对话"
+  },
+  "cookieConsent": {
+    "title": "我们重视您的隐私",
+    "description": "我们使用cookies来改善您的浏览体验。您可以接受所有cookies、拒绝非必要的cookies或自定义偏好。始终启用必要的cookies以确保网站正常运行。",
+    "acceptAll": "全部接受",
+    "rejectNonEssential": "拒绝非必要",
+    "managePreferences": "管理偏好",
+    "privacyPolicy": "隐私政策"
+  },
+  "cookiePreferences": {
+    "title": "管理Cookie偏好",
+    "description": "选择您允许的cookie类别。必要的cookie保持启用以维持网站功能。",
+    "essential": "必要",
+    "essentialDesc": "网站运行所需（身份验证、安全、负载均衡）。无法禁用。",
+    "analytics": "分析",
+    "analyticsDesc": "帮助我们了解访客如何使用网站以进行改进。默认禁用。",
+    "marketing": "营销",
+    "marketingDesc": "用于向您展示相关的优惠和活动。默认禁用。",
+    "cancel": "取消",
+    "savePreferences": "保存偏好"
+  },
+  "privacy": {
+    "badge": "法律",
+    "title": "隐私政策",
+    "description": "Oklut科技如何收集、使用和保护您的个人信息和cookies。",
+    "lastUpdated": "最后更新：2026年8月",
+    "managingPreferences": "管理您的偏好",
+    "managingPreferencesDesc": "您可以随时从cookie偏好面板查看或更改允许的cookies。",
+    "manageCookiePreferences": "管理Cookie偏好",
+    "section1": {
+      "title": "1. 我们收集的信息",
+      "body": [
+        "我们收集您直接提供的信息（如提交联系表单或创建账户时的姓名和电子邮件地址），以及通过cookies和类似技术自动收集的信息，如访问的页面、设备类型和大致位置。"
+      ]
+    },
+    "section2": {
+      "title": "2. 我们如何使用Cookies",
+      "body": [
+        "必要的cookies始终启用，因为没有它们网站无法正常运行。它们存储会话和身份验证状态，并记住您的cookie偏好。",
+        "分析cookies帮助我们了解访客如何使用网站以进行改进。营销cookies用于向您展示相关的优惠和活动。这些类别仅在您同意后启用，可随时从cookie偏好面板更改。"
+      ]
+    },
+    "section3": {
+      "title": "3. 法律依据（GDPR）",
+      "body": [
+        "我们基于以下法律依据处理个人数据：您的同意（用于非必要cookies和营销）、合同履行（用于您请求的服务）、法律义务，以及您的权利不优先于的合法利益。您可以随时撤回同意，不影响撤回前进行的处理的合法性。"
+      ]
+    },
+    "section4": {
+      "title": "4. 您的权利",
+      "body": [
+        "根据您的位置，您可能有权访问、更正、删除或限制处理您的个人数据，反对处理，以及数据可携带权。您还可以向当地的监管机构投诉。"
+      ]
+    },
+    "section5": {
+      "title": "5. 数据保留与安全",
+      "body": [
+        "我们仅在本政策所述目的所需的时间内保留个人数据。我们应用适当的技术和组织措施来保护您的信息免受未经授权的访问、更改、披露或销毁。"
+      ]
+    },
+    "section6": {
+      "title": "6. 第三方服务",
+      "body": [
+        "某些cookies可能由第三方提供商（如分析或广告平台）设置，它们帮助我们运营网站。这些提供商根据其自己的隐私政策处理数据，仅在您同意相关类别时才启用。"
+      ]
+    },
+    "contactUs": "7. 联系我们",
+    "contactUsText": "如有任何关于本政策或您的个人数据的问题，请通过<1>info@oklut.com</1>联系我们或致电<3>+91-9014217124</3>。"
+  },
+  "footer": {
+    "company": "公司",
+    "about": "关于我们",
+    "careers": "职业生涯",
+    "perspectives": "观点",
+    "technologies": "技术",
+    "contact": "联系我们",
+    "services": "服务",
+    "getInTouch": "联系我们",
+    "bookConsultation": "预约咨询",
+    "copyright": "© {{year}} Oklut科技。保留所有权利。",
+    "cookiePreferences": "Cookie偏好",
+    "privacyPolicy": "隐私政策",
+    "description": "Oklut科技是印度海得拉巴的数字产品和IT服务公司。我们为在执行中竞争的公司设计、构建和扩展软件。"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "retry": "重试",
+    "close": "关闭",
+    "backToTop": "返回顶部",
+    "skipToContent": "跳转到内容"
+  },
+  "phoneInput": {
+    "searchPlaceholder": "搜索国家或区号…",
+    "noResults": "未找到国家。",
+    "countryCodeLabel": "国家电话区号",
+    "required": "电话号码是必填项。",
+    "incomplete": "电话号码必须恰好包含 {{count}} 位数字。",
+    "tooLong": "电话号码不能超过 {{count}} 位数字。",
+    "invalid": "请输入适用于 {{country}} 的有效电话号码。"
+  }
+}

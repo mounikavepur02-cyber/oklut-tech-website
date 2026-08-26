@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { Icon } from '../../components/Icon'
+import { useTranslation } from '../../i18n/TranslationContext'
 import './ServicePage.css'
 
 export function ServicePageTemplate({
@@ -17,9 +18,11 @@ export function ServicePageTemplate({
   benefits = [],
   technologies = [],
   caseStudies = [],
-  ctaText = 'Start your project',
+  ctaText,
   showCta = true,
 }) {
+  const { t } = useTranslation()
+
   useEffect(() => {
     const reveals = () => Array.from(document.querySelectorAll('.reveal'))
     const revealEl = (el) => el.classList.add('revealed')
@@ -116,7 +119,7 @@ export function ServicePageTemplate({
               <div className="section-head reveal">
                 <span className="eyebrow">
                   <span className="eyebrow-bar" aria-hidden="true" />
-                  Service Overview
+                  {t('servicePage.serviceOverview')}
                 </span>
                 {sectionHeadline && <h2>{sectionHeadline}</h2>}
                 {sectionDescription && <p className="service-overview-desc">{sectionDescription}</p>}
@@ -146,7 +149,7 @@ export function ServicePageTemplate({
               <div className="section-head reveal">
                 <span className="eyebrow">
                   <span className="eyebrow-bar" aria-hidden="true" />
-                  What We Offer
+                  {t('servicePage.whatWeOffer')}
                 </span>
                 <h2>{featuresTitle}</h2>
               </div>
@@ -171,9 +174,9 @@ export function ServicePageTemplate({
             <div className="section-head reveal">
               <span className="eyebrow">
                 <span className="eyebrow-bar" aria-hidden="true" />
-                Why Choose Oklut
+                  {t('servicePage.whyChooseOklut')}
               </span>
-              <h2>Benefits of working with us</h2>
+              <h2>{t('servicePage.benefitsOfWorking')}</h2>
             </div>
             <ul className="benefits-list">
               {benefits.map((benefit, i) => (
@@ -195,9 +198,9 @@ export function ServicePageTemplate({
             <div className="section-head reveal">
               <span className="eyebrow">
                 <span className="eyebrow-bar" aria-hidden="true" />
-                Tech Stack
+                  {t('servicePage.techStack')}
               </span>
-              <h2>Technologies we use</h2>
+              <h2>{t('servicePage.technologiesWeUse')}</h2>
             </div>
             <div className="tech-tags">
               {technologies.map((tech) => (
@@ -214,9 +217,9 @@ export function ServicePageTemplate({
             <div className="section-head reveal">
               <span className="eyebrow">
                 <span className="eyebrow-bar" aria-hidden="true" />
-                Our Work
+                  {t('servicePage.ourWork')}
               </span>
-              <h2>Related projects</h2>
+              <h2>{t('servicePage.relatedProjects')}</h2>
             </div>
             <div className="case-studies-grid">
               {caseStudies.map((study, i) => (
@@ -227,7 +230,7 @@ export function ServicePageTemplate({
                     <h3>{study.title}</h3>
                     <p>{study.description}</p>
                     <Link to={study.link} className="case-study-link">
-                      View case study
+                      {t('servicePage.viewCaseStudy')}
                       <Icon name="arrow" />
                     </Link>
                   </div>
@@ -242,10 +245,10 @@ export function ServicePageTemplate({
         <section className="section service-cta">
           <div className="container">
             <div className="service-cta-card reveal">
-              <h2>Ready to discuss your {title.toLowerCase()} project?</h2>
-              <p>Our senior engineers are ready to help you plan, design, and build your solution.</p>
+              <h2>{t('servicePage.readyToDiscuss', { title: title.toLowerCase() })}</h2>
+              <p>{t('servicePage.seniorEngineersReady')}</p>
               <Link to="/book-consultation" className="btn btn-primary btn-lg">
-                {ctaText}
+                {ctaText || t('servicePage.startProject')}
                 <Icon name="arrow" />
               </Link>
             </div>

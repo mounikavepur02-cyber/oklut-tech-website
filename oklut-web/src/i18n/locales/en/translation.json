@@ -1,0 +1,631 @@
+{
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "products": "Products",
+    "perspectives": "Perspectives",
+    "technologies": "Technologies",
+    "contact": "Contact",
+    "careers": "Careers",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "chooseLanguage": "Choose your language",
+    "searchLanguage": "Search language",
+    "resetEnglish": "Reset to English",
+    "noResults": "No languages found"
+  },
+  "hero": {
+    "eyebrow": "Oklut Technologies — Hyderabad",
+    "title": "Software, engineered for the way <em>your business</em> runs.",
+    "description": "Oklut is a digital product and IT services company. We design, build and scale custom software, web and mobile products, cloud infrastructure and AI — for companies that compete on execution.",
+    "bookConsultation": "Book a free consultation",
+    "exploreServices": "Explore services",
+    "years": "years",
+    "projects": "projects",
+    "retention": "retention",
+    "location": "Madhapur, Hyderabad",
+    "since": "Oklut Technologies — since 2012",
+    "metaStudio": "Digital product studio",
+    "metaTech": "Web · Mobile · Cloud · AI"
+  },
+  "about": {
+    "eyebrow": "About Us",
+    "title": "The Best IT Solution — <em>Oklut Technologies</em>",
+    "description": "Oklut Technologies is an Indian subsidiary IT company and one of India's leading web design and web application development companies. We have mastered content management systems and mobile application development, including iPhone, iPad and Android app development. We offer a variety of services specialized mainly in website designing and development — built on trust, quality and long-term partnership.",
+    "awardWinning": "Award Winning",
+    "awardText": "Recognized for delivery excellence across web and mobile product engineering.",
+    "professionalStaff": "Professional Staff",
+    "staffText": "Senior, accountable engineers who own the work from first call to go-live.",
+    "support247": "24/7 Support",
+    "supportText": "Managed services and a support line that answers when you need it.",
+    "fairPrices": "Fair Prices",
+    "pricesText": "Honest estimates and transparent billing on every single engagement."
+  },
+  "stats": {
+    "happyClients": "Happy clients",
+    "projectsDone": "Projects done",
+    "winAwards": "Win awards"
+  },
+  "insights": {
+    "eyebrow": "Perspectives",
+    "title": "Perspectives and thinking from the studio",
+    "item1Date": "Jul 2026",
+    "item1Tag": "Product",
+    "item1Title": "A modular ERP approach for growing enterprises",
+    "item1Text": "How we structure ERP engagements so finance, inventory, HR and procurement integrate without a multi-year programme.",
+    "item2Date": "May 2026",
+    "item2Tag": "Company",
+    "item2Title": "Recognized among leading IT firms in Hyderabad",
+    "item2Text": "Our engineering team has been recognized for delivery excellence and client satisfaction in digital product engineering.",
+    "item3Date": "Mar 2026",
+    "item3Tag": "People",
+    "item3Title": "Hiring: senior engineers to grow our cloud & AI practice",
+    "item3Text": "We are growing our cloud, data and AI teams — remote-friendly roles, senior ownership and real product work."
+  },
+  "technologies": {
+    "title": "Technologies",
+    "selectTechnology": "Select a Technology",
+    "headline": "Technology That Drives Global Business",
+    "sub": "Empowering organizations worldwide with intelligent, scalable, and innovative technology solutions.",
+    "options": {
+      "aiRobotics": "AI & Robotics",
+      "businessAutomation": "Business Automation",
+      "cloudMigrations": "Cloud Migrations",
+      "dataCenters": "Data Centers",
+      "cognitiveAnalytics": "Cognitive Analytics & AI",
+      "informationReporting": "Information & Reporting Systems",
+      "managedServices": "Managed Services",
+      "oneStopSolutions": "One-Stop Solutions"
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Talk to a senior engineer, not a sales script",
+    "sub": "Share a little about your project and we will respond within one business day.",
+    "reachUs": "Reach us directly",
+    "preferConversation": "Prefer a conversation? We are one call away.",
+    "contactLede": "The fastest way to move forward is a short conversation. Reach us on any channel below, or book a slot and we will come to you prepared.",
+    "phone": "Phone",
+    "email": "Email",
+    "office": "Office",
+    "hours": "Hours",
+    "hoursValue": "Mon – Sat, 9:30 – 18:30 IST",
+    "bookSlot": "Book a consultation slot",
+    "sendMessage": "Send us a message",
+    "fieldsRequired": "Fields marked with * are required.",
+    "fullName": "Full Name *",
+    "emailLabel": "Email *",
+    "company": "Company",
+    "subject": "Subject",
+    "messageLabel": "Message *",
+    "sending": "Sending…",
+    "sendBtn": "Send message",
+    "successMsg": "Message sent! A copy has been emailed to you.",
+    "errorMsg": "Could not save your message. Check that the contact_messages table exists, then try again."
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "What we do",
+    "sub": "From strategy to managed operations, we deliver end-to-end technology partnerships for companies that compete on execution.",
+    "items": {
+      "customDevelopment": {
+        "label": "Custom Development",
+        "description": "Bespoke web, mobile and API products built around your exact requirements."
+      },
+      "processAutomation": {
+        "label": "Process Automation",
+        "description": "Streamline workflows and remove manual effort with intelligent automation."
+      },
+      "centerOfExcellence": {
+        "label": "Center of Excellence",
+        "description": "Embed a high-performing engineering hub with shared standards and reuse."
+      },
+      "solutionEngineering": {
+        "label": "Solution Engineering",
+        "description": "Architect resilient, scalable systems from discovery to production."
+      },
+      "digitalTransformation": {
+        "label": "Digital Transformation",
+        "description": "Modernize technology, processes and culture to compete in a digital-first world."
+      },
+      "endToEndSolutions": {
+        "label": "End-to-End Solutions",
+        "description": "Full-lifecycle delivery from strategy and design through 24/7 operations."
+      },
+      "migrationServices": {
+        "label": "Migration Services",
+        "description": "Move applications, data and infrastructure to the cloud securely and cost-effectively."
+      },
+      "pilotPrototyping": {
+        "label": "Pilot & Prototyping",
+        "description": "Validate ideas fast with low-risk pilots and production-grade prototypes."
+      },
+      "sharedServices": {
+        "label": "Shared Services",
+        "description": "Centralized platforms and managed services that scale across teams."
+      }
+    }
+  },
+  "products": {
+    "featured": "Featured Products",
+    "featuredSub": "Simplify operations, connect teams, automate processes, and drive smarter business growth.",
+    "seeAll": "See All Products",
+    "featuredProducts": "FEATURED PRODUCTS",
+    "meetAutonomous": "Meet the Autonomous Workforce",
+    "meetAutonomousText": "Transform your operations with AI agents that work alongside your team to handle complex, repetitive tasks.",
+    "learnMore": "Learn More",
+    "erp": {
+      "title": "One Platform Ready for Anything",
+      "sub": "Empowering businesses with connected, intelligent, and scalable enterprise management solutions.",
+      "explore": "Explore ERP Solutions",
+      "gridTitle": "ERP SOLUTIONS",
+      "promoTitle": "Modular ERP for Growth",
+      "promoText": "Deploy modular ERP features rapidly without the complexity of traditional multi-year systems.",
+      "scheduleDemo": "Schedule Demo"
+    },
+    "it": {
+      "title": "IT Solutions",
+      "sub": "Enterprise-grade infrastructure, security, and DevOps solutions to keep your business running.",
+      "explore": "Explore IT Solutions",
+      "gridTitle": "IT SOLUTIONS",
+      "promoTitle": "Reliable IT Infrastructure",
+      "promoText": "Build a resilient technology foundation with managed cloud, security, and DevOps services.",
+      "getStarted": "Get Started"
+    },
+    "crm": {
+      "title": "CRM Solutions",
+      "sub": "Customer relationship management to streamline sales, support, and marketing workflows.",
+      "explore": "Explore CRM Solutions",
+      "gridTitle": "CRM SOLUTIONS",
+      "promoTitle": "Close More Deals",
+      "promoText": "Empower your sales and support teams with unified customer data and intelligent automation.",
+      "startTrial": "Start Free Trial"
+    },
+    "hrms": {
+      "title": "HRMS Solutions",
+      "sub": "Human resource management covering payroll, recruitment, performance, and employee engagement.",
+      "explore": "Explore HRMS Solutions",
+      "gridTitle": "HRMS SOLUTIONS",
+      "promoTitle": "Simplify HR Operations",
+      "promoText": "Automate HR workflows from recruitment to retirement with a modern, employee-first platform.",
+      "requestDemo": "Request Demo"
+    },
+    "sidebar": {
+      "featuredProducts": "Featured Products",
+      "erpSolutions": "ERP Solutions",
+      "solutions": "SOLUTIONS"
+    },
+    "items": {
+      "oklutAiSuite": {
+        "title": "Oklut AI Suite",
+        "description": "Intelligent autonomous agents and tools that automate complex workflows and customer operations."
+      },
+      "cloudNexus": {
+        "title": "CloudNexus",
+        "description": "Multi-cloud management platform optimizing performance, security, compliance, and costs."
+      },
+      "workSync": {
+        "title": "WorkSync",
+        "description": "Hybrid collaboration and productivity hub with integrated task, chat, and document management."
+      },
+      "dataStream": {
+        "title": "DataStream",
+        "description": "Real-time analytics engine transforming streams of business events into actionable insights."
+      },
+      "oklutErpCore": {
+        "title": "Oklut ERP Core",
+        "description": "Unified enterprise architecture connecting finance, assets, HR, procurement, and inventory."
+      },
+      "hrmsPro": {
+        "title": "HRMS Pro",
+        "description": "Employee experience platform covering payroll, benefits, performance reviews, and self-service."
+      },
+      "supplyChainIq": {
+        "title": "SupplyChain IQ",
+        "description": "Real-time logistics tracking, automated warehouse operations, and demand forecasting."
+      },
+      "financeHub": {
+        "title": "Finance Hub",
+        "description": "Advanced ledger management, billing workflows, automated compliance, and real-time cashflow reports."
+      },
+      "cloudInfrastructure": {
+        "title": "Cloud Infrastructure",
+        "description": "Scalable cloud architecture, migration, and management across AWS, Azure, and GCP."
+      },
+      "cybersecuritySuite": {
+        "title": "Cybersecurity Suite",
+        "description": "End-to-end security monitoring, threat detection, and compliance management."
+      },
+      "devopsPipeline": {
+        "title": "DevOps Pipeline",
+        "description": "CI/CD automation, containerization, and infrastructure-as-code for faster delivery."
+      },
+      "managedItServices": {
+        "title": "Managed IT Services",
+        "description": "24/7 infrastructure monitoring, incident response, and proactive maintenance."
+      },
+      "salesCrm": {
+        "title": "Sales CRM",
+        "description": "Pipeline management, lead scoring, deal tracking, and sales forecasting in one platform."
+      },
+      "customerSupportHub": {
+        "title": "Customer Support Hub",
+        "description": "Ticketing, knowledge base, live chat, and omnichannel support management."
+      },
+      "marketingAutomation": {
+        "title": "Marketing Automation",
+        "description": "Campaign orchestration, email automation, lead nurturing, and analytics."
+      },
+      "customer360View": {
+        "title": "Customer 360 View",
+        "description": "Unified customer profiles combining sales, support, and interaction data."
+      },
+      "coreHr": {
+        "title": "Core HR",
+        "description": "Employee records, org hierarchy, leave management, and attendance tracking."
+      },
+      "payrollCompliance": {
+        "title": "Payroll & Compliance",
+        "description": "Automated payroll processing, tax calculations, and statutory compliance."
+      },
+      "performanceManagement": {
+        "title": "Performance Management",
+        "description": "OKR tracking, 360° reviews, goal setting, and employee development plans."
+      },
+      "recruitmentPortal": {
+        "title": "Recruitment Portal",
+        "description": "Job postings, applicant tracking, interview scheduling, and onboarding workflows."
+      }
+    }
+  },
+  "techNav": {
+    "aiRobotics": "AI & Robotics",
+    "businessAutomation": "Business Automation",
+    "cloudMigrations": "Cloud Migrations",
+    "dataCenters": "Data Centers",
+    "cognitiveAnalyticsAi": "Cognitive Analytics & AI",
+    "informationReportingSystems": "Information & Reporting Systems",
+    "managedServices": "Managed Services",
+    "oneStopSolutions": "One-Stop Solutions"
+  },
+  "servicePage": {
+    "serviceOverview": "Service Overview",
+    "whatWeOffer": "What We Offer",
+    "whyChooseOklut": "Why Choose Oklut",
+    "benefitsOfWorking": "Benefits of working with us",
+    "techStack": "Tech Stack",
+    "technologiesWeUse": "Technologies we use",
+    "ourWork": "Our Work",
+    "relatedProjects": "Related projects",
+    "viewCaseStudy": "View case study",
+    "readyToDiscuss": "Ready to discuss your {{title}} project?",
+    "seniorEngineersReady": "Our senior engineers are ready to help you plan, design, and build your solution.",
+    "startProject": "Start your project",
+    "howItWorks": "How It Works"
+  },
+  "consultation": {
+    "badge": "Book a Free Consultation",
+    "title": "Let's Plan Your Project <span class='hero-accent'>Together</span>",
+    "description": "Schedule a no-obligation call with our consultants. Discuss your requirements, explore the right technical approach and get a clear quote — all in under 30 minutes.",
+    "bookSlot": "Book Your Slot",
+    "howItWorks": "How It Works",
+    "accountRequired": "Account Required",
+    "signInToBook": "Sign in to book your consultation",
+    "accountRequiredText": "You'll need an Oklut account to request a consultation. Sign in or create one — it takes less than a minute.",
+    "signInToContinue": "Sign In to Continue",
+    "newToOklut": "New to Oklut?",
+    "createAccount": "Create an account",
+    "requestMeeting": "Request a Meeting",
+    "tellUsAboutProject": "Tell Us About Your Project",
+    "fillDetails": "Fill in your details and we will confirm your consultation slot by email.",
+    "fullName": "Full Name *",
+    "email": "Email *",
+    "phone": "Phone *",
+    "company": "Company",
+    "serviceOfInterest": "Service of Interest *",
+    "selectService": "Select a service…",
+    "preferredDate": "Preferred Date *",
+    "preferredTime": "Preferred Time *",
+    "selectTimeSlot": "Select a time slot…",
+    "estimatedBudget": "Estimated Budget",
+    "selectRange": "Select a range…",
+    "projectRequirements": "Project Requirements",
+    "booking": "Booking…",
+    "bookFreeConsultation": "Book My Free Consultation",
+    "freeNote": "100% free and no obligation. We normally respond within 24 hours.",
+    "whatToExpect": "What to Expect",
+    "preferToReachUs": "Prefer to Reach Us Directly?",
+    "callUs": "Call us",
+    "emailUs": "Email us",
+    "visitUs": "Visit us",
+    "whyBookWithUs": "Why Book With Us",
+    "freeCallTitle": "A Free Call That Actually Helps",
+    "freeCallNoPressure": "Free Call, No Pressure",
+    "freeCallNoPressureText": "Every first consultation is free. There is no obligation to buy — just honest advice.",
+    "seniorConsultants": "Senior Consultants Only",
+    "seniorConsultantsText": "Your meeting is led by senior engineers and consultants who build for a living.",
+    "clearTimelines": "Clear Timelines & Quotes",
+    "clearTimelinesText": "Leave with a defined next step, realistic timeline and transparent pricing for your project.",
+    "services": {
+      "customSoftware": "Custom Software Development",
+      "webMobile": "Web & Mobile App Development",
+      "cloudDevops": "Cloud & DevOps Solutions",
+      "aiMl": "AI & Machine Learning",
+      "itConsulting": "IT Consulting",
+      "digitalMarketing": "Digital Marketing & SEO",
+      "erpSolutions": "ERP Solutions",
+      "other": "Other / Not sure yet"
+    },
+    "budgets": {
+      "under1L": "Under ₹1L",
+      "1to5L": "₹1L – ₹5L",
+      "5to10L": "₹5L – ₹10L",
+      "above10L": "₹10L+",
+      "notDecided": "Not decided yet"
+    },
+    "expectPoints": {
+      "understandGoals": {
+        "title": "Understand your goals",
+        "text": "We listen first. A 30-minute call to map your business needs, audience and desired outcomes."
+      },
+      "technicalDirection": {
+        "title": "Get technical direction",
+        "text": "Our engineers share the right architecture, stack and approach for your project."
+      },
+      "clearQuote": {
+        "title": "Receive a clear quote",
+        "text": "Walk away with a transparent estimate, timeline and next steps — no obligation."
+      }
+    },
+    "validation": {
+      "nameRequired": "Full name is required.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Enter a valid email.",
+      "phoneRequired": "Phone number is required.",
+      "phoneInvalid": "Enter a valid phone number.",
+      "serviceRequired": "Please choose a service.",
+      "dateRequired": "Pick a preferred date.",
+      "timeRequired": "Pick a preferred time slot.",
+      "messageTooShort": "Add a little more detail (at least 10 characters).",
+      "signInRequired": "Please sign in to book your consultation.",
+      "couldNotBook": "Could not book your consultation. Check that the consultations table exists, then try again.",
+      "bookedSuccess": "Consultation booked! Our team will confirm your time slot via email shortly."
+    }
+  },
+  "careers": {
+    "badge": "Careers at Oklut",
+    "title": "Build the Future",
+    "titleAccent": "With Us",
+    "description": "Join a senior team shipping custom software, cloud infrastructure, and AI for ambitious companies. Remote-friendly, growth-focused, and always learning.",
+    "viewOpenRoles": "View Open Roles",
+    "trackApplications": "Track Applications",
+    "whyJoinOklut": "Why join Oklut",
+    "remoteFriendly": "Remote-friendly",
+    "highGrowthProjects": "High-growth projects",
+    "healthBenefits": "Health & benefits",
+    "flexibleHours": "Flexible working hours",
+    "openPositions": "Open Positions",
+    "openRoles": "Open Roles",
+    "exploreOpportunities": "Explore opportunities across engineering, design, and beyond.",
+    "careersTitle": "Careers at Oklut Technologies — Open Roles & Jobs in Hyderabad",
+    "careersDescription": "Explore open roles at Oklut Technologies. Senior engineering, design and AI positions in Hyderabad, India — remote-friendly and growth-focused."
+  },
+  "auth": {
+    "welcomeBack": "Welcome Back",
+    "createAccount": "Create Account",
+    "forgotPassword": "Forgot Password",
+    "createNewPassword": "Create New Password",
+    "welcomeBackDesc": "Sign in to your Oklut account.",
+    "createAccountDesc": "Join Oklut Technologies today.",
+    "forgotDesc": "Enter your email and we will send you a link to reset your password.",
+    "recoveryDesc": "Choose a strong new password for your account.",
+    "fullName": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "confirmNewPassword": "Confirm New Password",
+    "forgotPasswordLink": "Forgot password?",
+    "privacyPolicy": "I accept the Oklut <1>Privacy & Security</1> policy.",
+    "sendResetLink": "Send Reset Link",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "pleaseWait": "Please wait…",
+    "rememberedPassword": "Remembered your password?",
+    "signInLink": "Sign in",
+    "noAccount": "Don't have an account?",
+    "signUpLink": "Sign up",
+    "hasAccount": "Already have an account?",
+    "changedMind": "Changed your mind?",
+    "backToSignIn": "Back to sign in",
+    "resetSent": "Password reset link sent! Check your email to create a new password.",
+    "passwordUpdated": "Your password has been updated. Sign in with your new password.",
+    "accountCreated": "Account created! Check your email to confirm your signup, then sign in.",
+    "validation": {
+      "fullNameRequired": "Full name is required.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Enter a valid email.",
+      "passwordRequired": "Password is required.",
+      "passwordMinLength": "Password must be at least 6 characters.",
+      "passwordsNoMatch": "Passwords do not match.",
+      "acceptTerms": "Please accept the Oklut Privacy Policy and Security Policy to continue."
+    }
+  },
+  "applyModal": {
+    "applyTo": "Apply to Oklut Technologies",
+    "signInOrCreate": "Sign in or create a profile to apply for {{jobTitle}}.",
+    "signIn": "Sign In",
+    "createAccount": "Create Account",
+    "applyTitle": "Apply: {{jobTitle}}",
+    "department": "Oklut Technologies",
+    "location": "Hyderabad, India",
+    "fixFields": "Please fix the highlighted fields below before submitting.",
+    "jobRole": "Job Role *",
+    "autoFilled": "Auto-filled from the role you selected.",
+    "fullName": "Full Name *",
+    "email": "Email *",
+    "phone": "Phone *",
+    "linkedinUrl": "LinkedIn URL",
+    "portfolioUrl": "Portfolio URL",
+    "resumeUpload": "Resume Upload *",
+    "resumeDragDrop": "Drag & drop your resume here, or <1>browse files</1>",
+    "resumeHint": "PDF, DOC, or DOCX · Max 5 MB",
+    "resumeUploading": "Uploading your resume…",
+    "coverLetter": "Cover Letter",
+    "coverLetterPlaceholder": "Tell us why you are a great fit for this role…",
+    "submitting": "Submitting…",
+    "submitApplication": "Submit Application",
+    "applicationSubmitted": "Application Submitted",
+    "thankYou": "Thank you, {{firstName}}! Your application for <1>{{jobTitle}}</1> has been submitted successfully.",
+    "confirmationEmail": "A confirmation email is on its way to your inbox.",
+    "step1": "Our team reviews your resume and cover letter.",
+    "step2": "Shortlisted candidates are invited to a conversation.",
+    "step3": "We follow up by email — keep an eye on your inbox.",
+    "emailFailed": "We could not send a confirmation email at this time. Your application has been saved — please contact us at <1>info@oklut.com</1> if you have any questions.",
+    "done": "Done",
+    "remove": "Remove",
+    "validation": {
+      "nameRequired": "Name is required.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Enter a valid email.",
+      "phoneRequired": "Phone number is required.",
+      "phoneInvalid": "Enter a valid phone number.",
+      "resumeRequired": "Please upload your resume.",
+      "urlInvalid": "Enter a full URL (https://…).",
+      "resumeFormat": "Resume must be a PDF, DOC, or DOCX file.",
+      "resumeSize": "Resume must be 5 MB or smaller.",
+      "uploadFailed": "Could not upload your resume. Please try again.",
+      "submitFailed": "Could not submit your application. Check that the job_applications table exists, then try again.",
+      "noResume": "No resume selected."
+    },
+    "newHere": "New here?",
+    "createAnAccount": "Create an account",
+    "alreadyHaveAccount": "Already have an account?",
+    "signInLink": "Sign in",
+    "acceptPrivacy": "I accept the Oklut <1>Privacy & Security</1> policy.",
+    "signingIn": "Signing in…",
+    "creatingAccount": "Creating account…",
+    "createAccountContinue": "Create Account & Continue",
+    "accountCreatedNotice": "Account created! Check {{email}} to confirm your signup so you can upload your resume. You can continue with your application below."
+  },
+  "chatbot": {
+    "chatWithOklutAi": "Chat with Oklut AI",
+    "openChatLabel": "Open the Oklut AI Assistant chat",
+    "chatTitle": "Oklut AI Assistant",
+    "online": "Online",
+    "expandLabel": "Expand the chatbot",
+    "minimizeLabel": "Minimize the chatbot",
+    "closeLabel": "Close the chatbot",
+    "expand": "Expand",
+    "minimize": "Minimize",
+    "close": "Close",
+    "popularTopics": "Popular topics",
+    "askPlaceholder": "Ask me about Oklut...",
+    "messageLabel": "Message the Oklut AI Assistant",
+    "sendLabel": "Send message",
+    "sendTitle": "Send message",
+    "enterToSend": "Enter to send · Shift+Enter for a new line",
+    "newChat": "New chat"
+  },
+  "cookieConsent": {
+    "title": "We value your privacy",
+    "description": "We use cookies to improve your browsing experience. You can accept all cookies, reject non-essential cookies, or customize your preferences. Essential cookies are always enabled to ensure the website functions correctly.",
+    "acceptAll": "Accept All",
+    "rejectNonEssential": "Reject Non-Essential",
+    "managePreferences": "Manage Preferences",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "cookiePreferences": {
+    "title": "Manage Cookie Preferences",
+    "description": "Choose which categories of cookies you allow. Essential cookies remain enabled to keep the website functioning.",
+    "essential": "Essential",
+    "essentialDesc": "Required for the website to function (authentication, security, load balancing). These cannot be disabled.",
+    "analytics": "Analytics",
+    "analyticsDesc": "Help us understand how visitors use the site so we can improve it. Disabled by default.",
+    "marketing": "Marketing",
+    "marketingDesc": "Used to show you relevant offers and campaigns. Disabled by default.",
+    "cancel": "Cancel",
+    "savePreferences": "Save Preferences"
+  },
+  "privacy": {
+    "badge": "Legal",
+    "title": "Privacy Policy",
+    "description": "How Oklut Technologies collects, uses, and protects your personal information and cookies.",
+    "lastUpdated": "Last updated: August 2026",
+    "managingPreferences": "Managing your preferences",
+    "managingPreferencesDesc": "You can review or change which cookies you allow at any time from the cookie preference panel.",
+    "manageCookiePreferences": "Manage Cookie Preferences",
+    "section1": {
+      "title": "1. Information We Collect",
+      "body": [
+        "We collect information you provide directly (such as your name and email address when you submit the contact form or create an account) and information collected automatically through cookies and similar technologies, such as pages visited, device type and approximate location."
+      ]
+    },
+    "section2": {
+      "title": "2. How We Use Cookies",
+      "body": [
+        "Essential cookies are always enabled because the website cannot function correctly without them. They store session and authentication state and remember your cookie preferences.",
+        "Analytics cookies help us understand how visitors use the site so we can improve it. Marketing cookies are used to show you relevant offers and campaigns. These categories are only enabled with your consent and can be changed at any time from the cookie preference panel."
+      ]
+    },
+    "section3": {
+      "title": "3. Legal Basis (GDPR)",
+      "body": [
+        "We process personal data on the following legal bases: your consent (for non-essential cookies and marketing), performance of a contract (for services you request), legal obligation, and legitimate interests where your rights do not override them. You may withdraw consent at any time without affecting the lawfulness of processing carried out before withdrawal."
+      ]
+    },
+    "section4": {
+      "title": "4. Your Rights",
+      "body": [
+        "Depending on your location, you may have the right to access, rectify, erase, or restrict the processing of your personal data, to object to processing, and to data portability. You may also lodge a complaint with your local supervisory authority."
+      ]
+    },
+    "section5": {
+      "title": "5. Data Retention & Security",
+      "body": [
+        "We retain personal data only as long as necessary for the purposes described in this policy. We apply appropriate technical and organisational measures to protect your information against unauthorised access, alteration, disclosure or destruction."
+      ]
+    },
+    "section6": {
+      "title": "6. Third-Party Services",
+      "body": [
+        "Some cookies may be set by third-party providers (such as analytics or advertising platforms) that help us operate the website. These providers process data under their own privacy policies and only when you have consented to the relevant category."
+      ]
+    },
+    "contactUs": "7. Contact Us",
+    "contactUsText": "For questions about this policy or your personal data, contact us at <1>info@oklut.com</1> or call <3>+91-9014217124</3>."
+  },
+  "footer": {
+    "company": "Company",
+    "about": "About",
+    "careers": "Careers",
+    "perspectives": "Perspectives",
+    "technologies": "Technologies",
+    "contact": "Contact",
+    "services": "Services",
+    "getInTouch": "Get in touch",
+    "bookConsultation": "Book a consultation",
+    "copyright": "© {{year}} Oklut Technologies. All rights reserved.",
+    "cookiePreferences": "Cookie Preferences",
+    "privacyPolicy": "Privacy Policy",
+    "description": "Oklut Technologies is a digital product and IT services company in Hyderabad, India. We design, build and scale software for companies that compete on execution."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "close": "Close",
+    "backToTop": "Back to top",
+    "skipToContent": "Skip to content"
+  },
+  "phoneInput": {
+    "searchPlaceholder": "Search country or code…",
+    "noResults": "No countries found.",
+    "countryCodeLabel": "Country calling code",
+    "required": "Phone number is required.",
+    "incomplete": "Phone number must contain exactly {{count}} digits.",
+    "tooLong": "Phone number cannot contain more than {{count}} digits.",
+    "invalid": "Enter a valid phone number for {{country}}."
+  }
+}

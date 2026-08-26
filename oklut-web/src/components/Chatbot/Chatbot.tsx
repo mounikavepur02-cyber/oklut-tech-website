@@ -5,6 +5,7 @@ import {
   QUICK_ACTIONS,
   getChatResponse,
 } from '../../lib/chatKnowledge'
+import { useTranslation } from '../../i18n/TranslationContext'
 
 type Message = {
   id: string
@@ -18,6 +19,7 @@ let idCounter = 0
 const nextId = (prefix: string) => `${prefix}-${++idCounter}`
 
 export const Chatbot = () => {
+  const { t } = useTranslation()
   const [view, setView] = useState<View>('closed')
   const [messages, setMessages] = useState<Message[]>([
     { id: nextId('welcome'), role: 'assistant', content: WELCOME_MESSAGE },
@@ -151,15 +153,15 @@ export const Chatbot = () => {
       {view === 'closed' && (
         <>
           <span className="chatbot-label" aria-hidden="true">
-            Chat with Oklut AI
+            {t('chatbot.chatWithOklutAi')}
           </span>
           <button
             ref={toggleRef}
             type="button"
             className="chatbot-toggle"
             onClick={openChat}
-            aria-label="Open the Oklut AI Assistant chat"
-            title="Chat with the Oklut AI Assistant"
+            aria-label={t('chatbot.openChatLabel')}
+            title={t('chatbot.chatWithOklutAi')}
           >
             <svg
               className="chatbot-toggle-icon"
@@ -196,10 +198,10 @@ export const Chatbot = () => {
               <div className="chatbot-header-brand">
                 <img src={`${import.meta.env.BASE_URL}img/logo.jpg`} alt="" className="chatbot-header-logo" />
                 <div className="chatbot-header-text">
-                  <h2 id="chatbot-title">Oklut AI Assistant</h2>
+                  <h2 id="chatbot-title">{t('chatbot.chatTitle')}</h2>
                   <span className="chatbot-status">
                     <span className="chatbot-status-dot" aria-hidden="true" />
-                    Online
+                    {t('chatbot.online')}
                   </span>
                 </div>
               </div>
@@ -210,8 +212,8 @@ export const Chatbot = () => {
                     type="button"
                     className="chatbot-header-btn"
                     onClick={expandChat}
-                    aria-label="Expand the chatbot"
-                    title="Expand"
+                    aria-label={t('chatbot.expandLabel')}
+                    title={t('chatbot.expand')}
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M18 15l-6-6-6 6" />
@@ -222,8 +224,8 @@ export const Chatbot = () => {
                     type="button"
                     className="chatbot-header-btn"
                     onClick={minimizeChat}
-                    aria-label="Minimize the chatbot"
-                    title="Minimize"
+                    aria-label={t('chatbot.minimizeLabel')}
+                    title={t('chatbot.minimize')}
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M6 9l6 6 6-6" />
@@ -234,8 +236,8 @@ export const Chatbot = () => {
                   type="button"
                   className="chatbot-header-btn"
                   onClick={closeChat}
-                  aria-label="Close the chatbot"
-                  title="Close"
+                  aria-label={t('chatbot.closeLabel')}
+                  title={t('chatbot.close')}
                 >
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M18 6L6 18M6 6l12 12" />
@@ -277,7 +279,7 @@ export const Chatbot = () => {
 
                 {!hasConversation && (
                   <div className="chatbot-quick-actions">
-                    <p className="chatbot-quick-title">Popular topics</p>
+                    <p className="chatbot-quick-title">{t('chatbot.popularTopics')}</p>
                     <div className="chatbot-quick-list">
                       {QUICK_ACTIONS.map((action) => (
                         <button
@@ -300,19 +302,19 @@ export const Chatbot = () => {
                       value={input}
                       onChange={handleInputChange}
                       onKeyDown={handleTextareaKeyDown}
-                      placeholder="Ask me about Oklut..."
+                      placeholder={t('chatbot.askPlaceholder')}
                       maxLength={500}
                       rows={1}
                       autoComplete="off"
-                      aria-label="Message the Oklut AI Assistant"
+                      aria-label={t('chatbot.messageLabel')}
                       className="chatbot-input"
                     />
                     <button
                       type="submit"
                       className="chatbot-send"
                       disabled={!canSend}
-                      aria-label="Send message"
-                      title="Send message"
+                      aria-label={t('chatbot.sendLabel')}
+                      title={t('chatbot.sendTitle')}
                     >
                       <svg className="chatbot-send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <path d="M22 2L1 12" />
@@ -322,10 +324,10 @@ export const Chatbot = () => {
                     </button>
                   </div>
                   <div className="chatbot-input-foot">
-                    <span>Enter to send · Shift+Enter for a new line</span>
+                    <span>{t('chatbot.enterToSend')}</span>
                     {hasConversation && (
                       <button type="button" className="chatbot-reset" onClick={resetChat}>
-                        New chat
+                        {t('chatbot.newChat')}
                       </button>
                     )}
                   </div>
