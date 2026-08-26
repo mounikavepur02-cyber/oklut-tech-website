@@ -27,7 +27,12 @@ const BookConsultationPage = lazy(() => import('./pages/BookConsultationPage'))
 
 const EndToEndSolutionsPage = lazy(() => import('./pages/services/EndToEndSolutionsPage'))
 const SharedServicesPage = lazy(() => import('./pages/services/SharedServicesPage'))
-const CustomDevelopmentPage = lazy(() => import('./pages/services/CustomDevelopmentPage'))
+// Premium pages merged from dinesh/services + chandu/services (modern layouts + assets)
+const CustomDevelopmentPage = lazy(() => import('./pages/CustomDevelopmentPage'))
+const PilotPrototypingPagePremium = lazy(() => import('./pages/PilotPrototypingPage'))
+const SolutionEngineeringPagePremium = lazy(() => import('./pages/SolutionEngineeringPage'))
+const CentreOfExcellencePage = lazy(() => import('./pages/CentreOfExcellencePage'))
+// Fallback generic templates kept for other services
 const ProcessAutomationPage = lazy(() => import('./pages/services/ProcessAutomationPage'))
 const CenterOfExcellencePage = lazy(() => import('./pages/services/CenterOfExcellencePage'))
 const SolutionEngineeringPage = lazy(() => import('./pages/services/SolutionEngineeringPage'))
@@ -1337,16 +1342,21 @@ function App() {
             <Route path="/products" element={<ProductsPage />} />
             
             <Route path="/services/end-to-end-solutions" element={<EndToEndSolutionsPage />} />
-            <Route path="/services/pilot-prototyping" element={<PilotPrototypingPage />} />
+            <Route path="/services/pilot-prototyping" element={<PilotPrototypingPagePremium />} />
             <Route path="/services/shared-services" element={<SharedServicesPage />} />
             <Route path="/services/custom-development" element={<CustomDevelopmentPage />} />
             <Route path="/services/process-automation" element={<ProcessAutomationPage />} />
-            <Route path="/services/center-of-excellence" element={<CenterOfExcellencePage />} />
-            <Route path="/services/solution-engineering" element={<SolutionEngineeringPage />} />
+            <Route path="/services/center-of-excellence" element={<CentreOfExcellencePage />} />
+            <Route path="/services/centre-of-excellence" element={<CentreOfExcellencePage />} />
+            <Route path="/services/solution-engineering" element={<SolutionEngineeringPagePremium />} />
             <Route path="/services/digital-transformation" element={<DigitalTransformationPage />} />
             <Route path="/services/migration-services" element={<MigrationServicesPage />} />
             <Route path="/services/one-stop-solutions" element={<OneStopSolutionsPage />} />
             <Route path="/services/managed-services" element={<ManagedServicesPage />} />
+            {/* Legacy fallback routes kept for backwards compat */}
+            <Route path="/services/pilot-prototyping-legacy" element={<PilotPrototypingPage />} />
+            <Route path="/services/solution-engineering-legacy" element={<SolutionEngineeringPage />} />
+            <Route path="/services/center-of-excellence-legacy" element={<CenterOfExcellencePage />} />
           </Routes>
         </Suspense>
       </main>
